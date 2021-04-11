@@ -37,8 +37,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button botRegistrar;
     @FXML
-    private Button botRecordar;
-    @FXML
     private Button botRanking;
     @FXML
     private Button botEstadistiques;
@@ -66,16 +64,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private void finestraRegistrar(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Registrar.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.toFront();
-        stage.show();
-    }
-
-    @FXML
-    private void finestraRecordar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Recordar.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
