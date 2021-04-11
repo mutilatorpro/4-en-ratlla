@@ -21,6 +21,7 @@
          <rowConstraints>
             <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
             <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label text="Nom d'usuari" GridPane.hgrow="ALWAYS">
@@ -38,6 +39,7 @@
             </Label>
             <TextField fx:id="nombreTextF" GridPane.columnIndex="1" />
             <PasswordField fx:id="contrasenyaTextF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="botoRecordar" mnemonicParsing="false" onAction="#finestraRecordar" text="Recordar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
          <padding>
             <Insets bottom="12.0" right="6.0" top="12.0" />
