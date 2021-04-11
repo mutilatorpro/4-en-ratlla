@@ -60,7 +60,6 @@ public class PrimerJugadorController implements Initializable {
         benvinguda.setText("Hola " + this.jugador.getNickName() + "!");
     }
 
-    @FXML
     private void tancarSessió(ActionEvent event) throws IOException {
         jugador = null;
         numJugadors.set(numJugadors.get() - 1);
@@ -78,6 +77,14 @@ public class PrimerJugadorController implements Initializable {
 
     @FXML
     private void jugarMaquina(ActionEvent event) {
+    }
+
+    @FXML
+    private void tancarSessio(ActionEvent event) {
+    }
+
+    @FXML
+    private void tancarSessio2(ActionEvent event) {
     }
     
 }
