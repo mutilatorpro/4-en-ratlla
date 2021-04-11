@@ -44,6 +44,8 @@ public class AutenticarController implements Initializable {
     private TextField contrasenyaTextF;
     @FXML
     private Label error;
+    @FXML
+    private Button botoRecordar;
     /**
      * Initializes the controller class.
      */
@@ -80,6 +82,16 @@ public class AutenticarController implements Initializable {
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void finestraRecordar(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Recordar.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
