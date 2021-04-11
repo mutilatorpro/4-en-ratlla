@@ -39,12 +39,13 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="pvp" mnemonicParsing="false" onAction="#jugarJugador" text="Jugar contra altre jugador">
+                  <Button fx:id="maquina" mnemonicParsing="false" onAction="#jugarMaquina" text="Jugar contra la màquina">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="maquina" mnemonicParsing="false" onAction="#jugarMaquina" text="Jugar contra la màquina">
+                  <Button mnemonicParsing="false" text="Iniciar sessió 2n jugador" />
+                  <Button fx:id="pvp" mnemonicParsing="false" onAction="#jugarJugador" text="Jugar contra altre jugador">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -95,14 +96,15 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#tancarSessió" prefHeight="25.0" prefWidth="91.0" text="Tancar sessió">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
+            <VBox prefHeight="57.0" prefWidth="188.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#tancarSessio" prefHeight="25.0" prefWidth="172.0" text="Tancar sessió 1r jugador" />
+                  <Button mnemonicParsing="false" onAction="#tancarSessio2" prefHeight="25.0" prefWidth="172.0" text="Tancar sessió 2n jugador" />
+               </children>
+            </VBox>
             <Button fx:id="obscur" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Mode obscur">
                <HBox.margin>
-                  <Insets left="350.0" right="10.0" />
+                  <Insets left="300.0" right="10.0" />
                </HBox.margin>
             </Button>
          </children>
