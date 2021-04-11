@@ -1,0 +1,26 @@
+===================
+ PLAYERS IN DB 
+===================
+nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 0
+avatar =yes
+
+nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 0
+avatar =yes
+
+nickName= mutilator
+password= mutilator53
+email= mutilator53@gmail.com
+birthdate= 2021-04-09
+points= 0
+avatar =yes
+
+===================
+ ROUNDS IN DB 
