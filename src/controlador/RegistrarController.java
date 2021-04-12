@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -22,7 +24,9 @@ public class RegistrarController implements Initializable {
     @FXML
     private TextField nombreTextF;
     @FXML
-    private TextField apellidoTextF;
+    private Label error;
+    @FXML
+    private Button botoOK;
 
     /**
      * Initializes the controller class.
