@@ -61,16 +61,14 @@ public class Joc4Controller implements Initializable {
     }    
 
     @FXML
-    private void moure(ActionEvent event) {
-        if (esJugador1) { //Torn del 1r jugador
+    private void moure(ActionEvent event) throws InterruptedException {
+        if (maquina) {
             Button triat = (Button) event.getSource();
-            Integer fila = miGrid.getRowIndex(triat);
             Integer columna = miGrid.getColumnIndex(triat);
-            if (fila == null) fila = 0;
             if (columna == null) columna = 0;
             if (matriu[0][columna] != 0) { error.setText(missatgeError); }
             else {
-                fila = matriu.length - 1;
+                int fila = matriu.length - 1;
                 while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                 matriu[fila][columna] = 1;
                 Button aux = (Button) getNode(fila, columna);
@@ -81,21 +79,99 @@ public class Joc4Controller implements Initializable {
                     text_jugador.setStyle("-fx-color: Blue");
                 }
             }
-        } else { 
-            if (maquina) { //Torn de la màquina
-                Random aleatori = new Random();
-                int cAleatoria = aleatori.nextInt(7);
-                while (matriu[0][cAleatoria] != 0) { cAleatoria = aleatori.nextInt(7); }
-                
-            } else { //Torn del 2on jugador
+            numJugades++;
+            if (numJugades > 6) comprovarVictoria();
+            Thread.sleep(500);
+            Random aleatori = new Random();
+            int cMaquina = aleatori.nextInt(7);
+            while (matriu[0][cMaquina] != 0) {
+                cMaquina = aleatori.nextInt(7);
+            }
+            int fMaquina = matriu.length - 1;
+            while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) fMaquina--;
+            matriu[fMaquina][cMaquina] = 2;
+            Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+            auxMaquina.setText("O");
+            auxMaquina.setStyle("-fx-color: Blue");
+            numJugades++;
+        } else {
+            if (esJugador1) { //Torn Jugador 1 contra Jugador 2
                 Button triat = (Button) event.getSource();
-                Integer fila = miGrid.getRowIndex(triat);
                 Integer columna = miGrid.getColumnIndex(triat);
-                if (fila == null) fila = 0;
+                if (columna == null) columna = 0;
+                if (matriu[0][columna] != 0) error.setText(missatgeError);
+                else {
+                    int fila = matriu.length - 1;
+                    while (fila >= 0 && matriu[fila][columna] != 0) {
+                        fila--;
+                    }
+                    matriu[fila][columna] = 1;
+                    Button aux = (Button) getNode(fila, columna);
+                    aux.setText("O");
+                    aux.setStyle("-fx-color: Red");
+                    if (jugador2 != null) {
+                        text_jugador.setText("Torn de " + jugador2.getNickName());
+                        text_jugador.setStyle("-fx-color: Blue");
+                    }
+                }
+            } else { //Torn Jugador 2 contra Jugador 1
+                Button triat = (Button) event.getSource();
+                Integer columna = miGrid.getColumnIndex(triat);
                 if (columna == null) columna = 0;
                 if (matriu[0][columna] != 0) { error.setText(missatgeError); }
                 else {
-                    fila = matriu.length - 1;
+                    int fila = matriu.length - 1;
+                    while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
+                    matriu[fila][columna] = 2;
+                    Button aux = (Button) getNode(fila, columna);
+                    aux.setText("O");
+                    aux.setStyle("-fx-color: Blue");
+                    if (jugador1 != null) {
+                        text_jugador.setText("Torn de " + jugador1.getNickName());
+                        text_jugador.setStyle("-fx-color: Red");
+                    }
+                }
+            }
+            esJugador1 = !esJugador1;
+            numJugades++;
+            if (numJugades > 6) comprovarVictoria();
+        }
+        /*if (esJugador1) { //Torn del 1r jugador
+            Button triat = (Button) event.getSource();
+            Integer columna = miGrid.getColumnIndex(triat);
+            if (columna == null) columna = 0;
+            if (matriu[0][columna] != 0) { error.setText(missatgeError); }
+            else {
+                int fila = matriu.length - 1;
+                while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
+                matriu[fila][columna] = 1;
+                Button aux = (Button) getNode(fila, columna);
+                aux.setText("O");
+                aux.setStyle("-fx-color: Red");
+                if (!maquina && jugador2 != null) {
+                    text_jugador.setText("Torn de " + jugador2.getNickName());
+                    text_jugador.setStyle("-fx-color: Blue");
+                }
+                if (maquina) {
+                    Random aleatori = new Random();
+                    int cMaquina = aleatori.nextInt(7);
+                    while (matriu[0][cMaquina] != 0) { cMaquina = aleatori.nextInt(7); }
+                    int fMaquina = matriu.length - 1;
+                    while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) { fila--; }
+                    matriu [fMaquina][cMaquina] = 2;
+                    Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+                    auxMaquina.setText("O");
+                    auxMaquina.setStyle("-fx-color: Blue");
+                    numJugades++;
+                }
+            }
+        } else { //Torn del 2on jugador
+                Button triat = (Button) event.getSource();
+                Integer columna = miGrid.getColumnIndex(triat);
+                if (columna == null) columna = 0;
+                if (matriu[0][columna] != 0) { error.setText(missatgeError); }
+                else {
+                    int fila = matriu.length - 1;
                     while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                     matriu[fila][columna] = 2;
                     Button aux = (Button) getNode(fila, columna);
@@ -107,10 +183,9 @@ public class Joc4Controller implements Initializable {
                     }
                 }
             }
-        }
-        esJugador1 = !esJugador1;
+        if (!maquina) esJugador1 = !esJugador1;
         numJugades++;
-        if (numJugades > 6) comprovarVictoria();
+        if (numJugades > 6) comprovarVictoria();*/
     }
     private Node getNode(int fila, int col) {
         for (Node node : miGrid.getChildren()) {
@@ -129,7 +204,10 @@ public class Joc4Controller implements Initializable {
     }
     public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
-        if (jugador1 != null && !maquina) text_jugador.setText("Torn de " + jugador1.getNickName());
+        if (jugador1 != null){
+            if (!maquina) text_jugador.setText("Torn de " + jugador1.getNickName());
+            else text_jugador.setText("Jugant contra la màquina!");
+        }
         punts = sistema.getPointsAlone();
     }
     public void inicialitzarJugadors(Player j1, Player j2) {
