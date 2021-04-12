@@ -59,8 +59,8 @@ public class PrimerJugadorController implements Initializable {
         numJugadors.set(numJugadors.get() + 1);
         benvinguda.setText("Hola " + this.jugador.getNickName() + "!");
     }
-
-    private void tancarSessió(ActionEvent event) throws IOException {
+    @FXML
+    private void tancarSessio(ActionEvent event) throws IOException {
         jugador = null;
         numJugadors.set(numJugadors.get() - 1);
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
@@ -77,10 +77,6 @@ public class PrimerJugadorController implements Initializable {
 
     @FXML
     private void jugarMaquina(ActionEvent event) {
-    }
-
-    @FXML
-    private void tancarSessio(ActionEvent event) {
     }
 
     @FXML
