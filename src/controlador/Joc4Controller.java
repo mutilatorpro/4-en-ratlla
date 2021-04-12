@@ -5,14 +5,20 @@
  */
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Player;
 
 /**
@@ -53,9 +59,14 @@ public class Joc4Controller implements Initializable {
             Integer columna = miGrid.getColumnIndex(triat);
             if (fila == null) fila = 0;
             if (columna == null) columna = 0;
-            if (matriu[fila][columna] != 0) { error.setText(missatgeError); }
+            if (matriu[0][columna] != 0) { error.setText(missatgeError); }
             else {
+                fila = matriu.length - 1;
+                while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                 matriu[fila][columna] = 1;
+                Button aux = (Button) getNode(fila, columna);
+                aux.setText("O");
+                aux.setStyle("-fx-color: Blue");
             }
         } else { 
             if (maquina) { //Torn de la màquina
@@ -68,6 +79,12 @@ public class Joc4Controller implements Initializable {
         numJugades++;
         comprovarVictoria();
     }
+    private Node getNode(int fila, int col) {
+        for (Node node: miGrid.getChildren()) {
+            if (miGrid.getRowIndex(node) == fila && miGrid.getColumnIndex(node) == col) return node;
+        }
+        return null;
+    }
     private void comprovarVictoria() {
         
     }
@@ -79,5 +96,18 @@ public class Joc4Controller implements Initializable {
         this.jugador1 = j1;
         this.jugador2 = j2;
         if (jugador1 != null) text_jugador.setText("Torn de " + jugador1.getNickName());
+    }
+
+    @FXML
+    private void enrere(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+        Parent root = cargador.load();
+        PrimerJugadorController controlador = cargador.getController();
+        controlador.inicialitzarJugadors(jugador1,jugador2);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
     }
 }
