@@ -7,6 +7,7 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -21,7 +22,7 @@ public class Joc4Controller implements Initializable {
     @FXML
     private Text text_jugador;
     @FXML
-    private Text text_warning;
+    private Text error;
 
     /**
      * Initializes the controller class.
@@ -30,5 +31,9 @@ public class Joc4Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void moure(ActionEvent event) {
+    }
     
 }
