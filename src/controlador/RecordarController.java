@@ -5,10 +5,12 @@
  */
 package controlador;
 
+import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.util.Random;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +48,13 @@ public class RecordarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            sistema = Connect4.getSingletonConnect4();
+        } catch (Connect4DAOException ex) {
+            System.out.println("Error en la càrrega del sistema");
+        }
+        botoOK.disableProperty().bind(Bindings.or(Bindings.equal(nombreTextF.textProperty(),""),Bindings.equal(correuTextF.textProperty(),"")));
+
     }    
     
     
@@ -59,7 +67,6 @@ public class RecordarController implements Initializable {
         }
         
         if (jugador.getEmail().equals(correuTextF)) {
-            error.setText("La teua contrasenya és\nIntenta-ho de nou."); 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Generador de codi de seguretat");
