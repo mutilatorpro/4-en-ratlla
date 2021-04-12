@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Connect4;
 import model.Player;
 
 /**
@@ -27,7 +29,7 @@ import model.Player;
  * @author inmad
  */
 public class RecordarController implements Initializable {
-
+    private Connect4 sistema;
     @FXML
     private TextField nombreTextF;
     @FXML
@@ -42,27 +44,16 @@ public class RecordarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            sistema = Connect4.getSingletonConnect4();
+        } catch (Connect4DAOException ex) {
+            System.out.println("Error en la càrrega del sistema");
+        }
     }    
     
     
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
-        Player jugador = sistema.loginPlayer(nombreTextF.getText(), contrasenyaTextF.getText());
-        if (jugador == null) { 
-            error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
-            //Interessant mirar si se poden posar els textFields amb el borde roig
-        } else {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
-            Parent root = cargador.load();
-            PrimerJugadorController controlador = cargador.getController();
-            controlador.inicialitzarJugador(jugador);
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        }
     }
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {

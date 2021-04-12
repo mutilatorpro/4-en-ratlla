@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import model.Connect4;
 import model.Player;
 
 /**
@@ -58,6 +59,10 @@ public class PrimerJugadorController implements Initializable {
         this.jugador1 = player;
         numJugadors.set(numJugadors.get() + 1);
         benvinguda.setText("Hola " + this.jugador1.getNickName() + "!");
+    }
+    public void inicialitzarJugadors(Player j1, Player j2) {
+        jugador1 = j1;
+        jugador2 = j2;
     }
     @FXML
     private void tancarSessio(ActionEvent event) throws IOException {
