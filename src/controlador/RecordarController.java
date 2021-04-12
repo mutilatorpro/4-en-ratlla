@@ -6,6 +6,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.Random;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Connect4;
 import model.Player;
 
 /**
@@ -28,6 +31,7 @@ import model.Player;
  */
 public class RecordarController implements Initializable {
 
+    private Connect4 sistema;
     @FXML
     private TextField nombreTextF;
     @FXML
@@ -48,10 +52,24 @@ public class RecordarController implements Initializable {
     
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
-        Player jugador = sistema.loginPlayer(nombreTextF.getText(), contrasenyaTextF.getText());
+        Player jugador = sistema.getPlayer(nombreTextF);
         if (jugador == null) { 
-            error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
+            error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
+        }
+        
+        if (jugador.getEmail().equals(correuTextF)) {
+            error.setText("La teua contrasenya és\nIntenta-ho de nou."); 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Generador de codi de seguretat");
+            int num = (int) (Math.random() + Math.random() * 10 + Math.random() * 100 + Math.random() * 1000);
+            alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
+            alert.showAndWait();
+            
+            
+        }
+        
         } else {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
             Parent root = cargador.load();
