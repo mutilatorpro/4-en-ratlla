@@ -66,7 +66,6 @@ public class AutenticarController implements Initializable {
             error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
         } else {
-            System.out.println("Inici de sessió.");
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
             Parent root = cargador.load();
             PrimerJugadorController controlador = cargador.getController();
