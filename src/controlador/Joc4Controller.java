@@ -8,6 +8,9 @@ package controlador;
 import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -44,7 +47,8 @@ public class Joc4Controller implements Initializable {
     private int[][] matriu = new int[7][8];
     private Player jugador1 = null;
     private Player jugador2 = null;
-    private int punts;
+    private int punts = 0;
+    private LocalDateTime data;
     //color Jugador1 = Negre
     //color Jugador2 = Blau
     @FXML
@@ -64,10 +68,13 @@ public class Joc4Controller implements Initializable {
         } catch (Connect4DAOException ex) {
             System.out.println("Error en la càrrega del sistema");
         }
+        LocalDate hui = LocalDate.now();
+        LocalTime ara = LocalTime.now();
+        data = LocalDateTime.of(hui, ara);
     }    
 
     @FXML
-    private void moure(ActionEvent event) throws InterruptedException, IOException {
+    private void moure(ActionEvent event) throws InterruptedException, IOException, Connect4DAOException {
         if (numJugades < 56) { //només hi ha 56 caselles, s'ha de comprovar que encara quede alguna lliure
             if (maquina) {
                 Button triat = (Button) event.getSource();
@@ -115,7 +122,8 @@ public class Joc4Controller implements Initializable {
                             numJugades++;
                             if (numJugades > 6) { 
                                 try {comprovarVictoria(event); }
-                                catch (IOException ex) {    }
+                                catch (IOException ex) {    } 
+                                catch (Connect4DAOException ex) {   }
                             }
                         }
                     });
@@ -197,14 +205,39 @@ public class Joc4Controller implements Initializable {
         stage.toFront();
         stage.show();
     }
-    private void comprovarVictoria(ActionEvent event) throws IOException {
-        boolean victoria = false;
-        
-        if (victoria) {
+    private void comprovarVictoria(ActionEvent event) throws IOException, Connect4DAOException {
+        int guanyador = 0; //se quedarà a 0 mentre no s'hagen connectat 4
+        for (int i = 0; i < matriu.length && guanyador == 0; i++) { //recorrem les files
+            for (int j = 0; j < matriu[i].length - 4 && guanyador == 0; j++) { //recorrem UNA fila concreta
+                if (matriu[i][j] == matriu[i][j + 1] && matriu[i][j + 1] == matriu[i][j + 2] && matriu[i][j + 2] == matriu[i][j + 3]) {
+                    guanyador = matriu[i][j]; //se posarà a 1 si són els de Jugador1 qui ha connectat 4 o 2 si ha sigut el 2
+                }
+            }
+        }
+        if (guanyador != 0) { //s'ha canviat guanyador perquè s'han trobat 4 connectades
+            if (guanyador == 1) { //Alert de victòria al 1r jugador
+               jugador1.plusPoints(punts);
+               if (!maquina) sistema.regiterRound(data, jugador1, jugador2);
+            }
+            if (guanyador == 2) {
+                if (!maquina) {
+                    jugador2.plusPoints(punts);
+                    sistema.regiterRound(data, jugador2, jugador1);
+                }
+            }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Guanyador!!");
+            if (guanyador == 1) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador1.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts");
+            else {
+                if (!maquina) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador2.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts");
+                else alert.setContentText("Ha guanyat la màquina!\nHo sentim molt, torna-ho a intentar.");
+            }
+            alert.showAndWait();
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
             Parent root = cargador.load();
             PrimerJugadorController controlador = cargador.getController();
-            if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
+            if (jugador2 != null) controlador.inicialitzarJugadors(jugador1, jugador2);
             else controlador.inicialitzarJugador(jugador1);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -217,8 +250,7 @@ public class Joc4Controller implements Initializable {
     public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
         if (jugador1 != null){
-            if (!maquina) text_jugador.setText("Torn de " + jugador1.getNickName());
-            else text_jugador.setText("Jugant contra la màquina!");
+            text_jugador.setText("Jugant contra la màquina!");
         }
         punts = sistema.getPointsAlone();
     }
