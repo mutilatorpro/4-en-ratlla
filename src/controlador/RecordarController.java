@@ -54,7 +54,7 @@ public class RecordarController implements Initializable {
     
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
-    }
+        }
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
