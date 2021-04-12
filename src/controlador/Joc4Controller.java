@@ -81,7 +81,7 @@ public class Joc4Controller implements Initializable {
             }
             numJugades++;
             if (numJugades > 6) comprovarVictoria();
-            Thread.sleep(500);
+            //Thread.sleep(500);
             Random aleatori = new Random();
             int cMaquina = aleatori.nextInt(7);
             while (matriu[0][cMaquina] != 0) {
@@ -94,6 +94,7 @@ public class Joc4Controller implements Initializable {
             auxMaquina.setText("O");
             auxMaquina.setStyle("-fx-color: Blue");
             numJugades++;
+            if (numJugades > 6) comprovarVictoria();
         } else {
             if (esJugador1) { //Torn Jugador 1 contra Jugador 2
                 Button triat = (Button) event.getSource();
