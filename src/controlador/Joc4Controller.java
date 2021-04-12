@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import model.Player;
 
@@ -32,6 +34,8 @@ public class Joc4Controller implements Initializable {
     private Text text_jugador;
     @FXML
     private Text error;
+    @FXML
+    private GridPane miGrid;
 
     /**
      * Initializes the controller class.
@@ -44,7 +48,15 @@ public class Joc4Controller implements Initializable {
     @FXML
     private void moure(ActionEvent event) {
         if (esJugador1) { //Torn del 1r jugador
-            
+            Button triat = (Button) event.getSource();
+            Integer fila = miGrid.getRowIndex(triat);
+            Integer columna = miGrid.getColumnIndex(triat);
+            if (fila == null) fila = 0;
+            if (columna == null) columna = 0;
+            if (matriu[fila][columna] != 0) { error.setText(missatgeError); }
+            else {
+                matriu[fila][columna] = 1;
+            }
         } else { 
             if (maquina) { //Torn de la màquina
                 
@@ -54,12 +66,16 @@ public class Joc4Controller implements Initializable {
         }
         esJugador1 = !esJugador1;
         numJugades++;
+        comprovarVictoria();
     }
-    private void inicialitzarJugador1(Player j1) {
+    private void comprovarVictoria() {
+        
+    }
+    public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
         if (jugador1 != null) text_jugador.setText("Torn de " + jugador1.getNickName());
     }
-    private void inicialitzarJugadors(Player j1, Player j2) {
+    public void inicialitzarJugadors(Player j1, Player j2) {
         this.jugador1 = j1;
         this.jugador2 = j2;
         if (jugador1 != null) text_jugador.setText("Torn de " + jugador1.getNickName());

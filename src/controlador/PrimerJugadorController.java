@@ -29,7 +29,7 @@ import model.Player;
  */
 public class PrimerJugadorController implements Initializable {
     
-    private Player jugador = null;
+    private Player jugador1 = null;
     private Player jugador2 = null;
     private SimpleIntegerProperty numJugadors = new SimpleIntegerProperty(0);
     @FXML
@@ -55,13 +55,13 @@ public class PrimerJugadorController implements Initializable {
     }    
 
     public void inicialitzarJugador(Player player) {
-        this.jugador = player;
+        this.jugador1 = player;
         numJugadors.set(numJugadors.get() + 1);
-        benvinguda.setText("Hola " + this.jugador.getNickName() + "!");
+        benvinguda.setText("Hola " + this.jugador1.getNickName() + "!");
     }
     @FXML
     private void tancarSessio(ActionEvent event) throws IOException {
-        jugador = null;
+        jugador1 = null;
         numJugadors.set(numJugadors.get() - 1);
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
         Scene scene = new Scene(root);
@@ -77,7 +77,10 @@ public class PrimerJugadorController implements Initializable {
 
     @FXML
     private void jugarMaquina(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Joc4.fxml"));
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+        Parent root = cargador.load();
+        Joc4Controller controlador = cargador.getController();
+        controlador.inicialitzarJugador1(jugador1);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
