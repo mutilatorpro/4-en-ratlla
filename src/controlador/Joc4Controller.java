@@ -92,43 +92,49 @@ public class Joc4Controller implements Initializable {
                         text_jugador.setText("Torn de " + jugador2.getNickName());
                         text_jugador.setStyle("-fx-color: Blue");
                     }
+                    numJugades++;
+                    if (numJugades > 6) comprovarVictoria(event);
+                    //Thread.sleep(500);
+                    if (numJugades < 56) {
+                        Task<Void> sleeper = new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                }
+                                return null;
+                            }
+                        };
+                        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                            @Override
+                            public void handle(WorkerStateEvent evento) {
+                                Random aleatori = new Random();
+                                int cMaquina = aleatori.nextInt(8);
+                                while (matriu[0][cMaquina] != 0) {
+                                    cMaquina = aleatori.nextInt(8);
+                                }
+                                int fMaquina = matriu.length - 1;
+                                while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) {
+                                    fMaquina--;
+                                }
+                                matriu[fMaquina][cMaquina] = 2;
+                                Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+                                auxMaquina.setText("O");
+                                auxMaquina.setStyle("-fx-color: Blue");
+                                numJugades++;
+                                if (numJugades > 6) {
+                                    try {
+                                        comprovarVictoria(event);
+                                    } catch (IOException ex) {
+                                    } catch (Connect4DAOException ex) {
+                                    }
+                                }
+                            }
+                        });
+                        new Thread(sleeper).start();
+                    } else taulerPle(event);
                 }
-                numJugades++;
-                if (numJugades > 6) comprovarVictoria(event);
-                //Thread.sleep(500);
-                if (numJugades < 56) {
-                    Task<Void> sleeper = new Task<Void>() {
-                        @Override
-                        protected Void call() throws Exception {
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                            }
-                            return null;
-                        }
-                    };
-                    sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                        @Override
-                        public void handle(WorkerStateEvent evento) {
-                            Random aleatori = new Random();
-                            int cMaquina = aleatori.nextInt(8);
-                            while (matriu[0][cMaquina] != 0) cMaquina = aleatori.nextInt(8);
-                            int fMaquina = matriu.length - 1;
-                            while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) fMaquina--;
-                            matriu[fMaquina][cMaquina] = 2;
-                            Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
-                            auxMaquina.setText("O");
-                            auxMaquina.setStyle("-fx-color: Blue");
-                            numJugades++;
-                            if (numJugades > 6) { 
-                                try {comprovarVictoria(event); }
-                                catch (IOException ex) {    } 
-                                catch (Connect4DAOException ex) {   }
-                            }
-                        }
-                    });
-                    new Thread(sleeper).start(); 
-                } else { taulerPle(event); }
             } else {
                 if (esJugador1) { //Torn Jugador 1 contra Jugador 2
                     Button triat = (Button) event.getSource();
@@ -207,17 +213,17 @@ public class Joc4Controller implements Initializable {
     }
     private void comprovarVictoria(ActionEvent event) throws IOException, Connect4DAOException {
         int guanyador = 0; //se quedarà a 0 mentre no s'hagen connectat 4
-        for (int i = 0; i < matriu.length && guanyador == 0; i++) { //recorrem les files
-            for (int j = 0; j < matriu[i].length - 3 && guanyador == 0; j++) { //recorrem UNA fila concreta
+        for (int i = 0; i < 7 && guanyador == 0; i++) { //recorrem les files
+            for (int j = 0; j < 5 && guanyador == 0; j++) { //recorrem UNA fila concreta
                 if (matriu[i][j] == matriu[i][j + 1] && matriu[i][j + 1] == matriu[i][j + 2] && matriu[i][j + 2] == matriu[i][j + 3]) {
                     guanyador = matriu[i][j]; //se posarà a 1 si són els de Jugador1 qui ha connectat 4 o 2 si ha sigut el 2
                 }
             }
         }
-        for (int i = 0; i < matriu[0].length; i++) { //ara recorrem totes les columnes
-            for (int j = 0; j < matriu.length - 3; j++) {
+        for (int i = 0; i < 8 && guanyador == 0; i++) {
+            for (int j = 0; j < 4 && guanyador == 0; j++) {
                 if (matriu[j][i] == matriu[j + 1][i] && matriu[j + 1][i] == matriu[j + 2][i] && matriu[j + 2][i] == matriu[j + 3][i]) {
-                    guanyador = matriu[j][i]; //se posarà a 1 si són els de Jugador1 qui ha connectat 4 o 2 si ha sigut el 2
+                    guanyador = matriu[j][i];
                 }
             }
         }
