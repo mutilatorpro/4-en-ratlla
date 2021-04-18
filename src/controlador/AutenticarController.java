@@ -35,7 +35,7 @@ import model.Player;
 public class AutenticarController implements Initializable {
     
     private Connect4 sistema;
-    
+    private Player jugador1 = null;
     @FXML
     private TextField nombreTextF;
     @FXML
@@ -65,11 +65,16 @@ public class AutenticarController implements Initializable {
         if (jugador == null) { 
             error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
-        } else {
+        } 
+        else if(jugador.equals(jugador1)) { error.setText("Eixe jugador ja ha iniciat sessió en el sistema."); }
+        else {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
             Parent root = cargador.load();
             PrimerJugadorController controlador = cargador.getController();
-            controlador.inicialitzarJugador(jugador);
+            if (jugador1 != null) {
+                controlador.inicialitzarJugadors(jugador1, jugador); //El 1r jugador ja havia iniciat sessió i l'hem de mantindre i el 2n és el nou
+            }
+            else controlador.inicialitzarJugador(jugador);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -97,5 +102,7 @@ public class AutenticarController implements Initializable {
         stage.toFront();
         stage.show();
     }
-    
+    public void inicialitzarJugador(Player j1) {
+        jugador1 = j1;
+    }
 }

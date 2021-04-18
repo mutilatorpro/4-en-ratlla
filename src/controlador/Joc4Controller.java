@@ -11,6 +11,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -27,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -306,15 +308,22 @@ public class Joc4Controller implements Initializable {
     @FXML
     private void enrere(ActionEvent event) throws IOException {
         //Ací falta un Alert de CONFIRMATION per comprovar que no ha clicat sense voler
-        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
-        Parent root = cargador.load();
-        PrimerJugadorController controlador = cargador.getController();
-        if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
-        else controlador.inicialitzarJugador(jugador1);
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.toFront();
-        stage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmació eixida");
+        alert.setContentText("Estàs segur que vols abandonar la partida?");
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.get() == ButtonType.OK) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+            Parent root = cargador.load();
+            PrimerJugadorController controlador = cargador.getController();
+            if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
+            else controlador.inicialitzarJugador(jugador1);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
     }
 }
