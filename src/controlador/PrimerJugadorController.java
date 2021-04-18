@@ -63,6 +63,7 @@ public class PrimerJugadorController implements Initializable {
     public void inicialitzarJugadors(Player j1, Player j2) {
         jugador1 = j1;
         jugador2 = j2;
+        benvinguda.setText("Hola " + this.jugador1.getNickName() + " i " + this.jugador2.getNickName() + "!");
     }
     @FXML
     private void tancarSessio(ActionEvent event) throws IOException {
@@ -77,7 +78,16 @@ public class PrimerJugadorController implements Initializable {
     }
 
     @FXML
-    private void jugarJugador(ActionEvent event) {
+    private void jugarJugador(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+        Parent root = cargador.load();
+        Joc4Controller controlador = cargador.getController();
+        controlador.inicialitzarJugadors(jugador1,jugador2);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
     }
 
     @FXML
