@@ -59,7 +59,7 @@ public class RecordarController implements Initializable {
     
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
-        Player jugador = sistema.getPlayer(nombreTextF);
+        Player jugador = sistema.getPlayer(nombreTextF.getText());
         if (jugador == null) { 
             error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
@@ -72,12 +72,17 @@ public class RecordarController implements Initializable {
             int num = (int) (Math.random() + Math.random() * 10 + Math.random() * 100 + Math.random() * 1000);
             alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
             alert.showAndWait();
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.toFront();
-        stage.show();
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Codi.fxml"));
+            Parent root = cargador.load();
+            CodiController controlador = cargador.getController();
+            controlador.passarInfo(num, jugador.getNickName(), jugador.getPassword());
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+
+            
             
         }
     //@FXML
