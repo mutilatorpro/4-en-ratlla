@@ -96,7 +96,22 @@ public class Joc4Controller implements Initializable {
                     if (numJugades > 6) comprovarVictoria(event);
                     //Thread.sleep(500);
                     if (numJugades < 56) {
-                        Task<Void> sleeper = new Task<Void>() {
+                        Random aleatori = new Random();
+                        int cMaquina = aleatori.nextInt(8);
+                        while (matriu[0][cMaquina] != 0) {
+                            cMaquina = aleatori.nextInt(8);
+                        }
+                        int fMaquina = matriu.length - 1;
+                        while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) {
+                            fMaquina--;
+                        }
+                        matriu[fMaquina][cMaquina] = 2;
+                        Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+                        auxMaquina.setText("O");
+                        auxMaquina.setStyle("-fx-color: Blue");
+                        numJugades++;
+                        if (numJugades > 6) comprovarVictoria(event);
+                        /*Task<Void> sleeper = new Task<Void>() {
                             @Override
                             protected Void call() throws Exception {
                                 try {
@@ -126,13 +141,13 @@ public class Joc4Controller implements Initializable {
                                 if (numJugades > 6) {
                                     try {
                                         comprovarVictoria(event);
-                                    } catch (IOException ex) {
-                                    } catch (Connect4DAOException ex) {
-                                    }
+                                    } 
+                                    catch (IOException ex) { System.out.println("Error 1"); }
+                                    catch (Connect4DAOException ex) { System.out.println("Error 2"); }
                                 }
                             }
                         });
-                        new Thread(sleeper).start();
+                        new Thread(sleeper).start();*/
                     } else taulerPle(event);
                 }
             } else {
@@ -227,16 +242,28 @@ public class Joc4Controller implements Initializable {
                 }
             }
         }
+        for (int i = 0; i < 5 && guanyador == 0; i++) {
+            for (int j = 0; j < 4 && guanyador == 0; j++) {
+                if (matriu[j][i] == matriu[j + 1][i + 1] && matriu[j + 1][i + 1] == matriu[j + 2][i + 2] && matriu[j + 2][i + 2] == matriu[j + 3][i + 3]) {
+                    guanyador = matriu[j][i];
+                }
+            }
+        }
+        for (int i = 3; i < 8 && guanyador == 0; i++) {
+            for (int j = 0; j < 4 && guanyador == 0; j++) {
+                if (matriu[j][i] == matriu[j + 1][i - 1] && matriu[j + 1][i - 1] == matriu[j + 2][i - 2] && matriu[j + 2][i - 2] == matriu[j + 3][i - 3]) {
+                    guanyador = matriu[j][i];
+                }
+            }
+        }
         if (guanyador != 0) { //s'ha canviat guanyador perquè s'han trobat 4 connectades
-            if (guanyador == 1) { //Alert de victòria al 1r jugador
+            if (guanyador == 1 && jugador1 != null) { //Alert de victòria al 1r jugador
                jugador1.plusPoints(punts);
                if (!maquina) sistema.regiterRound(data, jugador1, jugador2);
             }
-            if (guanyador == 2) {
-                if (!maquina) {
-                    jugador2.plusPoints(punts);
-                    sistema.regiterRound(data, jugador2, jugador1);
-                }
+            if (guanyador == 2 && jugador2 != null) { //si el jugador és un altre que no el principal i el jugador2 existeix(no és la màquina)
+                jugador2.plusPoints(punts);
+                if (!maquina) sistema.regiterRound(data, jugador2, jugador1);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
