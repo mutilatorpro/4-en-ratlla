@@ -8,7 +8,9 @@ package controlador;
 import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -49,12 +52,46 @@ public class RecordarController implements Initializable {
         } catch (Connect4DAOException ex) {
             System.out.println("Error en la càrrega del sistema");
         }
+        botoOK.disableProperty().bind(Bindings.or(Bindings.equal(nombreTextF.textProperty(),""),Bindings.equal(correuTextF.textProperty(),"")));
+
     }    
     
     
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
+        Player jugador = sistema.getPlayer(nombreTextF.getText());
+        if (jugador == null) { 
+            error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
+            //Interessant mirar si se poden posar els textFields amb el borde roig
         }
+        
+        if (jugador.getEmail().equals(correuTextF)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Generador de codi de seguretat");
+            int num = (int) (Math.random() + Math.random() * 10 + Math.random() * 100 + Math.random() * 1000);
+            alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
+            alert.showAndWait();
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Codi.fxml"));
+            Parent root = cargador.load();
+            CodiController controlador = cargador.getController();
+            controlador.passarInfo(num, jugador.getNickName(), jugador.getPassword());
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+
+            
+            
+        }
+    //@FXML
+    //private void cancelCambios(ActionEvent event) throws IOException {
+        
+    //}
+    
+}
+
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
@@ -64,5 +101,4 @@ public class RecordarController implements Initializable {
         stage.toFront();
         stage.show();
     }
-    
-}
+    }
