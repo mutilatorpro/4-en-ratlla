@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import model.Connect4;
+import model.Player;
 
 /**
  * FXML Controller class
@@ -90,5 +91,4 @@ public class PrincipalController implements Initializable {
         stage.toFront();
         stage.show();
     }
-    
 }

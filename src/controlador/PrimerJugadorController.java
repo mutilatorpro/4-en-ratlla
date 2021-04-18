@@ -80,7 +80,7 @@ public class PrimerJugadorController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setTitle("Confirmació eixida");
-        alert.setContentText("Estàs segur que vols tancar la sessió de l'usuari:" + this.jugador1.getNickName() + "?");
+        alert.setContentText("Estàs segur que vols tancar la sessió de l'usuari: " + this.jugador1.getNickName() + "?");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.get() == ButtonType.OK) {
             jugador1 = null;

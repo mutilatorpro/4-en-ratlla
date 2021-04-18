@@ -85,17 +85,32 @@ public class AutenticarController implements Initializable {
 
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.toFront();
-        stage.show();
+        if (jugador1 != null) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+            Parent root = cargador.load();
+            PrimerJugadorController controlador = cargador.getController();
+            controlador.inicialitzarJugador(jugador1);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
     }
 
     @FXML
     private void finestraRecordar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Recordar.fxml"));
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Recordar.fxml"));
+        Parent root = cargador.load();
+        RecordarController controlador = cargador.getController();
+        if (jugador1 != null) controlador.inicialitzarJugador(jugador1);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

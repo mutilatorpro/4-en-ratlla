@@ -33,6 +33,7 @@ import model.Player;
  */
 public class RecordarController implements Initializable {
     private Connect4 sistema;
+    private Player jugador1 = null;
     @FXML
     private TextField nombreTextF;
     @FXML
@@ -53,7 +54,7 @@ public class RecordarController implements Initializable {
             System.out.println("Error en la càrrega del sistema");
         }
         botoOK.disableProperty().bind(Bindings.or(Bindings.equal(nombreTextF.textProperty(),""),Bindings.equal(correuTextF.textProperty(),"")));
-
+        
     }    
     
     
@@ -64,41 +65,41 @@ public class RecordarController implements Initializable {
             error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
         }
-        
-        if (jugador.getEmail().equals(correuTextF)) {
+        if (jugador.getEmail().equals(correuTextF.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Generador de codi de seguretat");
-            int num = (int) (Math.random() + Math.random() * 10 + Math.random() * 100 + Math.random() * 1000);
+            Random generador = new Random();
+            int num = (generador.nextInt(10) + generador.nextInt(10) * 10 + generador.nextInt(10) * 100 + generador.nextInt(10) * 1000);
             alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
             alert.showAndWait();
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Codi.fxml"));
             Parent root = cargador.load();
             CodiController controlador = cargador.getController();
             controlador.passarInfo(num, jugador.getNickName(), jugador.getPassword());
+            if (jugador1 != null) controlador.inicialitzarJugador(jugador1);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.toFront();
             stage.show();
-
-            
-            
+        } else { 
+            error.setText("El nom d'usuari no es correspón amb el correu introduït.");
         }
-    //@FXML
-    //private void cancelCambios(ActionEvent event) throws IOException {
-        
-    //}
-    
-}
-
+    }
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Autenticar.fxml"));
+        Parent root = cargador.load();
+        AutenticarController controlador = cargador.getController();
+        if (jugador1 != null) controlador.inicialitzarJugador(jugador1);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.toFront();
         stage.show();
     }
+    public void inicialitzarJugador(Player j1) {
+        jugador1 = j1;
     }
+}
