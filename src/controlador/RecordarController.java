@@ -7,8 +7,8 @@ package controlador;
 
 import DBAccess.Connect4DAOException;
 import java.io.IOException;
-import java.util.Random;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -32,7 +32,6 @@ import model.Player;
  * @author inmad
  */
 public class RecordarController implements Initializable {
-
     private Connect4 sistema;
     @FXML
     private TextField nombreTextF;
@@ -73,22 +72,21 @@ public class RecordarController implements Initializable {
             int num = (int) (Math.random() + Math.random() * 10 + Math.random() * 100 + Math.random() * 1000);
             alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
             alert.showAndWait();
-            
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
             
         }
+    //@FXML
+    //private void cancelCambios(ActionEvent event) throws IOException {
         
-        } else {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
-            Parent root = cargador.load();
-            PrimerJugadorController controlador = cargador.getController();
-            controlador.inicialitzarJugador(jugador);
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        }
-    }
+    //}
+    
+}
+
     @FXML
     private void cancelCambios(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/Autenticar.fxml"));
@@ -98,5 +96,4 @@ public class RecordarController implements Initializable {
         stage.toFront();
         stage.show();
     }
-    
-}
+    }
