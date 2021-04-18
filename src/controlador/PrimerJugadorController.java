@@ -45,6 +45,8 @@ public class PrimerJugadorController implements Initializable {
     private Button estadistiques;
     @FXML
     private Button ranquing;
+    @FXML
+    private Button iniciar;
     /**
      * Initializes the controller class.
      */
@@ -53,6 +55,7 @@ public class PrimerJugadorController implements Initializable {
         ranquing.setDisable(true);
         estadistiques.setDisable(true);
         pvp.disableProperty().bind(Bindings.lessThan(numJugadors, 2));
+        iniciar.disableProperty().bind(Bindings.equal(numJugadors,2));
     }    
 
     public void inicialitzarJugador(Player player) {
@@ -105,6 +108,10 @@ public class PrimerJugadorController implements Initializable {
 
     @FXML
     private void tancarSessio2(ActionEvent event) {
+    }
+
+    @FXML
+    private void iniciarSessio(ActionEvent event) {
     }
     
 }
