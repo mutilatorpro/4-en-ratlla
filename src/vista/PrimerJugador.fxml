@@ -108,7 +108,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </VBox>
-            <Button fx:id="obscur" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" text="Mode obscur">
+            <Button fx:id="obscur" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" text="Mode obscur">
                <HBox.margin>
                   <Insets left="300.0" right="10.0" />
                </HBox.margin>

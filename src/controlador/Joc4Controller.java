@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +32,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Connect4;
@@ -42,7 +46,7 @@ import model.Player;
  */
 public class Joc4Controller implements Initializable {
     private Connect4 sistema;
-    private boolean maquina = true;
+    private boolean maquina;
     private int numJugades = 0;
     private boolean esJugador1 = true;
     private String missatgeError = "Tria una altra columna, esta ja està plena";
@@ -51,7 +55,7 @@ public class Joc4Controller implements Initializable {
     private Player jugador2 = null;
     private int punts = 0;
     private LocalDateTime data;
-    //color Jugador1 = Negre
+    //color Jugador1 = Roig
     //color Jugador2 = Blau
     @FXML
     private Text text_jugador;
@@ -59,6 +63,8 @@ public class Joc4Controller implements Initializable {
     private Text error;
     @FXML
     private GridPane miGrid;
+    @FXML
+    private Button casella;
 
     /**
      * Initializes the controller class.
@@ -87,13 +93,18 @@ public class Joc4Controller implements Initializable {
                     int fila = matriu.length - 1;
                     while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                     matriu[fila][columna] = 1;
+                    /*Codi per a la versió amb caselles en lloc d'amb boletes
                     Button aux = (Button) getNode(fila, columna);
                     aux.setText("O");
-                    aux.setStyle("-fx-color: Red");
-                    if (!maquina && jugador2 != null) {
-                        text_jugador.setText("Torn de " + jugador2.getNickName());
-                        text_jugador.setStyle("-fx-color: Blue");
-                    }
+                    aux.setStyle("-fx-color: Red");*/
+                    Circle cercle = new Circle(0,0,0);
+                    cercle.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
+                    cercle.centerXProperty().bind(Bindings.add(casella.widthProperty(),20));
+                    cercle.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
+                    cercle.setFill(Color.RED);
+                    miGrid.add(cercle,columna,0);
+                    double currentYPostion = cercle.translateYProperty().getValue();
+                    cercle.translateYProperty().setValue(currentYPostion+fila * casella.getHeight());
                     numJugades++;
                     if (numJugades > 6) comprovarVictoria(event);
                     //Thread.sleep(500);
@@ -108,9 +119,17 @@ public class Joc4Controller implements Initializable {
                             fMaquina--;
                         }
                         matriu[fMaquina][cMaquina] = 2;
-                        Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+                        /*Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
                         auxMaquina.setText("O");
-                        auxMaquina.setStyle("-fx-color: Blue");
+                        auxMaquina.setStyle("-fx-color: Blue");*/
+                        Circle cercle2 = new Circle(0,0,0);
+                        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
+                        cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
+                        cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
+                        cercle2.setFill(Color.BLUE);
+                        miGrid.add(cercle2,cMaquina,0);
+                        double currentYPostion2 = cercle2.translateYProperty().getValue();
+                        cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
                         numJugades++;
                         if (numJugades > 6) comprovarVictoria(event);
                         /*Task<Void> sleeper = new Task<Void>() {
@@ -164,12 +183,20 @@ public class Joc4Controller implements Initializable {
                             fila--;
                         }
                         matriu[fila][columna] = 1;
-                        Button aux = (Button) getNode(fila, columna);
+                        /*Button aux = (Button) getNode(fila, columna);
                         aux.setText("O");
-                        aux.setStyle("-fx-color: Red");
+                        aux.setStyle("-fx-color: Red");*/
+                        Circle cercle = new Circle(0,0,0);
+                        cercle.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
+                        cercle.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
+                        cercle.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
+                        cercle.setFill(Color.RED);
+                        miGrid.add(cercle,columna,0);
+                        double currentYPostion2 = cercle.translateYProperty().getValue();
+                        cercle.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador2 != null) {
                             text_jugador.setText("Torn de " + jugador2.getNickName());
-                            text_jugador.setStyle("-fx-color: Blue");
+                            text_jugador.setFill(Color.BLUE);
                         }
                     }
                 } else { //Torn Jugador 2 contra Jugador 1
@@ -181,12 +208,20 @@ public class Joc4Controller implements Initializable {
                         int fila = matriu.length - 1;
                         while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                         matriu[fila][columna] = 2;
-                        Button aux = (Button) getNode(fila, columna);
+                        /*Button aux = (Button) getNode(fila, columna);
                         aux.setText("O");
-                        aux.setStyle("-fx-color: Blue");
+                        aux.setStyle("-fx-color: Blue");*/
+                        Circle cercle2 = new Circle(0,0,0);
+                        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),4));
+                        cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
+                        cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
+                        cercle2.setFill(Color.BLUE);
+                        miGrid.add(cercle2,columna,0);
+                        double currentYPostion2 = cercle2.translateYProperty().getValue();
+                        cercle2.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador1 != null) {
                             text_jugador.setText("Torn de " + jugador1.getNickName());
-                            text_jugador.setStyle("-fx-color: Red");
+                            text_jugador.setFill(Color.RED);
                         }
                     }
                 }
@@ -292,17 +327,10 @@ public class Joc4Controller implements Initializable {
     }
     public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
-        if (jugador1 != null){
-            text_jugador.setText("Jugant contra la màquina!");
-        }
-        punts = sistema.getPointsAlone();
     }
     public void inicialitzarJugadors(Player j1, Player j2) {
         this.jugador1 = j1;
         this.jugador2 = j2;
-        if (jugador1 != null) text_jugador.setText("Torn de " + jugador1.getNickName());
-        punts = sistema.getPointsRound();
-        maquina = false;
     }
 
     @FXML
@@ -324,6 +352,19 @@ public class Joc4Controller implements Initializable {
             stage.setScene(scene);
             stage.toFront();
             stage.show();
+        }
+    }
+    public void maquina() {
+        maquina = true;
+        text_jugador.setText("Jugant contra la màquina!");
+        punts = sistema.getPointsAlone();
+    }
+    public void noMaquina() {
+        maquina = false;
+        punts = sistema.getPointsRound();
+        if (jugador1 != null) {
+            text_jugador.setText("Torn de " + jugador1.getNickName());
+            text_jugador.setFill(Color.RED);
         }
     }
 }

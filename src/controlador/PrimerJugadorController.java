@@ -107,6 +107,7 @@ public class PrimerJugadorController implements Initializable {
         Parent root = cargador.load();
         Joc4Controller controlador = cargador.getController();
         controlador.inicialitzarJugadors(jugador1,jugador2);
+        controlador.noMaquina();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -119,7 +120,9 @@ public class PrimerJugadorController implements Initializable {
         FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
         Parent root = cargador.load();
         Joc4Controller controlador = cargador.getController();
-        controlador.inicialitzarJugador1(jugador1);
+        if (jugador2 != null) controlador.inicialitzarJugadors(jugador1, jugador2);
+        else controlador.inicialitzarJugador1(jugador1);
+        controlador.maquina();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
