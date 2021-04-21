@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -35,7 +36,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import static javafx.scene.transform.Transform.translate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Connect4;
 import model.Player;
 
@@ -104,7 +107,10 @@ public class Joc4Controller implements Initializable {
                     cercle.setFill(Color.RED);
                     miGrid.add(cercle,columna,0);
                     double currentYPostion = cercle.translateYProperty().getValue();
-                    cercle.translateYProperty().setValue(currentYPostion+fila * casella.getHeight());
+                    TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle);
+                    translate.setToY(currentYPostion + fila * casella.getHeight());
+                    translate.play();
+                    //cercle.translateYProperty().setValue(currentYPostion+fila * casella.getHeight());
                     numJugades++;
                     if (numJugades > 6) comprovarVictoria(event);
                     //Thread.sleep(500);
@@ -129,7 +135,10 @@ public class Joc4Controller implements Initializable {
                         cercle2.setFill(Color.BLUE);
                         miGrid.add(cercle2,cMaquina,0);
                         double currentYPostion2 = cercle2.translateYProperty().getValue();
-                        cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
+                        TranslateTransition translate2 = new TranslateTransition(Duration.millis(300), cercle2);
+                        translate2.setToY(currentYPostion2 + fMaquina * casella.getHeight());
+                        translate2.play();
+                        //cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
                         numJugades++;
                         if (numJugades > 6) comprovarVictoria(event);
                         /*Task<Void> sleeper = new Task<Void>() {
@@ -193,7 +202,10 @@ public class Joc4Controller implements Initializable {
                         cercle.setFill(Color.RED);
                         miGrid.add(cercle,columna,0);
                         double currentYPostion2 = cercle.translateYProperty().getValue();
-                        cercle.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
+                        TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle);
+                        translate.setToY(currentYPostion2 + fila * casella.getHeight());
+                        translate.play();
+                        //cercle.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador2 != null) {
                             text_jugador.setText("Torn de " + jugador2.getNickName());
                             text_jugador.setFill(Color.BLUE);
@@ -218,7 +230,10 @@ public class Joc4Controller implements Initializable {
                         cercle2.setFill(Color.BLUE);
                         miGrid.add(cercle2,columna,0);
                         double currentYPostion2 = cercle2.translateYProperty().getValue();
-                        cercle2.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
+                        TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle2);
+                        translate.setToY(currentYPostion2 + fila * casella.getHeight());
+                        translate.play();
+                        //cercle2.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador1 != null) {
                             text_jugador.setText("Torn de " + jugador1.getNickName());
                             text_jugador.setFill(Color.RED);
