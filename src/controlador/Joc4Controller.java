@@ -356,7 +356,7 @@ public class Joc4Controller implements Initializable {
         alert.setTitle("Confirmació eixida");
         alert.setContentText("Estàs segur que vols abandonar la partida?");
         Optional<ButtonType> action = alert.showAndWait();
-        if (action.get() == ButtonType.OK) {
+        if (action.isPresent() && action.get() == ButtonType.OK) {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
             Parent root = cargador.load();
             PrimerJugadorController controlador = cargador.getController();
