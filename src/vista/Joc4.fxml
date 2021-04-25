@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Joc4Controller">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1108.0" style="-fx-background-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Joc4Controller">
    <children>
       <Text fx:id="text_jugador" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="638.13671875">
          <VBox.margin>
@@ -106,9 +106,9 @@
       </Text>
       <HBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="1109.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#enrere" text="Enrere" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#enrere" style="-fx-background-color: #ffff;" text="Enrere" textAlignment="CENTER">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" />
+                  <Insets bottom="30.0" left="10.0" />
                </HBox.margin>
                <font>
                   <Font size="18.0" />

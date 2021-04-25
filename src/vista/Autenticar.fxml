@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="24.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
+<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="18.0" style="-fx-background-color: #ffff; -fx-border-width: 5; -fx-border-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
    <children>
-      <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="107.0" text="Autentica't!" textAlignment="CENTER">
+      <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="107.0" text="Autentica't!" textAlignment="CENTER" textFill="#0e53c3">
          <VBox.margin>
             <Insets left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
@@ -52,18 +52,18 @@
             <Insets bottom="12.0" right="6.0" top="12.0" />
          </padding>
          <VBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets left="5.0" right="5.0" top="5.0" />
          </VBox.margin>
       </GridPane>
-      <Button fx:id="botoRecordar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#finestraRecordar" text="Has oblidat la teua contrasenya?" textAlignment="CENTER" />
-      <Label fx:id="error" textFill="RED" />
+      <Button fx:id="botoRecordar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#finestraRecordar" style="-fx-background-radius: 15; -fx-background-color: #999999; -fx-text-fill: #ffff;" text="Has oblidat la teua contrasenya?" textAlignment="CENTER" />
+      <Label fx:id="error" prefHeight="17.0" prefWidth="221.0" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="315.0" spacing="12.0" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="botoOK" mnemonicParsing="false" onAction="#okCambios" text="OK" />
-            <Button mnemonicParsing="false" onAction="#cancelCambios" text="Cancel" />
+            <Button fx:id="botoOK" mnemonicParsing="false" onAction="#okCambios" style="-fx-text-fill: #ffff; -fx-background-color: #0e53c3;" text="OK" />
+            <Button mnemonicParsing="false" onAction="#cancelCambios" style="-fx-text-fill: #ffff; -fx-background-color: #0e53c3;" text="Cancel" />
          </children>
          <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="15.0" left="10.0" right="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
    </children>
