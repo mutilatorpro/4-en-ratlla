@@ -132,7 +132,7 @@ public class Joc4Controller implements Initializable {
                         cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
                         cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
                         cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
-                        cercle2.setFill(Color.BLUE);
+                        cercle2.setFill(Color.YELLOW); //#f3da3c
                         miGrid.add(cercle2,cMaquina,0);
                         double currentYPostion2 = cercle2.translateYProperty().getValue();
                         TranslateTransition translate2 = new TranslateTransition(Duration.millis(300), cercle2);
@@ -208,7 +208,7 @@ public class Joc4Controller implements Initializable {
                         //cercle.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador2 != null) {
                             text_jugador.setText("Torn de " + jugador2.getNickName());
-                            text_jugador.setFill(Color.BLUE);
+                            text_jugador.setFill(Color.YELLOW);
                         }
                     }
                 } else { //Torn Jugador 2 contra Jugador 1
@@ -227,7 +227,7 @@ public class Joc4Controller implements Initializable {
                         cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),4));
                         cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
                         cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
-                        cercle2.setFill(Color.BLUE);
+                        cercle2.setFill(Color.YELLOW);
                         miGrid.add(cercle2,columna,0);
                         double currentYPostion2 = cercle2.translateYProperty().getValue();
                         TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle2);
