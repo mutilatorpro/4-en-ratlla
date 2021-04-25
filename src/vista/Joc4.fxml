@@ -12,7 +12,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1108.0" style="-fx-background-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Joc4Controller">
    <children>
-      <Text fx:id="text_jugador" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="638.13671875">
+      <Text fx:id="text_jugador" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="638.13671875">
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
