@@ -29,7 +29,7 @@
             </Text>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../LOGO1.png" />
+                  <Image url="@../../img/LOGO1.png" />
                </image>
                <HBox.margin>
                   <Insets right="5.0" />

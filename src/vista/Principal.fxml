@@ -16,7 +16,7 @@
             <Button fx:id="botEstadistiques" layoutX="279.0" layoutY="132.0" mnemonicParsing="false" onAction="#finestraEstadistiques" style="-fx-background-radius: 15; -fx-text-fill: #0e53c3; -fx-background-color: #ffff;" text="Estadístiques" />
             <ImageView fitHeight="35.0" fitWidth="220.0" layoutX="134.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../LOGO1.png" />
+                  <Image url="@../../img/LOGO1.png" />
                </image>
             </ImageView>
           </children>
