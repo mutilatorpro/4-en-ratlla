@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -58,8 +59,8 @@ public class Joc4Controller implements Initializable {
     private Player jugador2 = null;
     private int punts = 0;
     private LocalDateTime data;
-    //color Jugador1 = Roig
-    //color Jugador2 = Blau
+    private Retraso retraso;
+    private ActionEvent eventMaquina;
     @FXML
     private Text text_jugador;
     @FXML
@@ -76,12 +77,22 @@ public class Joc4Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             sistema = Connect4.getSingletonConnect4();
-        } catch (Connect4DAOException ex) {
-            System.out.println("Error en la càrrega del sistema");
-        }
-        LocalDate hui = LocalDate.now();
-        LocalTime ara = LocalTime.now();
-        data = LocalDateTime.of(hui, ara);
+            LocalDate hui = LocalDate.now();
+            LocalTime ara = LocalTime.now();
+            data = LocalDateTime.of(hui, ara);
+            retraso = new Retraso();
+            retraso.setOnSucceeded((a) -> {
+                try {
+                    jugarMaquina(eventMaquina);
+                } catch (IOException ex) {
+                    Logger.getLogger(Joc4Controller.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Connect4DAOException ex) {
+                    Logger.getLogger(Joc4Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            } catch (Connect4DAOException ex) {
+                Logger.getLogger(Joc4Controller.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }    
     
     @FXML
@@ -96,10 +107,6 @@ public class Joc4Controller implements Initializable {
                     int fila = matriu.length - 1;
                     while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                     matriu[fila][columna] = 1;
-                    /*Codi per a la versió amb caselles en lloc d'amb boletes
-                    Button aux = (Button) getNode(fila, columna);
-                    aux.setText("O");
-                    aux.setStyle("-fx-color: Red");*/
                     Circle cercle = new Circle(0,0,0);
                     cercle.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
                     cercle.centerXProperty().bind(Bindings.add(casella.widthProperty(),20));
@@ -110,75 +117,13 @@ public class Joc4Controller implements Initializable {
                     TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle);
                     translate.setToY(currentYPostion + fila * casella.getHeight());
                     translate.play();
-                    //cercle.translateYProperty().setValue(currentYPostion+fila * casella.getHeight());
                     numJugades++;
                     if (numJugades > 6) comprovarVictoria(event);
-                    //Thread.sleep(500);
                     if (numJugades < 56) {
-                        Random aleatori = new Random();
-                        int cMaquina = aleatori.nextInt(8);
-                        while (matriu[0][cMaquina] != 0) {
-                            cMaquina = aleatori.nextInt(8);
-                        }
-                        int fMaquina = matriu.length - 1;
-                        while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) {
-                            fMaquina--;
-                        }
-                        matriu[fMaquina][cMaquina] = 2;
-                        /*Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
-                        auxMaquina.setText("O");
-                        auxMaquina.setStyle("-fx-color: Blue");*/
-                        Circle cercle2 = new Circle(0,0,0);
-                        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
-                        cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
-                        cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
-                        cercle2.setFill(Color.YELLOW); //#f3da3c
-                        miGrid.add(cercle2,cMaquina,0);
-                        double currentYPostion2 = cercle2.translateYProperty().getValue();
-                        TranslateTransition translate2 = new TranslateTransition(Duration.millis(300), cercle2);
-                        translate2.setToY(currentYPostion2 + fMaquina * casella.getHeight());
-                        translate2.play();
-                        //cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
-                        numJugades++;
-                        if (numJugades > 6) comprovarVictoria(event);
-                        /*Task<Void> sleeper = new Task<Void>() {
-                            @Override
-                            protected Void call() throws Exception {
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-                                }
-                                return null;
-                            }
-                        };
-                        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                            @Override
-                            public void handle(WorkerStateEvent evento) {
-                                Random aleatori = new Random();
-                                int cMaquina = aleatori.nextInt(8);
-                                while (matriu[0][cMaquina] != 0) {
-                                    cMaquina = aleatori.nextInt(8);
-                                }
-                                int fMaquina = matriu.length - 1;
-                                while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) {
-                                    fMaquina--;
-                                }
-                                matriu[fMaquina][cMaquina] = 2;
-                                Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
-                                auxMaquina.setText("O");
-                                auxMaquina.setStyle("-fx-color: Blue");
-                                numJugades++;
-                                if (numJugades > 6) {
-                                    try {
-                                        comprovarVictoria(event);
-                                    } 
-                                    catch (IOException ex) { System.out.println("Error 1"); }
-                                    catch (Connect4DAOException ex) { System.out.println("Error 2"); }
-                                }
-                            }
-                        });
-                        new Thread(sleeper).start();*/
-                    } else taulerPle(event);
+                        eventMaquina = event;
+                        retraso.restart();
+                    }
+                    else taulerPle(event);
                 }
             } else {
                 if (esJugador1) { //Torn Jugador 1 contra Jugador 2
@@ -220,9 +165,6 @@ public class Joc4Controller implements Initializable {
                         int fila = matriu.length - 1;
                         while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                         matriu[fila][columna] = 2;
-                        /*Button aux = (Button) getNode(fila, columna);
-                        aux.setText("O");
-                        aux.setStyle("-fx-color: Blue");*/
                         Circle cercle2 = new Circle(0,0,0);
                         cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),4));
                         cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
@@ -233,7 +175,6 @@ public class Joc4Controller implements Initializable {
                         TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle2);
                         translate.setToY(currentYPostion2 + fila * casella.getHeight());
                         translate.play();
-                        //cercle2.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador1 != null) {
                             text_jugador.setText("Torn de " + jugador1.getNickName());
                             text_jugador.setFill(Color.RED);
@@ -242,9 +183,41 @@ public class Joc4Controller implements Initializable {
                 }
                 esJugador1 = !esJugador1;
                 numJugades++;
-                if (numJugades > 6) comprovarVictoria(event);
+                if (numJugades > 6) {
+                    comprovarVictoria(event);
+                    if (numJugades == 56) taulerPle(event); //ho posem ací perquè així si he fet l'últim moviment ja està, no he d'esperar a posar una fitxa perquè em diga que hem empatat
+                }
             }
         } else { taulerPle(event); } 
+    }
+    private void jugarMaquina(ActionEvent event) throws IOException, Connect4DAOException {
+        Random aleatori = new Random();
+        int cMaquina = aleatori.nextInt(8);
+        while (matriu[0][cMaquina] != 0) {
+            cMaquina = aleatori.nextInt(8);
+        }
+        int fMaquina = matriu.length - 1;
+        while (fMaquina >= 0 && matriu[fMaquina][cMaquina] != 0) {
+            fMaquina--;
+        }
+        matriu[fMaquina][cMaquina] = 2;
+        /*Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
+                        auxMaquina.setText("O");
+                        auxMaquina.setStyle("-fx-color: Blue");*/
+        Circle cercle2 = new Circle(0, 0, 0);
+        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(), 5));
+        cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(), 2));
+        cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(), 2));
+        cercle2.setFill(Color.YELLOW); //#f3da3c
+        miGrid.add(cercle2, cMaquina, 0);
+        double currentYPostion2 = cercle2.translateYProperty().getValue();
+        TranslateTransition translate2 = new TranslateTransition(Duration.millis(300), cercle2);
+        translate2.setToY(currentYPostion2 + fMaquina * casella.getHeight());
+        translate2.play();
+        //cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
+        numJugades++;
+        if (numJugades > 6)
+            comprovarVictoria(event);
     }
     private Node getNode(int fila, int col) {
         for (Node node : miGrid.getChildren()) {
@@ -380,6 +353,19 @@ public class Joc4Controller implements Initializable {
         if (jugador1 != null) {
             text_jugador.setText("Torn de " + jugador1.getNickName());
             text_jugador.setFill(Color.RED);
+        }
+    }
+    class Retraso extends Service<Void> {
+        private long delayMilis = 600;
+        public long getRetaso() { return delayMilis; }
+        public void setRetraso(long retraso) { this.delayMilis = retraso; }
+        protected Task<Void> createTask() {
+            return new Task<Void>() {
+                protected Void call() throws Exception {
+                    Thread.sleep(delayMilis);
+                    return null;
+                }
+            };
         }
     }
 }
