@@ -118,10 +118,13 @@ public class Joc4Controller implements Initializable {
                     translate.setToY(currentYPostion + fila * casella.getHeight());
                     translate.play();
                     numJugades++;
-                    if (numJugades > 6) comprovarVictoria(event);
+                    boolean guanyat = false;
+                    if (numJugades > 6)  guanyat = comprovarVictoria(event);
                     if (numJugades < 56) {
-                        eventMaquina = event;
-                        retraso.restart();
+                        if (!guanyat) {
+                            eventMaquina = event;
+                            retraso.restart();
+                        }
                     }
                     else taulerPle(event);
                 }
@@ -251,7 +254,7 @@ public class Joc4Controller implements Initializable {
         stage.toFront();
         stage.show();
     }
-    private void comprovarVictoria(ActionEvent event) throws IOException, Connect4DAOException {
+    private boolean comprovarVictoria(ActionEvent event) throws IOException, Connect4DAOException {
         int guanyador = 0; //se quedarà a 0 mentre no s'hagen connectat 4
         for (int i = 0; i < 7 && guanyador == 0; i++) { //recorrem les files
             for (int j = 0; j < 5 && guanyador == 0; j++) { //recorrem UNA fila concreta
@@ -311,7 +314,7 @@ public class Joc4Controller implements Initializable {
             stage.toFront();
             stage.show();
         }
-        
+        return guanyador != 0;
     }
     public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
