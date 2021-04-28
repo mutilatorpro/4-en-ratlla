@@ -167,7 +167,7 @@ public class Joc4Controller implements Initializable {
                         while (fila >= 0 && matriu[fila][columna] != 0) { fila--; }
                         matriu[fila][columna] = 2;
                         Circle cercle2 = new Circle(0,0,0);
-                        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),4));
+                        cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
                         cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
                         cercle2.centerYProperty().bind(Bindings.divide(casella.heightProperty(),2));
                         cercle2.setFill(Color.YELLOW);
