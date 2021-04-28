@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.TriarJugadorController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <bottom>
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#enrere" text="Enrere" />
+               </children>
+            </HBox>
+         </bottom>
+         <top>
+            <Label fx:id="titol" text="Quin dels dos va a enfrontar-se a la màquina?" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="nomJugador1" prefHeight="17.0" prefWidth="95.0" text="Jugador1" textAlignment="CENTER" />
+                        <Button mnemonicParsing="false" text="Button">
+                           <graphic>
+                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador1" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label fx:id="nomJugador2" text="Jugador2" />
+                        <Button mnemonicParsing="false" text="Button">
+                           <graphic>
+                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador2" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </children>
+</HBox>
