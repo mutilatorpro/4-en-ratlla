@@ -12,14 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="385.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CodiController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="385.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CodiController">
    <children>
       <Text fill="#0e53c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Insereix el codi que se t'ha manat al correu&#10; per comprovar que ets tú" textAlignment="CENTER">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Text>
-      <GridPane alignment="CENTER" prefHeight="60.0" prefWidth="498.0">
+      <GridPane alignment="CENTER" maxWidth="-Infinity" prefHeight="60.0" prefWidth="498.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
