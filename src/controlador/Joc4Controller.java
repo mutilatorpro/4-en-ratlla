@@ -98,7 +98,7 @@ public class Joc4Controller implements Initializable {
     @FXML
     private void moure(ActionEvent event) throws InterruptedException, IOException, Connect4DAOException {
         if (numJugades < 56) { //només hi ha 56 caselles, s'ha de comprovar que encara quede alguna lliure
-            if (maquina) {
+            if (maquina && esJugador1) {
                 Button triat = (Button) event.getSource();
                 Integer columna = miGrid.getColumnIndex(triat);
                 if (columna == null) columna = 0;
@@ -119,6 +119,7 @@ public class Joc4Controller implements Initializable {
                     translate.play();
                     numJugades++;
                     boolean guanyat = false;
+                    esJugador1 = !esJugador1;
                     if (numJugades > 6)  guanyat = comprovarVictoria(event);
                     if (numJugades < 56) {
                         if (!guanyat) {
@@ -128,7 +129,7 @@ public class Joc4Controller implements Initializable {
                     }
                     else taulerPle(event);
                 }
-            } else {
+            } else if (!maquina){
                 if (esJugador1) { //Torn Jugador 1 contra Jugador 2
                     Button triat = (Button) event.getSource();
                     Integer columna = miGrid.getColumnIndex(triat);
@@ -140,9 +141,6 @@ public class Joc4Controller implements Initializable {
                             fila--;
                         }
                         matriu[fila][columna] = 1;
-                        /*Button aux = (Button) getNode(fila, columna);
-                        aux.setText("O");
-                        aux.setStyle("-fx-color: Red");*/
                         Circle cercle = new Circle(0,0,0);
                         cercle.radiusProperty().bind(Bindings.divide(casella.widthProperty(),5));
                         cercle.centerXProperty().bind(Bindings.divide(casella.widthProperty(),2));
@@ -190,6 +188,8 @@ public class Joc4Controller implements Initializable {
                     comprovarVictoria(event);
                     if (numJugades == 56) taulerPle(event); //ho posem ací perquè així si he fet l'últim moviment ja està, no he d'esperar a posar una fitxa perquè em diga que hem empatat
                 }
+            } else { 
+                error.setText("No és el teu torn, espera't!");
             }
         } else { taulerPle(event); } 
     }
@@ -366,6 +366,7 @@ public class Joc4Controller implements Initializable {
             return new Task<Void>() {
                 protected Void call() throws Exception {
                     Thread.sleep(delayMilis);
+                    esJugador1 = !esJugador1;
                     return null;
                 }
             };
