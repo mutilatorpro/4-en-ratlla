@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0e53c3; -fx-border-width: 5; -fx-border-color: #ffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
    <children>
-      <VBox alignment="CENTER" style="-fx-border-color: #ffff; -fx-border-width: 5;">
+      <VBox alignment="CENTER">
          <children>
             <ImageView fitHeight="48.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                <image>
