@@ -374,6 +374,28 @@ public class Joc4Controller implements Initializable {
         punts = sistema.getPointsAlone();
         text_jugador.setText(jugara.getNickName() + " està jugant contra la màquina");
     }
+
+    @FXML
+    private void ajuda(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Ajuda a la navegació");
+        alert.setContentText("Per guanyar solament has de possar quatre fitxes del mateix color juntes, ja siga en vertical o horitzontal. \n "
+                + "En cas de que vulgues eixir de la partida");
+        Optional<ButtonType> action = alert.showAndWait();
+        if (action.isPresent() && action.get() == ButtonType.OK) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+            Parent root = cargador.load();
+            PrimerJugadorController controlador = cargador.getController();
+            if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
+            else controlador.inicialitzarJugador(jugador1);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
+    }
     class Retraso extends Service<Void> {
         private long delayMilis = 600;
         public long getRetaso() { return delayMilis; }
