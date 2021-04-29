@@ -53,6 +53,7 @@ public class Joc4Controller implements Initializable {
     private boolean maquina;
     private int numJugades = 0;
     private boolean esJugador1 = true;
+    private Player jugara = null;
     private String missatgeError = "Tria una altra columna, esta ja està plena";
     private int[][] matriu = new int[7][8];
     private Player jugador1 = null;
@@ -286,8 +287,13 @@ public class Joc4Controller implements Initializable {
         }
         if (guanyador != 0) { //s'ha canviat guanyador perquè s'han trobat 4 connectades
             if (guanyador == 1 && jugador1 != null) { //Alert de victòria al 1r jugador
-               jugador1.plusPoints(punts);
-               if (!maquina) sistema.regiterRound(data, jugador1, jugador2);
+               if (jugara != null) {
+                jugara.plusPoints(punts);
+                if (!maquina) sistema.regiterRound(data, jugador1, jugador2);
+               } else {
+                   jugador1.plusPoints(punts);
+                   if (!maquina) sistema.regiterRound(data, jugador1, jugador2);
+               }
             }
             if (guanyador == 2 && jugador2 != null) { //si el jugador és un altre que no el principal i el jugador2 existeix(no és la màquina)
                 jugador2.plusPoints(punts);
@@ -297,7 +303,10 @@ public class Joc4Controller implements Initializable {
             alert.setHeaderText(null);
             if (guanyador != 0) alert.setTitle("Guanyador!!"); //ha guanyat un dels jugadors
             else alert.setTitle("Derrota"); //ha guanyat la màquina
-            if (guanyador == 1) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador1.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugador1.getPoints() + " punts.");
+            if (guanyador == 1) {
+                if (jugara == null) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador1.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugador1.getPoints() + " punts.");
+                else alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugara.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugara.getPoints() + " punts.");
+            }
             else {
                 if (!maquina) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador2.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugador2.getPoints() + " punts.");
                 else alert.setContentText("Ha guanyat la màquina!\nHo sentim molt, torna-ho a intentar.");
@@ -347,7 +356,7 @@ public class Joc4Controller implements Initializable {
     }
     public void maquina() {
         maquina = true;
-        text_jugador.setText("Jugant contra la màquina!");
+        text_jugador.setText(jugador1.getNickName() + " està jugant contra la màquina!");
         punts = sistema.getPointsAlone();
     }
     public void noMaquina() {
@@ -357,6 +366,13 @@ public class Joc4Controller implements Initializable {
             text_jugador.setText("Torn de " + jugador1.getNickName());
             text_jugador.setFill(Color.RED);
         }
+    }
+    public void jugara(Player j) {
+        jugara = j;
+        maquina = true;
+        esJugador1 = true;
+        punts = sistema.getPointsAlone();
+        text_jugador.setText(jugara.getNickName() + " està jugant contra la màquina");
     }
     class Retraso extends Service<Void> {
         private long delayMilis = 600;
