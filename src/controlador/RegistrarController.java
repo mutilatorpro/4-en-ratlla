@@ -26,7 +26,7 @@ public class RegistrarController implements Initializable {
     @FXML
     private Label error;
     @FXML
-    private Button botoOK;
+    private TextField apellidoTextF;
 
     /**
      * Initializes the controller class.

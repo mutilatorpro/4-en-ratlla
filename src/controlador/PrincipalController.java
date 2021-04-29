@@ -34,8 +34,6 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button botAutenticar;
     @FXML
-    private Label label;
-    @FXML
     private Button botRegistrar;
     @FXML
     private Button botRanking;
