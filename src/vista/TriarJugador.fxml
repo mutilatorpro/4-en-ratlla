@@ -26,9 +26,9 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label fx:id="nomJugador1" prefHeight="17.0" prefWidth="95.0" text="Jugador1" textAlignment="CENTER" />
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#jugarJugador1">
                            <graphic>
-                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador1" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
                      </children>
@@ -36,9 +36,9 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label fx:id="nomJugador2" text="Jugador2" />
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#jugarJugador2">
                            <graphic>
-                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador2" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
                      </children>
