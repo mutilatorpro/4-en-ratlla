@@ -297,9 +297,9 @@ public class Joc4Controller implements Initializable {
             alert.setHeaderText(null);
             if (guanyador != 0) alert.setTitle("Guanyador!!"); //ha guanyat un dels jugadors
             else alert.setTitle("Derrota"); //ha guanyat la màquina
-            if (guanyador == 1) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador1.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts");
+            if (guanyador == 1) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador1.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugador1.getPoints() + " punts.");
             else {
-                if (!maquina) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador2.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts");
+                if (!maquina) alert.setContentText("Enhorabona!\nHa guanyat el jugador " + jugador2.getNickName() + "!!\nS'han sumat a la teua puntuació: " + punts + " punts.\nAra tens: " + jugador2.getPoints() + " punts.");
                 else alert.setContentText("Ha guanyat la màquina!\nHo sentim molt, torna-ho a intentar.");
             }
             alert.showAndWait();
