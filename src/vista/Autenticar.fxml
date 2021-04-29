@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="18.0" style="-fx-background-color: #ffff; -fx-border-width: 5; -fx-border-color: #0e53c3;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
+<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="18.0" style="-fx-background-color: #ffff; -fx-border-width: 5; -fx-border-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
    <children>
       <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="107.0" text="Autentica't!" textAlignment="CENTER" textFill="#0e53c3">
          <VBox.margin>
@@ -56,7 +56,7 @@
          </VBox.margin>
       </GridPane>
       <Button fx:id="botoRecordar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#finestraRecordar" onMouseEntered="#mouseON" onMouseExited="#mouseOFF" style="-fx-background-radius: 15; -fx-background-color: #999999; -fx-text-fill: #ffff;" text="Has oblidat la teua contrasenya?" textAlignment="CENTER" />
-      <Label fx:id="error" prefHeight="17.0" prefWidth="221.0" textFill="RED" />
+      <Label fx:id="error" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="44.0" prefWidth="315.0" spacing="12.0" VBox.vgrow="NEVER">
          <children>
             <Button fx:id="botoOK" mnemonicParsing="false" onAction="#okCambios" style="-fx-text-fill: #ffff; -fx-background-color: #0e53c3;" text="OK" />

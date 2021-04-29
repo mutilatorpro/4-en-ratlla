@@ -15,7 +15,7 @@
          <children>
             <Label fx:id="titol" style="-fx-text-fill: #0e53c3;" text="Quin dels dos va a enfrontar-se a la màquina?">
                <VBox.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                  <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
                </VBox.margin>
                <font>
                   <Font name="Arial Black" size="14.0" />
