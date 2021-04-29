@@ -24,6 +24,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import static javafx.scene.input.KeyCode.UP;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -68,6 +71,8 @@ public class AutenticarController implements Initializable {
         if (jugador == null) { 
             error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
+            contrasenyaTextF.setStyle("-fx-border-color: red");
+            nombreTextF.setStyle("-fx-border-color: red");
         } 
         else if(jugador.equals(jugador1)) { error.setText("Eixe jugador ja ha iniciat sessió en el sistema."); }
         else {
@@ -132,5 +137,36 @@ public class AutenticarController implements Initializable {
     @FXML
     private void mouseON(MouseEvent event) {
         botoRecordar.setStyle("-fx-background-color:  #0e53c3; -fx-background-radius: 15; -fx-text-fill:  #ffff;");
+    }
+
+    @FXML
+    private void enter(KeyEvent event) throws IOException {
+        KeyCode tecla = event.getCode();
+        if (tecla == KeyCode.ENTER) {
+            if (!contrasenyaTextF.getText().equals("") && !nombreTextF.getText().equals("")) {
+                Player jugador = sistema.loginPlayer(nombreTextF.getText(), contrasenyaTextF.getText());
+                if (jugador == null) { 
+                    error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
+                    contrasenyaTextF.setStyle("-fx-border-color: red");
+                    nombreTextF.setStyle("-fx-border-color: red");
+                    //Interessant mirar si se poden posar els textFields amb el borde roig
+                } 
+                else if(jugador.equals(jugador1)) { error.setText("Eixe jugador ja ha iniciat sessió en el sistema."); }
+                else {
+                    FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+                    Parent root = cargador.load();
+                    PrimerJugadorController controlador = cargador.getController();
+                    if (jugador1 != null) {
+                        controlador.inicialitzarJugadors(jugador1, jugador); //El 1r jugador ja havia iniciat sessió i l'hem de mantindre i el 2n és el nou
+                    }
+                    else controlador.inicialitzarJugador(jugador);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.toFront();
+                    stage.show();
+                }
+            }
+        }
     }
 }

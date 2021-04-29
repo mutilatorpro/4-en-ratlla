@@ -20,6 +20,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Player;
 
@@ -51,7 +53,6 @@ public class CodiController implements Initializable {
 
     @FXML
     private void okCambios(ActionEvent event) throws IOException {
-        
         if (Integer.parseInt(codiUsuari.getText()) == (this.codiUsu)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -70,6 +71,7 @@ public class CodiController implements Initializable {
 
         } else {
             error.setText("El codi inserit no és vàlid.");
+            codiUsuari.setStyle("-fx-border-color: red");
         }
     }
 
@@ -94,5 +96,34 @@ public class CodiController implements Initializable {
     }
     public void inicialitzarJugador(Player j1) {
         jugador1 = j1;
+    }
+
+    @FXML
+    private void enter(KeyEvent event) throws IOException {
+        KeyCode tecla = event.getCode();
+        if (tecla == KeyCode.ENTER) {
+            if (!codiUsuari.getText().equals("")) {
+                if (Integer.parseInt(codiUsuari.getText()) == (this.codiUsu)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Recordador de contrasenya");
+                    alert.setContentText("Aquest és la contrasenya del teu compte " + contraUsu + " del teu compte amb " + nomUsu + " com a nom d'usuari");
+                    alert.showAndWait();
+                     FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Autenticar.fxml"));
+                    Parent root = cargador.load();
+                    AutenticarController controlador = cargador.getController();
+                    if (jugador1 != null) controlador.inicialitzarJugador(jugador1);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.toFront();
+                    stage.show();
+
+                } else {
+                    error.setText("El codi inserit no és vàlid.");
+                    codiUsuari.setStyle("-fx-border-color: red");
+                }
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="385.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CodiController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="385.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CodiController">
    <children>
       <Text fill="#0e53c3" strokeType="OUTSIDE" strokeWidth="0.0" text="Insereix el codi que se t'ha manat al correu&#10; per comprovar que ets tú" textAlignment="CENTER">
          <font>
@@ -30,7 +30,7 @@
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Codi" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="codiUsuari" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="codiUsuari" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

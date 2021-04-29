@@ -22,6 +22,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
@@ -62,8 +64,10 @@ public class RecordarController implements Initializable {
     private void okCambios(ActionEvent event) throws IOException {
         Player jugador = sistema.getPlayer(nombreTextF.getText());
         if (jugador == null) { 
-            error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
+            error.setText("El nom d'usuari inserit no existeix."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
+            correuTextF.setStyle("-fx-border-color: red");
+            nombreTextF.setStyle("-fx-border-color: red");
         }
         if (jugador.getEmail().equals(correuTextF.getText())) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -101,5 +105,42 @@ public class RecordarController implements Initializable {
     }
     public void inicialitzarJugador(Player j1) {
         jugador1 = j1;
+    }
+
+    @FXML
+    private void enter(KeyEvent event) throws IOException {
+        KeyCode tecla = event.getCode();
+        if (tecla == KeyCode.ENTER) {
+            if (!nombreTextF.getText().equals("") && !correuTextF.getText().equals("")) {
+                Player jugador = sistema.getPlayer(nombreTextF.getText());
+                if (jugador == null) { 
+                    error.setText("El nom d'usuari inserit no existeix\nIntenta-ho de nou."); 
+                    //Interessant mirar si se poden posar els textFields amb el borde roig
+                    correuTextF.setStyle("-fx-border-color: red");
+                    nombreTextF.setStyle("-fx-border-color: red");
+                }
+                if (jugador.getEmail().equals(correuTextF.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Generador de codi de seguretat");
+                    Random generador = new Random();
+                    int num = (generador.nextInt(10) + generador.nextInt(10) * 10 + generador.nextInt(10) * 100 + generador.nextInt(10) * 1000);
+                    alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
+                    alert.showAndWait();
+                    FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Codi.fxml"));
+                    Parent root = cargador.load();
+                    CodiController controlador = cargador.getController();
+                    controlador.passarInfo(num, jugador.getNickName(), jugador.getPassword());
+                    if (jugador1 != null) controlador.inicialitzarJugador(jugador1);
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.toFront();
+                    stage.show();
+                } else { 
+                    error.setText("El nom d'usuari no es correspón amb el correu introduït.");
+                }
+            }
+        }
     }
 }

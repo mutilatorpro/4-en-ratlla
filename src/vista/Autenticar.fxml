@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="18.0" style="-fx-background-color: #ffff; -fx-border-width: 5; -fx-border-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
+<VBox alignment="CENTER" prefHeight="188.0" prefWidth="322.0" spacing="18.0" style="-fx-background-color: #ffff; -fx-border-width: 5; -fx-border-color: #0e53c3;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.AutenticarController">
    <children>
       <Label contentDisplay="CENTER" prefHeight="24.0" prefWidth="107.0" text="Autentica't!" textAlignment="CENTER" textFill="#0e53c3">
          <VBox.margin>
@@ -45,8 +45,8 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <TextField fx:id="nombreTextF" GridPane.columnIndex="1" />
-            <PasswordField fx:id="contrasenyaTextF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nombreTextF" onKeyPressed="#enter" GridPane.columnIndex="1" />
+            <PasswordField fx:id="contrasenyaTextF" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="12.0" right="6.0" top="12.0" />
