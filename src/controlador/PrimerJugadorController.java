@@ -117,17 +117,28 @@ public class PrimerJugadorController implements Initializable {
 
     @FXML
     private void jugarMaquina(ActionEvent event) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
-        Parent root = cargador.load();
-        Joc4Controller controlador = cargador.getController();
-        if (jugador2 != null) controlador.inicialitzarJugadors(jugador1, jugador2);
-        else controlador.inicialitzarJugador1(jugador1);
-        controlador.maquina();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.toFront();
-        stage.show();
+        if (jugador2 == null) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+            Parent root = cargador.load();
+            Joc4Controller controlador = cargador.getController();
+            controlador.inicialitzarJugador1(jugador1);
+            controlador.maquina();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        } else {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/TriarJugador.fxml"));
+            Parent root = cargador.load();
+            TriarJugadorController controlador = cargador.getController();
+            controlador.inicialitzarJugadors(jugador1, jugador2);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
     }
 
     @FXML
