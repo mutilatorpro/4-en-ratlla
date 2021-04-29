@@ -59,14 +59,7 @@ public class TriarJugadorController implements Initializable {
         stage.toFront();
         stage.show();
     }
-
-    @FXML
-    private void jugarJugador1(MouseEvent event) {
-    }
-
-    @FXML
-    private void jugarJugador2(MouseEvent event) {
-    }
+    
     public void inicialitzarJugadors(Player j1, Player j2) {
         jugador1 = j1;
         jugador2 = j2;
@@ -74,5 +67,33 @@ public class TriarJugadorController implements Initializable {
         nomJugador2.setText(jugador2.getNickName());
         imgJugador1.setImage(jugador1.getAvatar());
         imgJugador2.setImage(jugador2.getAvatar());
+    }
+
+    @FXML
+    private void jugarJugador1(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+        Parent root = cargador.load();
+        Joc4Controller controlador = cargador.getController();
+        controlador.inicialitzarJugadors(jugador1, jugador2);
+        controlador.jugara(jugador1);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void jugarJugador2(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
+        Parent root = cargador.load();
+        Joc4Controller controlador = cargador.getController();
+        controlador.inicialitzarJugadors(jugador1, jugador2);
+        controlador.jugara(jugador2);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
     }
 }
