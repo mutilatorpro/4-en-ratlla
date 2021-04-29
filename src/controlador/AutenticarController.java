@@ -66,7 +66,7 @@ public class AutenticarController implements Initializable {
     private void okCambios(ActionEvent event) throws IOException {
         Player jugador = sistema.loginPlayer(nombreTextF.getText(), contrasenyaTextF.getText());
         if (jugador == null) { 
-            error.setText("El nom d'usuari i la contrasenya no coincideixen\nIntenta-ho de nou."); 
+            error.setText("El nom d'usuari i la contrasenya no coincideixen. Tinc compte amb les majúscules i minúscules i torna a intentar-ho."); 
             //Interessant mirar si se poden posar els textFields amb el borde roig
         } 
         else if(jugador.equals(jugador1)) { error.setText("Eixe jugador ja ha iniciat sessió en el sistema."); }
