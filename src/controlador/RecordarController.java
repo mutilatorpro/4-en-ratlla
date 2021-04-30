@@ -75,7 +75,9 @@ public class RecordarController implements Initializable {
             alert.setTitle("Generador de codi de seguretat");
             Random generador = new Random();
             int num = (generador.nextInt(10) + generador.nextInt(10) * 10 + generador.nextInt(10) * 100 + generador.nextInt(10) * 1000);
-            alert.setContentText("Aquest és el codi de recuperació del teu compte " + num);
+            alert.setHeight(700);
+            alert.setWidth(1000);
+            alert.setContentText("De: Connecta4@gmail.com\nPer a: " + jugador.getEmail() + "\nHem rebut una sol.licitut per a recordar la contrasenya. Aquest és el codi de recuperació del teu compte " + num + "\nAmb aquest codi te la recordarem.");
             alert.showAndWait();
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Codi.fxml"));
             Parent root = cargador.load();
