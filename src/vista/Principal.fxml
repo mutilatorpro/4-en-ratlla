@@ -16,7 +16,7 @@
                   <Image url="@../img/LOGO1.png" />
                </image>
                <VBox.margin>
-                  <Insets bottom="24.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </ImageView>
             <HBox alignment="CENTER">
@@ -33,7 +33,7 @@
                <children>
                   <Button fx:id="botRegistrar" mnemonicParsing="false" onAction="#finestraRegistrar" style="-fx-background-radius: 15; -fx-background-color: #ffff; -fx-text-fill: #0e53c3;" text="Registrar-se">
                      <HBox.margin>
-                        <Insets right="65.0" />
+                        <Insets left="15.0" right="75.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="botEstadistiques" mnemonicParsing="false" onAction="#finestraEstadistiques" style="-fx-background-radius: 15; -fx-text-fill: #0e53c3; -fx-background-color: #ffff;" text="Estadístiques" />
@@ -41,7 +41,7 @@
             </HBox>
          </children>
          <VBox.margin>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            <Insets bottom="40.0" left="30.0" right="30.0" top="30.0" />
          </VBox.margin>
       </VBox>
    </children>
