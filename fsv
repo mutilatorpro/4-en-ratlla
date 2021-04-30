@@ -1,0 +1,90 @@
+[1mdiff --cc src/vista/TriarJugador.fxml[m
+[1mindex d7a31da,13ffa89..0000000[m
+[1m--- a/src/vista/TriarJugador.fxml[m
+[1m+++ b/src/vista/TriarJugador.fxml[m
+[36m@@@ -25,23 -24,48 +24,58 @@@[m
+                 <children>[m
+                    <VBox prefHeight="200.0" prefWidth="100.0">[m
+                       <children>[m
+[32m++<<<<<<< HEAD[m
+[32m +                        <Label fx:id="nomJugador1" prefHeight="17.0" prefWidth="95.0" text="Jugador1" textAlignment="CENTER" />[m
+[32m +                        <Button mnemonicParsing="false" onAction="#jugarJugador1">[m
+[32m++=======[m
+[32m+                         <Label fx:id="nomJugador1" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="216.0" text="Jugador1">[m
+[32m+                            <font>[m
+[32m+                               <Font name="Arial Black" size="12.0" />[m
+[32m+                            </font>[m
+[32m+                            <VBox.margin>[m
+[32m+                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />[m
+[32m+                            </VBox.margin>[m
+[32m+                         </Label>[m
+[32m+                         <Button mnemonicParsing="false">[m
+[32m++>>>>>>> 1894cb0f2d224559afc9540e2d31667b10ad0b4e[m
+                             <graphic>[m
+[31m -                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador1" pickOnBounds="true" preserveRatio="true" />[m
+[32m +                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />[m
+                             </graphic>[m
+[32m+                            <VBox.margin>[m
+[32m+                               <Insets left="7.0" />[m
+[32m+                            </VBox.margin>[m
+                          </Button>[m
+                       </children>[m
+[32m+                      <HBox.margin>[m
+[32m+                         <Insets bottom="10.0" />[m
+[32m+                      </HBox.margin>[m
+                    </VBox>[m
+                    <VBox prefHeight="200.0" prefWidth="100.0">[m
+                       <children>[m
+[32m++<<<<<<< HEAD[m
+[32m +                        <Label fx:id="nomJugador2" text="Jugador2" />[m
+[32m +                        <Button mnemonicParsing="false" onAction="#jugarJugador2">[m
+[32m++=======[m
+[32m+                         <Label fx:id="nomJugador2" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="216.0" text="Jugador2">[m
+[32m+                            <VBox.margin>[m
+[32m+                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />[m
+[32m+                            </VBox.margin>[m
+[32m+                            <font>[m
+[32m+                               <Font name="Arial Black" size="12.0" />[m
+[32m+                            </font></Label>[m
+[32m+                         <Button mnemonicParsing="false">[m
+[32m++>>>>>>> 1894cb0f2d224559afc9540e2d31667b10ad0b4e[m
+                             <graphic>[m
+[31m -                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador2" pickOnBounds="true" preserveRatio="true" />[m
+[32m +                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />[m
+                             </graphic>[m
+[32m+                            <VBox.margin>[m
+[32m+                               <Insets right="7.0" />[m
+[32m+                            </VBox.margin>[m
+                          </Button>[m
+                       </children>[m
+[32m+                      <HBox.margin>[m
+[32m+                         <Insets />[m
+[32m+                      </HBox.margin>[m
+                    </VBox>[m
+                 </children>[m
+              </HBox>[m
+[1mdiff --git a/nbproject/project.properties b/nbproject/project.properties[m
+[1mindex 9c2a8ab..2342ad9 100644[m
+[1m--- a/nbproject/project.properties[m
+[1m+++ b/nbproject/project.properties[m
+[36m@@ -42,8 +42,7 @@[m [mjar.archive.disabled=true[m
+ jar.compress=false[m
+ javac.classpath=\[m
+     ${file.reference.Connect4.jar}:\[m
+[31m-    ${file.reference.sqlite-jdbc-3.30.1.jar}:\[m
+[31m-    ${javafx.classpath.extension}[m
+[32m+[m[32m    ${file.reference.sqlite-jdbc-3.30.1.jar}[m[41m[m
+ # Space-separated list of extra javac options[m
+ javac.compilerargs=[m
+ javac.deprecation=false[m
+[36m@@ -73,10 +72,6 @@[m [mjavadoc.version=false[m
+ javadoc.windowtitle=[m
+ javafx.application.implementation.version=1.0[m
+ javafx.binarycss=false[m
+[31m-javafx.classpath.extension=\[m
+[31m-    ${java.home}/lib/javaws.jar:\[m
+[31m-    ${java.home}/lib/deploy.jar:\[m
+[31m-    ${java.home}/lib/plugin.jar[m
+ javafx.deploy.allowoffline=true[m
+ # If true, application update mode is set to 'background', if false, update mode is set to 'eager'[m
+ javafx.deploy.backgroundupdate=false[m

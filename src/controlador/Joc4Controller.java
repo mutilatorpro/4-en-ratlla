@@ -152,7 +152,6 @@ public class Joc4Controller implements Initializable {
                         TranslateTransition translate = new TranslateTransition(Duration.millis(300), cercle);
                         translate.setToY(currentYPostion2 + fila * casella.getHeight());
                         translate.play();
-                        //cercle.translateYProperty().setValue(currentYPostion2+fila * casella.getHeight());
                         if (jugador2 != null) {
                             text_jugador.setText("Torn de " + jugador2.getNickName());
                             text_jugador.setFill(Color.YELLOW);
@@ -205,9 +204,6 @@ public class Joc4Controller implements Initializable {
             fMaquina--;
         }
         matriu[fMaquina][cMaquina] = 2;
-        /*Button auxMaquina = (Button) getNode(fMaquina, cMaquina);
-                        auxMaquina.setText("O");
-                        auxMaquina.setStyle("-fx-color: Blue");*/
         Circle cercle2 = new Circle(0, 0, 0);
         cercle2.radiusProperty().bind(Bindings.divide(casella.widthProperty(), 5));
         cercle2.centerXProperty().bind(Bindings.divide(casella.widthProperty(), 2));
@@ -218,7 +214,6 @@ public class Joc4Controller implements Initializable {
         TranslateTransition translate2 = new TranslateTransition(Duration.millis(300), cercle2);
         translate2.setToY(currentYPostion2 + fMaquina * casella.getHeight());
         translate2.play();
-        //cercle2.translateYProperty().setValue(currentYPostion2+fMaquina * casella.getHeight());
         numJugades++;
         if (numJugades > 6)
             comprovarVictoria(event);
@@ -382,7 +377,7 @@ public class Joc4Controller implements Initializable {
         alert.setTitle("Ajuda a la navegació");
         alert.setHeight(600);
         alert.setWidth(900);
-        alert.setContentText("Per guanyar solament has de possar quatre fitxes del mateix color juntes, ja siga en vertical o horitzontal.\n" + " En cas de que vulgues eixir de la partida, es guardarà la partida per a que tornes quan vulgues.");
+        alert.setContentText("Per guanyar solament has de possar quatre fitxes del mateix color juntes, ja siga en vertical o horitzontal.\n" + "En cas de que vulgues eixir de la partida, es guardarà la partida per a que tornes quan vulgues.");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.isPresent() && action.get() == ButtonType.OK) {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));

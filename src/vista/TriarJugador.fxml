@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" style="-fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.TriarJugadorController">
+<HBox alignment="CENTER" style="-fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.TriarJugadorController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label fx:id="titol" style="-fx-text-fill: #0e53c3;" text="Quin dels dos va a enfrontar-se a la màquina?">
+            <Label fx:id="titol" prefHeight="22.0" prefWidth="452.0" style="-fx-text-fill: #0e53c3;" text="Quin dels dos va a enfrontar-se a la màquina?" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="20.0" left="5.0" right="5.0" top="20.0" />
                </VBox.margin>
@@ -32,9 +32,9 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#jugarJugador1">
                            <graphic>
-                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador1" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgJugador1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                            <VBox.margin>
                               <Insets left="7.0" />
@@ -54,9 +54,9 @@
                            <font>
                               <Font name="Arial Black" size="12.0" />
                            </font></Label>
-                        <Button mnemonicParsing="false">
+                        <Button mnemonicParsing="false" onAction="#jugarJugador2">
                            <graphic>
-                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" onDragDetected="#jugarJugador2" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgJugador2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                            <VBox.margin>
                               <Insets right="7.0" />

@@ -45,8 +45,8 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <TextField fx:id="nombreTextF" GridPane.columnIndex="1" />
-            <PasswordField fx:id="contrasenyaTextF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nombreTextF" onKeyPressed="#enter" GridPane.columnIndex="1" />
+            <PasswordField fx:id="contrasenyaTextF" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="12.0" right="6.0" top="12.0" />
