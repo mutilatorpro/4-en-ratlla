@@ -45,9 +45,6 @@ public class PrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        botRegistrar.setDisable(true);
-        botRanking.setDisable(true);
-        botEstadistiques.setDisable(true);
     }    
 
     @FXML
