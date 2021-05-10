@@ -6,11 +6,14 @@
 package controlador;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -22,18 +25,23 @@ import javafx.scene.control.TextField;
 public class RegistrarController implements Initializable {
 
     @FXML
-    private TextField nombreTextF;
-    @FXML
     private Label error;
     @FXML
-    private TextField apellidoTextF;
-
+    private TextField nom;
+    @FXML
+    private TextField contrasenya;
+    @FXML
+    private TextField correu;
+    @FXML
+    private DatePicker data;
+    @FXML
+    private Button registrar;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        registrar.disableProperty().bind(Bindings.or(Bindings.equal(nom.textProperty(), ""), Bindings.or(Bindings.equal(contrasenya.textProperty(),""), Bindings.or(Bindings.equal(correu.textProperty(),""), Bindings.isNull(data.valueProperty())))));
     }    
 
     @FXML

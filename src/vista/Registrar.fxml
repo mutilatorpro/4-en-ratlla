@@ -47,16 +47,16 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </Label>
-            <TextField fx:id="nombreTextF" GridPane.columnIndex="1" />
-            <TextField fx:id="apellidoTextF" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="nom" GridPane.columnIndex="1" />
+            <TextField fx:id="contrasenya" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </TextField>
             <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
             <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="correu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="data" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <padding>
             <Insets bottom="12.0" right="6.0" top="12.0" />
@@ -65,7 +65,7 @@
       <Label fx:id="error" prefHeight="17.0" prefWidth="285.0" text=" " />
       <HBox alignment="CENTER" prefHeight="66.0" prefWidth="517.0" spacing="12.0" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" onAction="#okCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Registrar" />
+            <Button fx:id="registrar" mnemonicParsing="false" onAction="#okCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Registrar" />
             <Button mnemonicParsing="false" onAction="#cancelCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Cancel" />
          </children>
          <VBox.margin>

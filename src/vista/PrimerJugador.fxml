@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0e53c3; -fx-border-width: 5; -fx-border-color: #ffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0e53c3; -fx-border-width: 5; -fx-border-color: #ffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
    <children>
       <VBox alignment="CENTER">
          <children>
@@ -138,12 +138,12 @@
                               <Insets bottom="20.0" left="300.0" right="25.0" />
                            </HBox.margin>
                            <children>
-                              <HBox>
+                              <HBox spacing="10.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button fx:id="obscur" disable="true" mnemonicParsing="false">
+                                    <Button fx:id="obscur" mnemonicParsing="false">
                                        <graphic>
                                           <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -151,9 +151,6 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
-                                       <HBox.margin>
-                                          <Insets right="5.0" />
-                                       </HBox.margin>
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#ajuda" style="-fx-background-color: #ffff;">
                                        <graphic>
