@@ -38,10 +38,12 @@ public class RegistrarController implements Initializable {
 
     @FXML
     private void okCambios(ActionEvent event) {
+        
     }
 
     @FXML
     private void cancelCambios(ActionEvent event) {
+        
     }
     
 }
