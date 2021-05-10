@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="387.0" prefWidth="527.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
+<VBox alignment="CENTER" prefHeight="387.0" prefWidth="527.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
    <children>
       <Label prefHeight="33.0" prefWidth="91.0" style="-fx-text-fill: #0e53c3;" text="Registra't!" textFill="WHITE">
          <font>
@@ -54,7 +54,7 @@
                </GridPane.margin>
             </TextField>
             <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
-            <Label style="-fx-text-fill: #111;" text="Edat" textFill="WHITE" GridPane.rowIndex="3" />
+            <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
