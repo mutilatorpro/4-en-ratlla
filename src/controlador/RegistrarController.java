@@ -9,6 +9,8 @@ import DBAccess.Connect4DAOException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -73,13 +75,16 @@ public class RegistrarController implements Initializable {
         data.showWeekNumbersProperty().set(false);
         try {
             sistema = Connect4.getSingletonConnect4();
+            sistema.getConnect4DAO().toTextFile("base_de_dades.txt");
         } catch (Connect4DAOException ex) {
+            Logger.getLogger(RegistrarController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(RegistrarController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
     @FXML
-    private void okCambios(ActionEvent event) throws Connect4DAOException {
+    private void okCambios(ActionEvent event) throws Connect4DAOException, IOException {
         String usuari = nom.getText();
         String contra = contrasenya.getText();
         String mail = correu.getText();
@@ -89,13 +94,20 @@ public class RegistrarController implements Initializable {
         else if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
         else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
         else {
-            if (imatgeAvatar == null) sistema.registerPlayer(usuari, mail, contra, naixement, 0);
+            if (imatgeAvatar == null) {
+                sistema.registerPlayer(usuari, mail, contra, naixement, 0);
+                
+                Files.copy(imatgeAvatar.toPath(),Paths.get("img"));
+                cancelCambios(event);
+            }
             else {
                 String fileName = imatgeAvatar.getName();
                 String extension = fileName.substring(1 + fileName.lastIndexOf(".")).toLowerCase();
                 if (extension.equals("jpg") || extension.equals("gif") || extension.equals("jpeg") || extension.equals("png")) { //agafem l'extensió i comprovem que efectivament siga d'imatge
                     img = new Image(imatgeAvatar.toURI().toString());
                     sistema.registerPlayer(usuari, mail, contra, (Image) img, naixement, 0);
+                    
+                    cancelCambios(event);
                 }
             }
         }
