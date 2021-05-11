@@ -93,6 +93,7 @@ public class EditarController implements Initializable {
     private void mostrarInformacio() {
         imatge.setImage(mostrar.getAvatar());
         nom.setText(mostrar.getNickName());
+        contrasenya.setText(mostrar.getPassword());
         correu.setText(mostrar.getEmail());
         data.setValue(mostrar.getBirthdate());
     }
