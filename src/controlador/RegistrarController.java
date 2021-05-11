@@ -9,8 +9,6 @@ import DBAccess.Connect4DAOException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -25,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -70,6 +69,12 @@ public class RegistrarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         registrar.disableProperty().bind(Bindings.or(Bindings.equal(nom.textProperty(), ""), Bindings.or(Bindings.equal(contrasenya.textProperty(),""), Bindings.or(Bindings.equal(correu.textProperty(),""), Bindings.isNull(data.valueProperty())))));
         data.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        data.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         data.setConverter(new LocalDateStringConverter(formatter, null));
         data.showWeekNumbersProperty().set(false);
@@ -96,8 +101,6 @@ public class RegistrarController implements Initializable {
         else {
             if (imatgeAvatar == null) {
                 sistema.registerPlayer(usuari, mail, contra, naixement, 0);
-                
-                Files.copy(imatgeAvatar.toPath(),Paths.get("img"));
                 cancelCambios(event);
             }
             else {
@@ -106,7 +109,6 @@ public class RegistrarController implements Initializable {
                 if (extension.equals("jpg") || extension.equals("gif") || extension.equals("jpeg") || extension.equals("png")) { //agafem l'extensió i comprovem que efectivament siga d'imatge
                     img = new Image(imatgeAvatar.toURI().toString());
                     sistema.registerPlayer(usuari, mail, contra, (Image) img, naixement, 0);
-                    
                     cancelCambios(event);
                 }
             }
