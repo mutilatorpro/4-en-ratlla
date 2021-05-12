@@ -11,18 +11,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -30,10 +35,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Connect4;
 import model.Player;
@@ -110,32 +118,7 @@ public class EditarController implements Initializable {
         correu.setText(mostrar.getEmail());
         data.setValue(mostrar.getBirthdate());
     }
-    @FXML
-    private void okCambios(ActionEvent event) throws Connect4DAOException, IOException {
-        String contra = contrasenya.getText();
-        String mail = correu.getText();
-        LocalDate naixement = data.getValue();
-        if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
-        else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
-        else {
-            if (imatgeAvatar == null) {
-                mostrar.setBirthdate(naixement);
-                mostrar.setEmail(mail);
-                mostrar.setPassword(contra);
-                cancelCambios(event);
-            }
-            else {
-                mostrar.setAvatar((Image) img);
-                mostrar.setBirthdate(naixement);
-                mostrar.setEmail(mail);
-                mostrar.setPassword(contra);
-                cancelCambios(event);
-            }
-        }
-    }
-
-    @FXML
-    private void cancelCambios(ActionEvent event) throws IOException {
+    private void tancarFinestra(ActionEvent event) throws IOException {
         FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
         Parent root = cargador.load();
         PrimerJugadorController controlador = cargador.getController();
@@ -146,6 +129,55 @@ public class EditarController implements Initializable {
         stage.setScene(scene);
         stage.toFront();
         stage.show();
+    }
+    @FXML
+    private void okCambios(ActionEvent event) throws Connect4DAOException, IOException {
+        String contra = contrasenya.getText();
+        String mail = correu.getText();
+        LocalDate naixement = data.getValue();
+        if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
+        else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmació de modificació");
+            alert.setContentText("Estàs segur que vols modificar les dades?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                if (imatgeAvatar == null) {
+                mostrar.setBirthdate(naixement);
+                mostrar.setEmail(mail);
+                mostrar.setPassword(contra);
+                tancarFinestra(event);
+                }
+                else {
+                    mostrar.setAvatar((Image) img);
+                    mostrar.setBirthdate(naixement);
+                    mostrar.setEmail(mail);
+                    mostrar.setPassword(contra);
+                    tancarFinestra(event);
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void cancelCambios(ActionEvent event) throws IOException {
+        String contra = contrasenya.getText();
+        String mail = correu.getText();
+        LocalDate naixement = data.getValue();
+        if (((!contra.equals(mostrar.getPassword()) || !mail.equals(mostrar.getEmail())) || !naixement.equals(mostrar.getBirthdate())) || (img != null && ((mostrar.getAvatar() != null && !img.equals(mostrar.getAvatar())) || mostrar.getAvatar() == null)) || (img == null && mostrar.getAvatar() != null)) {
+            //revisar la condició
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmació eixida");
+            alert.setContentText("Estàs segur que vols eixir d'esta finestra? Es perdran tots el canvis ");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                tancarFinestra(event);
+            }
+        } //així si no ha fet cap canvi no es demana confirmació 
+        else tancarFinestra(event);
     }
 
     @FXML
@@ -165,6 +197,64 @@ public class EditarController implements Initializable {
     @FXML
     private void ressaltarImatge(MouseEvent event) {
         //Completar perquè aparega un llapis o algo, mirar com fer transicions
+        FadeTransition ft = new FadeTransition();
+        ft.setNode(imatge);
+        ft.setDuration(new Duration(1000));
+        ft.setFromValue(1.0);
+        ft.setToValue(0.5);
+        
+    }
+    
+    private void tancarFinestraKey(KeyEvent event) throws IOException {
+       FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+       Parent root = cargador.load();
+       PrimerJugadorController controlador = cargador.getController();
+       if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
+       else controlador.inicialitzarJugador(jugador1);
+       Scene scene = new Scene(root);
+       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       stage.setScene(scene);
+       stage.toFront();
+       stage.show();
+    }
+    
+    private void okCambios(KeyEvent event) throws Connect4DAOException, IOException {
+        String contra = contrasenya.getText();
+        String mail = correu.getText();
+        LocalDate naixement = data.getValue();
+        if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
+        else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmació de modificació");
+            alert.setContentText("Estàs segur que vols modificar les dades?");
+            Optional<ButtonType> action = alert.showAndWait();
+            if (action.get() == ButtonType.OK) {
+                if (imatgeAvatar == null) {
+                mostrar.setBirthdate(naixement);
+                mostrar.setEmail(mail);
+                mostrar.setPassword(contra);
+                tancarFinestraKey(event);
+                }
+                else {
+                    mostrar.setAvatar((Image) img);
+                    mostrar.setBirthdate(naixement);
+                    mostrar.setEmail(mail);
+                    mostrar.setPassword(contra);
+                    tancarFinestraKey(event);
+                }
+            }
+        }
+    }
+
+    
+    @FXML
+    private void enter(KeyEvent event) throws Connect4DAOException, IOException {
+        KeyCode tecla = event.getCode();
+        if (tecla == KeyCode.ENTER) {
+            okCambios(event);
+        }
     }
     
 }

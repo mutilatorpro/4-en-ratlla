@@ -55,10 +55,10 @@
             </Label>
             <TextField fx:id="nom" disable="true" GridPane.columnIndex="1" />
             <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
-            <PasswordField fx:id="contrasenya" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="contrasenya" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
-            <TextField fx:id="correu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="data" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="correu" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <padding>
             <Insets bottom="12.0" right="6.0" top="12.0" />
