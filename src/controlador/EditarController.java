@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -32,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 import model.Connect4;
 import model.Player;
 /**
@@ -55,7 +58,7 @@ public class EditarController implements Initializable {
     private Label error;
     @FXML
     private ImageView imatge;
-    private Player jugador1 = null, jugador2 = null, mostrar;
+    private Player jugador1 = null, jugador2 = null, mostrar = null;
     @FXML
     private Button modificar;
     private File imatgeAvatar = null;
@@ -67,6 +70,16 @@ public class EditarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         modificar.disableProperty().bind(Bindings.or(Bindings.equal(nom.textProperty(), ""), Bindings.or(Bindings.equal(contrasenya.textProperty(),""), Bindings.or(Bindings.equal(correu.textProperty(),""), Bindings.isNull(data.valueProperty())))));
+        data.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        data.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        data.setConverter(new LocalDateStringConverter(formatter, null));
+        data.showWeekNumbersProperty().set(false);
         try {
             sistema = Connect4.getSingletonConnect4();
             sistema.getConnect4DAO().toTextFile("base_de_dades.txt");
@@ -99,21 +112,23 @@ public class EditarController implements Initializable {
     }
     @FXML
     private void okCambios(ActionEvent event) throws Connect4DAOException, IOException {
-        String usuari = nom.getText();
         String contra = contrasenya.getText();
         String mail = correu.getText();
         LocalDate naixement = data.getValue();
-        if (sistema.exitsNickName(usuari)) error.setText("El nom d'usuari introduït ja existeix.");
-        else if (!Player.checkNickName(usuari)) error.setText("El nom d'usuari introduït no té el format vàlid");
-        else if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
+        if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
         else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
         else {
             if (imatgeAvatar == null) {
-                sistema.registerPlayer(usuari, mail, contra, naixement, 0);
+                mostrar.setBirthdate(naixement);
+                mostrar.setEmail(mail);
+                mostrar.setPassword(contra);
                 cancelCambios(event);
             }
             else {
-                sistema.registerPlayer(usuari, mail, contra, (Image) img, naixement, 0);
+                mostrar.setAvatar((Image) img);
+                mostrar.setBirthdate(naixement);
+                mostrar.setEmail(mail);
+                mostrar.setPassword(contra);
                 cancelCambios(event);
             }
         }
