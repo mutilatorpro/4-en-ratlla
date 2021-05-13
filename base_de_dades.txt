@@ -1,0 +1,90 @@
+===================
+ PLAYERS IN DB 
+===================
+nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 10
+avatar =yes
+
+nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 95
+avatar =yes
+
+nickName= mutilator
+password= mutilator53
+email= mutilator53@gmail.com
+birthdate= 2021-04-09
+points= 0
+avatar =yes
+
+===================
+ ROUNDS IN DB 
+timestamp = 2021-04-26T10:49:25.625
+winner ->{ nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 10
+avatar =yes
+}
+loser -> {nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 95
+avatar =yes
+}
+
+timestamp = 2021-04-29T12:50:36.028
+winner ->{ nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 10
+avatar =yes
+}
+loser -> {nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 95
+avatar =yes
+}
+
+timestamp = 2021-04-30T15:32:48.089
+winner ->{ nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 95
+avatar =yes
+}
+loser -> {nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 10
+avatar =yes
+}
+
+timestamp = 2021-04-30T18:48:13.456
+winner ->{ nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 95
+avatar =yes
+}
+loser -> {nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 10
+avatar =yes
+}
+

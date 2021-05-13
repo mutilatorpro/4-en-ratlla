@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="387.0" prefWidth="527.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
+<VBox alignment="CENTER" prefHeight="387.0" prefWidth="527.0" spacing="24.0" styleClass="boxInversa" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
    <children>
-      <Label prefHeight="33.0" prefWidth="91.0" style="-fx-text-fill: #0e53c3;" text="Registra't!" textFill="WHITE">
+      <Label prefHeight="33.0" prefWidth="91.0" styleClass="titolInvers" text="Registra't!" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="16.0" />
          </font>
@@ -36,7 +36,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
+            <Label styleClass="etiq" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
@@ -44,7 +44,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
+            <Label styleClass="etiq" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -53,16 +53,16 @@
                </padding>
             </Label>
             <TextField fx:id="nom" GridPane.columnIndex="1" />
-            <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label styleClass="etiq" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
             <PasswordField fx:id="contrasenya" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
+            <Label styleClass="etiq" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
             <TextField fx:id="correu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="data" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Avatar (opcional)" GridPane.rowIndex="4" />
+            <Label styleClass="etiq" text="Avatar (opcional)" GridPane.rowIndex="4" />
             <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="nomArxiu" alignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#obrirArxiu" text="Obrir arxiu" />
+                  <Button mnemonicParsing="false" onAction="#obrirArxiu" styleClass="buttonObliContra" text="Obrir arxiu" />
                </children>
             </HBox>
          </children>
@@ -80,8 +80,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="66.0" prefWidth="517.0" spacing="12.0" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="registrar" mnemonicParsing="false" onAction="#okCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Registrar" />
-            <Button mnemonicParsing="false" onAction="#cancelCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Cancel" />
+            <Button fx:id="registrar" mnemonicParsing="false" onAction="#okCambios" styleClass="buttonInvers" text="Registrar" />
+            <Button mnemonicParsing="false" onAction="#cancelCambios" styleClass="buttonInvers" text="Cancel" />
          </children>
          <VBox.margin>
             <Insets />
