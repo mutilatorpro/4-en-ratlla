@@ -190,5 +190,30 @@ public class PrimerJugadorController implements Initializable {
             stage.show();
         }
     }
+
+    @FXML
+    private void modificar(ActionEvent event) throws IOException {
+        if (jugador2 == null) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Editar.fxml"));
+            Parent root = cargador.load();
+            EditarController controlador = cargador.getController();
+            controlador.inicialitzarJugador(jugador1);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        } else {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/TriarJugadorEditar.fxml"));
+            Parent root = cargador.load();
+            TriarJugadorEditarController controlador = cargador.getController();
+            controlador.inicialitzarJugadors(jugador1, jugador2);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
+    }
     
 }
