@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 13, 2021, 11:41:06 PM
+    Author     : Violeta
+*/
+
+
+.box {
+    -fx-background-color:  #0e53c3;
+    -fx-border-width: 5;
+    -fx-border-color: red;
+    
+}
+.boxInversa {
+    -fx-background-color:  white;
+    -fx-border-width: 5;
+    -fx-border-color: #0e53c3;
+}
+
+.button { /* FX theme stylesheet */
+    -fx-background-color: white;
+    -fx-text-fill: #0e53c3;
+    -fx-background-radius: 15;
+    -fx-alignment: CENTER;
+    -fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
+    -fx-content-display: LEFT;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+}
+
+.titol {
+    -fx-text-fill: white;
+}
+.titolInvers {
+    -fx-text-fill: #0e53c3;
+}
+.etiq {
+    -fx-text-fill: black;
+}
+.buttonQuadrat { /* file:/C:/Users/Violeta/OneDrive/Universidad/Segundo/IPC/4-en-ratlla/src/resources/blancFulla.css */
+-fx-alignment: CENTER;
+-fx-background-color: white;
+-fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
+-fx-background-radius: 4px;
+-fx-content-display: LEFT;
+-fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+-fx-text-fill: #0e53c3;
+}
+
+.buttonInvers { /* FX theme stylesheet */
+-fx-alignment: CENTER;
+-fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
+-fx-background-radius: 3px, 3px, 2px, 1px;
+-fx-content-display: LEFT;
+-fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+-fx-text-fill: white;
+-fx-background-color: #0e53c3;
+}
+
+.buttonObliContra{
+    -fx-background-color:  #999999;
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+}
