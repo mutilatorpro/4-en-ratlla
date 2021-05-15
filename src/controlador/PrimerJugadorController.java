@@ -35,6 +35,7 @@ public class PrimerJugadorController implements Initializable {
     
     private Player jugador1 = null;
     private Player jugador2 = null;
+    private boolean modeObsc = false; //Per defecte en mode NO obscur
     private SimpleIntegerProperty numJugadors = new SimpleIntegerProperty(0);
     @FXML
     private Label benvinguda;
@@ -62,8 +63,12 @@ public class PrimerJugadorController implements Initializable {
         pvp.disableProperty().bind(Bindings.lessThan(numJugadors, 2));
         iniciar.disableProperty().bind(Bindings.equal(numJugadors,2));
         tancar2.disableProperty().bind(Bindings.lessThan(numJugadors,2));
+        Scene scene = new Scene (obscur);
+        //if (modeObsc)  scene.getStylesheets().addAll("resources/obscFulla.css");
+        //else scene.getStylesheets().addAll("resources/blancFulla.css");
+        
     }    
-
+    // AFEGIR EN INICIALITZARJUGADOR EL BOOLEAN DE OBSCUR????????????
     public void inicialitzarJugador(Player player) {
         this.jugador1 = player;
         numJugadors.set(1);
@@ -215,6 +220,11 @@ public class PrimerJugadorController implements Initializable {
             stage.toFront();
             stage.show();
         }
+    }
+
+    @FXML
+    private void obscBut(ActionEvent event) {
+        modeObsc = !modeObsc;
     }
     
 }

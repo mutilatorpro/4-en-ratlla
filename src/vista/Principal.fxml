@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="314.0" prefWidth="494.0" style="-fx-background-color: #0e53c3; -fx-border-color: #ffff; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
+<VBox alignment="CENTER" prefHeight="314.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
    <children>
       <VBox alignment="CENTER" spacing="24.0">
          <children>
@@ -21,22 +21,22 @@
             </ImageView>
             <HBox alignment="CENTER">
                <children>
-                    <Button fx:id="botAutenticar" onAction="#finestraAutenticar" style="-fx-background-radius: 15; -fx-text-fill: #0e53c3; -fx-background-color: #ffff;" text="Autenticar-se">
+                    <Button fx:id="botAutenticar" onAction="#finestraAutenticar" text="Autenticar-se">
                      <HBox.margin>
                         <Insets right="70.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="botRanking" mnemonicParsing="false" onAction="#finestraRanquing" style="-fx-background-radius: 15; -fx-background-color: #ffff; -fx-text-fill: #0e53c3;" text="Rànquing" />
+                  <Button fx:id="botRanking" mnemonicParsing="false" onAction="#finestraRanquing" text="Rànquing" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="328.0">
                <children>
-                  <Button fx:id="botRegistrar" mnemonicParsing="false" onAction="#finestraRegistrar" style="-fx-background-radius: 15; -fx-background-color: #ffff; -fx-text-fill: #0e53c3;" text="Registrar-se">
+                  <Button fx:id="botRegistrar" mnemonicParsing="false" onAction="#finestraRegistrar" text="Registrar-se">
                      <HBox.margin>
                         <Insets left="15.0" right="75.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="botEstadistiques" mnemonicParsing="false" onAction="#finestraEstadistiques" style="-fx-background-radius: 15; -fx-text-fill: #0e53c3; -fx-background-color: #ffff;" text="Estadístiques" />
+                  <Button fx:id="botEstadistiques" mnemonicParsing="false" onAction="#finestraEstadistiques" text="Estadístiques" />
                </children>
             </HBox>
          </children>

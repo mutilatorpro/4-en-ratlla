@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #0e53c3; -fx-border-width: 5; -fx-border-color: #ffff;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
    <children>
       <VBox alignment="CENTER">
          <children>
@@ -45,7 +45,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="266.0">
                            <children>
-                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="98.0" style="-fx-text-fill: #ffff;" text="Guanya punts" textAlignment="CENTER">
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="98.0" styleClass="titol" text="Guanya punts" textAlignment="CENTER">
                                  <font>
                                     <Font name="Arial Black" size="13.0" />
                                  </font>
@@ -53,13 +53,13 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
-                              <Button fx:id="maquina" mnemonicParsing="false" onAction="#jugarMaquina" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Mode versus màquina">
+                              <Button fx:id="maquina" mnemonicParsing="false" onAction="#jugarMaquina" text="Mode versus màquina">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="iniciar" mnemonicParsing="false" onAction="#iniciarSessio" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Iniciar sessió 2n jugador" />
-                              <Button fx:id="pvp" mnemonicParsing="false" onAction="#jugarJugador" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Mode multijugador">
+                              <Button fx:id="iniciar" mnemonicParsing="false" onAction="#iniciarSessio" text="Iniciar sessió 2n jugador" />
+                              <Button fx:id="pvp" mnemonicParsing="false" onAction="#jugarJugador" text="Mode multijugador">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
@@ -77,7 +77,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="280.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" style="-fx-text-fill: #ffff;" text="Consulta els punts">
+                                    <Label alignment="TOP_CENTER" styleClass="titol" text="Consulta els punts">
                                        <font>
                                           <Font name="Arial Black" size="13.0" />
                                        </font>
@@ -113,7 +113,7 @@
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="243.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#tancarSessio" prefHeight="23.0" prefWidth="125.0" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Tancar sessió 1r jugador">
+                              <Button mnemonicParsing="false" onAction="#tancarSessio" prefHeight="23.0" prefWidth="125.0" text="Tancar sessió 1r jugador">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -121,7 +121,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="tancar2" mnemonicParsing="false" onAction="#tancarSessio2" prefHeight="12.0" prefWidth="124.0" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Tancar sessió 2n jugador">
+                              <Button fx:id="tancar2" mnemonicParsing="false" onAction="#tancarSessio2" prefHeight="12.0" prefWidth="124.0" text="Tancar sessió 2n jugador">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -144,7 +144,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <children>
-                                    <Button fx:id="obscur" mnemonicParsing="false">
+                                    <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
                                        <graphic>
                                           <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -153,7 +153,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#ajuda" style="-fx-background-color: #ffff;">
+                                    <Button mnemonicParsing="false" onAction="#ajuda" styleClass="buttonQuadrat">
                                        <graphic>
                                           <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
