@@ -25,45 +25,49 @@
          </VBox.margin>
       </Label>
       <ImageView fx:id="imatge" fitHeight="73.0" fitWidth="100.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" pickOnBounds="true" preserveRatio="true" />
-      <GridPane fx:id="miGrid" alignment="CENTER" hgap="6.0" prefHeight="190.0" prefWidth="517.0" vgap="6.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity" />
-            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="-Infinity" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <HBox>
          <children>
-            <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
+            <GridPane fx:id="miGrid" alignment="CENTER" hgap="6.0" prefHeight="190.0" prefWidth="517.0" vgap="6.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity" />
+                  <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="-Infinity" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="nom" disable="true" GridPane.columnIndex="1" />
+                  <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="contrasenya" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
+                  <TextField fx:id="correu" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
                <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  <Insets bottom="12.0" right="6.0" top="12.0" />
                </padding>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
-            <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="nom" disable="true" GridPane.columnIndex="1" />
-            <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
-            <PasswordField fx:id="contrasenya" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
-            <TextField fx:id="correu" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </GridPane>
          </children>
-         <padding>
-            <Insets bottom="12.0" right="6.0" top="12.0" />
-         </padding>
-      </GridPane>
+      </HBox>
       <HBox alignment="CENTER">
          <children>
             <Label fx:id="error" prefHeight="17.0" prefWidth="285.0" text=" " textFill="RED" />
