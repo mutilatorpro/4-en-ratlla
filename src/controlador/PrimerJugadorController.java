@@ -63,7 +63,7 @@ public class PrimerJugadorController implements Initializable {
         pvp.disableProperty().bind(Bindings.lessThan(numJugadors, 2));
         iniciar.disableProperty().bind(Bindings.equal(numJugadors,2));
         tancar2.disableProperty().bind(Bindings.lessThan(numJugadors,2));
-        Scene scene = new Scene (obscur);
+        //Scene scene = new Scene (obscur);
         //if (modeObsc)  scene.getStylesheets().addAll("resources/obscFulla.css");
         //else scene.getStylesheets().addAll("resources/blancFulla.css");
         
