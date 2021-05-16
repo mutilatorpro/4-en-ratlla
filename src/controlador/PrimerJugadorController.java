@@ -224,5 +224,29 @@ public class PrimerJugadorController implements Initializable {
     private void obscBut(ActionEvent event) {
         modeObsc = !modeObsc;
     }
+
+    @FXML
+    private void ranquing(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Ranquing.fxml"));
+        Parent root = cargador.load();
+        RanquingController controlador = cargador.getController();
+        if (jugador2 != null) controlador.inicialitzarJugadors(jugador1, jugador2);
+        else controlador.inicialitzarJugador(jugador1);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void estadistiques(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Estadistiques.fxml")); 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
     
 }

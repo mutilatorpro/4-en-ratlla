@@ -6,6 +6,7 @@
 package controlador;
 
 import DBAccess.Connect4DAOException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +14,22 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ObjectPropertyBase;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,6 +37,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
 
@@ -47,9 +58,12 @@ public class RanquingController implements Initializable {
     private TableColumn<Player, String> puntuacioColumn;
     
     private Connect4 sistema;
-    private List<Player> ranquing, ranquingAux;
+    private List<Player> ranquing;
+    private ObservableList<Player> dades;
     @FXML
     private TextField jugador;
+    
+    private Player jugador1 = null, jugador2 = null;
     /**
      * Initializes the controller class.
      */
@@ -58,8 +72,7 @@ public class RanquingController implements Initializable {
         try {
             sistema = Connect4.getSingletonConnect4();
             ranquing = sistema.getConnect4Ranking();
-            ranquingAux = sistema.getConnect4Ranking();
-            ObservableList<Player> dades = FXCollections.observableArrayList(ranquingAux);
+            dades = FXCollections.observableArrayList(ranquing);
             taula.setItems(dades);
             userColumn.setCellValueFactory(c -> {
                 Player aux = c.getValue();
@@ -72,25 +85,62 @@ public class RanquingController implements Initializable {
                 StringProperty puntsProperty = new SimpleStringProperty(String.valueOf(aux.getPoints()));
                 return puntsProperty;
             });
-            //avatarColumn.setCellValueFactory(c -> new PropertyValueFactory<Player, Image>("avatar"));
-            //avatarColumn.setCellFactory (c -> new AvatarCelda());
-            jugador.textProperty().addListener((observable, oldVal, nouVal) -> {
-               for (Player p: ranquing) {
-                   ranquingAux = new ArrayList();
-                   String userNormalitzat = p.getNickName().toLowerCase();
-                   nouVal = nouVal.toLowerCase();
-                   if (userNormalitzat.startsWith(nouVal)) {
-                       ranquingAux.add(p);
-                       System.out.println(p.getNickName());
-                   }
-               }
+            
+           /* avatarColumn.setCellValueFactory (c -> {
+                Player aux = c.getValue();
+                ImageView img = new ImageView();
+                img.setImage(aux.getAvatar());
+                return img.imageProperty();
+            });*/
+           avatarColumn.setCellValueFactory(new PropertyValueFactory<> ("avatar"));
+            jugador.textProperty().addListener((observable, valorAntic, valorNou) -> {
+                dades.clear();
+                for (Player p : ranquing) {
+                    String nom = p.getNickName().toLowerCase();
+                    valorNou = valorNou.toLowerCase();
+                    if (nom.startsWith(valorNou)) dades.add(p);
+                }
             });
+            
+            
             
         } catch (Connect4DAOException ex) {
             Logger.getLogger(RanquingController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }    
+
+    @FXML
+    private void enrere(ActionEvent event) throws IOException, IOException {
+        if (jugador1 != null) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+            Parent root = cargador.load();
+            PrimerJugadorController controlador = cargador.getController();
+            if (jugador2 != null) {
+                controlador.inicialitzarJugadors(jugador1, jugador2);
+            } else {
+                controlador.inicialitzarJugador(jugador1);
+            }
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
+    }
+    
+    public void inicialitzarJugador (Player j1) { jugador1 = j1; }
+    public void inicialitzarJugadors (Player j1, Player j2) {
+        jugador1 = j1;
+        jugador2 = j2;
+    }
     
 }
 class AvatarCelda extends TableCell<Player, String> {
@@ -99,10 +149,9 @@ class AvatarCelda extends TableCell<Player, String> {
         super.updateItem(item, empty);
         if (item == null || empty) setGraphic(null);
         else {
-            Image img = new Image(getClass().getResourceAsStream(item), 40, 40, true, true);
+            Image img = new Image(getClass().getResourceAsStream(item),40,40,true,true);
             vista.setImage(img);
             setGraphic(vista);
         }
     }
-    
 }
