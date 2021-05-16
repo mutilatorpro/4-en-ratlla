@@ -86,4 +86,14 @@ public class PrincipalController implements Initializable {
         stage.toFront();
         stage.show();
     }
+
+    @FXML
+    private void nombrePartides(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/NombrePartidesTemps.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
 }
