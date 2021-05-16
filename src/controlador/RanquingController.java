@@ -90,7 +90,7 @@ public class RanquingController implements Initializable {
             });
             posicioColumn.setCellValueFactory(c -> {
                 Player aux = c.getValue();  
-                StringProperty posicioProperty = new SimpleStringProperty(String.valueOf(dades.indexOf(aux)));
+                StringProperty posicioProperty = new SimpleStringProperty(String.valueOf(dades.indexOf(aux) + 1));
                 return posicioProperty;
             });
            /* avatarColumn.setCellValueFactory (c -> {
