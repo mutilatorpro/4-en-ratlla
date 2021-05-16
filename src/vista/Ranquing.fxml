@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RanquingController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="673.0" spacing="20.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RanquingController">
    <children>
       <Text fill="#2200ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Rànquing de jugadors">
          <font>
@@ -28,17 +28,22 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <TableView fx:id="taula" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="avatarColumn" prefWidth="214.0" text="Avatar" />
-          <TableColumn fx:id="userColumn" prefWidth="185.0" text="Usuari" />
-            <TableColumn fx:id="puntuacioColumn" prefWidth="75.0" text="Puntuació" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="43.0" prefWidth="641.0">
+      <HBox alignment="CENTER">
+         <children>
+            <TableView fx:id="taula" prefHeight="336.0" prefWidth="473.0">
+              <columns>
+                  <TableColumn fx:id="posicioColumn" prefWidth="50.0" text="Posicio" />
+                <TableColumn fx:id="avatarColumn" prefWidth="201.0" text="Avatar" />
+                <TableColumn fx:id="userColumn" prefWidth="185.0" text="Usuari" />
+                  <TableColumn fx:id="puntuacioColumn" prefWidth="75.0" text="Puntuació" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="581.0">
          <VBox.margin>
             <Insets left="15.0" />
          </VBox.margin>

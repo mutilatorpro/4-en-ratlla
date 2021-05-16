@@ -51,11 +51,13 @@ public class RanquingController implements Initializable {
     @FXML
     private TableView<Player> taula;
     @FXML
-    private TableColumn<Player, Image> avatarColumn;
+    private TableColumn<Player, String> avatarColumn;
     @FXML
     private TableColumn<Player, String> userColumn;
     @FXML
     private TableColumn<Player, String> puntuacioColumn;
+    @FXML
+    private TableColumn<Player, String> posicioColumn;
     
     private Connect4 sistema;
     private List<Player> ranquing;
@@ -85,7 +87,11 @@ public class RanquingController implements Initializable {
                 StringProperty puntsProperty = new SimpleStringProperty(String.valueOf(aux.getPoints()));
                 return puntsProperty;
             });
-            
+            posicioColumn.setCellValueFactory(c -> {
+                Player aux = c.getValue();  
+                StringProperty posicioProperty = new SimpleStringProperty(String.valueOf(dades.indexOf(aux)));
+                return posicioProperty;
+            });
            /* avatarColumn.setCellValueFactory (c -> {
                 Player aux = c.getValue();
                 ImageView img = new ImageView();
@@ -93,7 +99,7 @@ public class RanquingController implements Initializable {
                 return img.imageProperty();
             });*/
            avatarColumn.setCellValueFactory(new PropertyValueFactory<> ("avatar"));
-            jugador.textProperty().addListener((observable, valorAntic, valorNou) -> {
+           jugador.textProperty().addListener((observable, valorAntic, valorNou) -> {
                 dades.clear();
                 for (Player p : ranquing) {
                     String nom = p.getNickName().toLowerCase();
