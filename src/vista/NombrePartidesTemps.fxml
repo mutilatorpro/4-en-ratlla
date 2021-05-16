@@ -15,78 +15,75 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="608.0" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.NombrePartidesTempsController">
-   <children>
-      <BorderPane prefHeight="405.0" prefWidth="600.0">
-         <center>
-            <LineChart fx:id="chart" BorderPane.alignment="CENTER">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis fx:id="yAxis" side="LEFT" />
-              </yAxis>
-            </LineChart>
-         </center>
-         <top>
-            <VBox BorderPane.alignment="CENTER">
+
+<BorderPane prefHeight="405.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NombrePartidesTempsController">
+   <center>
+      <LineChart fx:id="chart" BorderPane.alignment="CENTER">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </center>
+   <top>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="657.0" text="Nombre de partides en un interval de temps">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="657.0" text="Nombre de partides en un interval de temps">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+                  <VBox prefHeight="100.0" prefWidth="174.0">
                      <children>
-                        <VBox prefHeight="100.0" prefWidth="174.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciona la data d'inici" textAlignment="CENTER" wrappingWidth="163.84765625" />
-                              <DatePicker fx:id="daraInici">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </DatePicker>
-                           </children>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciona la data de fi" textAlignment="CENTER" wrappingWidth="173.259765625" />
-                              <DatePicker fx:id="dataFi">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </DatePicker>
-                           </children>
-                        </VBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciona la data d'inici" textAlignment="CENTER" wrappingWidth="163.84765625" />
+                        <DatePicker fx:id="dataInici" prefHeight="25.0" prefWidth="209.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </DatePicker>
                      </children>
-                  </HBox>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selecciona la data de fi" textAlignment="CENTER" wrappingWidth="173.259765625" />
+                        <DatePicker fx:id="dataFi">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-         </top>
-         <bottom>
-            <HBox prefHeight="40.0" prefWidth="580.0" BorderPane.alignment="BOTTOM_LEFT">
-               <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#enrere" style="-fx-background-color: #ffff;" textAlignment="CENTER">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/fletxa.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets left="20.0" />
-               </BorderPane.margin>
             </HBox>
-         </bottom>
-      </BorderPane>
-   </children>
-</VBox>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="40.0" prefWidth="580.0" BorderPane.alignment="BOTTOM_LEFT">
+         <children>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#enrere" style="-fx-background-color: #ffff;" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/fletxa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets left="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

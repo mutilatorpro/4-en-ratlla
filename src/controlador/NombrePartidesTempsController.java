@@ -93,11 +93,22 @@ public class NombrePartidesTempsController implements Initializable {
             sistema = Connect4.getSingletonConnect4();
             partidesPerDia = sistema.getRoundsPerDay();
             dates = partidesPerDia.keySet();
-            for (LocalDate data: dates) {
-                if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                    llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+            dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
+                dataF = valorNou; 
+                for (LocalDate data: dates) {
+                    if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                        llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                    }
                 }
-            }
+            });
+            dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
+                dataI = valorNou; 
+                for (LocalDate data: dates) {
+                    if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                        llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                    }
+                }
+            });
             chart.getData().add(new XYChart.Series<> (llistaDates));
             xAxis.setLabel("Data");
             yAxis.setLabel("Nombre de partides");
