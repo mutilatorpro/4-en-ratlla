@@ -58,8 +58,6 @@ public class PrimerJugadorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ranquing.setDisable(true);
-        estadistiques.setDisable(true);
         pvp.disableProperty().bind(Bindings.lessThan(numJugadors, 2));
         iniciar.disableProperty().bind(Bindings.equal(numJugadors,2));
         tancar2.disableProperty().bind(Bindings.lessThan(numJugadors,2));
