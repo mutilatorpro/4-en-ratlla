@@ -69,8 +69,7 @@ public class AutenticarController implements Initializable {
     private void okCambios(ActionEvent event) throws IOException {
         Player jugador = sistema.loginPlayer(nombreTextF.getText(), contrasenyaTextF.getText());
         if (jugador == null) { 
-            error.setText("El nom d'usuari i la contrasenya no coincideixen. Tinc compte amb les majúscules i minúscules i torna a intentar-ho."); 
-            //Interessant mirar si se poden posar els textFields amb el borde roig
+            error.setText("El nom d'usuari i la contrasenya no coincideixen. Tinc compte amb les majúscules i minúscules i torna a intentar-ho.");
             contrasenyaTextF.setStyle("-fx-border-color: red");
             nombreTextF.setStyle("-fx-border-color: red");
         } 

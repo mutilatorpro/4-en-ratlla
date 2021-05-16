@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
    <children>
       <Label prefHeight="24.0" prefWidth="182.0" style="-fx-text-fill: #0e53c3;" text="Modifica el teu perfil" textFill="WHITE">
          <font>
@@ -24,8 +24,8 @@
             <Insets left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
       </Label>
-      <ImageView fx:id="imatge" fitHeight="73.0" fitWidth="100.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" pickOnBounds="true" preserveRatio="true" />
-      <HBox>
+      <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" />
+      <HBox alignment="CENTER" stylesheets="@../resources/blancFulla.css">
          <children>
             <GridPane fx:id="miGrid" alignment="CENTER" hgap="6.0" prefHeight="190.0" prefWidth="517.0" vgap="6.0">
                <columnConstraints>

@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -135,8 +136,12 @@ public class EditarController implements Initializable {
         String contra = contrasenya.getText();
         String mail = correu.getText();
         LocalDate naixement = data.getValue();
-        if (!Player.checkEmail(mail)) error.setText("El correu introduït no té el format vàlid");
-        else if (!Player.checkPassword(contra)) error.setText("La contrasenya no té el format vàlid");
+        if (!Player.checkEmail(mail)) {
+            error.setText("El correu introduït no té el format vàlid");
+        }
+        else if (!Player.checkPassword(contra)) {
+            error.setText("La contrasenya no té el format vàlid");
+        }
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
@@ -197,12 +202,22 @@ public class EditarController implements Initializable {
     @FXML
     private void ressaltarImatge(MouseEvent event) {
         //Completar perquè aparega un llapis o algo, mirar com fer transicions
-        FadeTransition ft = new FadeTransition();
-        ft.setNode(imatge);
-        ft.setDuration(new Duration(1000));
-        ft.setFromValue(1.0);
-        ft.setToValue(0.5);
-        
+        ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
+        st.setFromX(1);
+        st.setFromY(1);
+        st.setToX(1.2);
+        st.setToY(1.2);
+        st.play();
+    }
+    
+    @FXML
+    private void iniciImatge(MouseEvent event) {
+        ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
+        st.setFromX(1.2);
+        st.setFromY(1.2);
+        st.setToX(1);
+        st.setToY(1);
+        st.play();
     }
     
     private void tancarFinestraKey(KeyEvent event) throws IOException {
@@ -255,6 +270,5 @@ public class EditarController implements Initializable {
         if (tecla == KeyCode.ENTER) {
             okCambios(event);
         }
-    }
-    
+    }    
 }
