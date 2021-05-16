@@ -9,12 +9,14 @@ import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,8 +30,10 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 import model.Connect4;
 import model.Player;
 import model.Round;
@@ -42,7 +46,7 @@ import model.Round;
 public class NombrePartidesTempsController implements Initializable {
 
     @FXML
-    private DatePicker daraInici;
+    private DatePicker dataInici;
     @FXML
     private DatePicker dataFi;
     @FXML
@@ -56,20 +60,45 @@ public class NombrePartidesTempsController implements Initializable {
     private  TreeMap<LocalDate,List<Round>> partidesPerDia;
     
     private ObservableList<XYChart.Data<LocalDate,Number>> llistaDates = FXCollections.observableArrayList();
-    
+    private LocalDate dataI, dataF;
     private Player jugador1 = null, jugador2 = null;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        dataInici.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
+        dataInici.showWeekNumbersProperty().set(false);
+        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        dataFi.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
+        dataFi.showWeekNumbersProperty().set(false);
+        chart.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
+        dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
+        dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
         try {
             sistema = Connect4.getSingletonConnect4();
             partidesPerDia = sistema.getRoundsPerDay();
             dates = partidesPerDia.keySet();
             for (LocalDate data: dates) {
-                llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                    llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                }
             }
+            chart.getData().add(new XYChart.Series<> (llistaDates));
             xAxis.setLabel("Data");
             yAxis.setLabel("Nombre de partides");
         } catch (Connect4DAOException ex) {
