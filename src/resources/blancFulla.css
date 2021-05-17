@@ -67,3 +67,11 @@ and open the template in the editor.
 .tableColumn {
   -fx-alignment: CENTER;
 }
+
+.error {
+    -fx-border-color: red;
+}
+
+.imatge {
+    -fx-border-color: blue;
+}

@@ -23,6 +23,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,6 +41,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -73,6 +75,8 @@ public class EditarController implements Initializable {
     private File imatgeAvatar = null;
     private Image img;
     private Connect4 sistema;
+    @FXML
+    private HBox contenidorImatge;
     /**
      * Initializes the controller class.
      */
@@ -138,9 +142,12 @@ public class EditarController implements Initializable {
         LocalDate naixement = data.getValue();
         if (!Player.checkEmail(mail)) {
             error.setText("El correu introduït no té el format vàlid");
+            correu.getStyleClass().add("error");
         }
         else if (!Player.checkPassword(contra)) {
             error.setText("La contrasenya no té el format vàlid");
+            correu.getStyleClass().clear();
+            contrasenya.getStyleClass().add("error");
         }
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -149,6 +156,8 @@ public class EditarController implements Initializable {
             alert.setContentText("Estàs segur que vols modificar les dades?");
             Optional<ButtonType> action = alert.showAndWait();
             if (action.get() == ButtonType.OK) {
+                correu.getStyleClass().clear();
+                contrasenya.getStyleClass().clear();
                 if (imatgeAvatar == null) {
                 mostrar.setBirthdate(naixement);
                 mostrar.setEmail(mail);
@@ -171,7 +180,7 @@ public class EditarController implements Initializable {
         String contra = contrasenya.getText();
         String mail = correu.getText();
         LocalDate naixement = data.getValue();
-        if (((!contra.equals(mostrar.getPassword()) || !mail.equals(mostrar.getEmail())) || !naixement.equals(mostrar.getBirthdate())) || (img != null && ((mostrar.getAvatar() != null && !img.equals(mostrar.getAvatar())) || mostrar.getAvatar() == null)) || (img == null && mostrar.getAvatar() != null)) {
+        if (!contra.equals(mostrar.getPassword()) || !mail.equals(mostrar.getEmail()) || !naixement.equals(mostrar.getBirthdate()) || img == null || !img.equals(mostrar.getAvatar())) {
             //revisar la condició
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
@@ -202,22 +211,26 @@ public class EditarController implements Initializable {
     @FXML
     private void ressaltarImatge(MouseEvent event) {
         //Completar perquè aparega un llapis o algo, mirar com fer transicions
-        ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
+        /*ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
         st.setFromX(1);
         st.setFromY(1);
         st.setToX(1.2);
         st.setToY(1.2);
-        st.play();
+        st.play();*/
+        imatge.setCursor(Cursor.HAND);
+        contenidorImatge.getStyleClass().add("imatge");
     }
     
     @FXML
     private void iniciImatge(MouseEvent event) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
+        /*ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
         st.setFromX(1.2);
         st.setFromY(1.2);
         st.setToX(1);
         st.setToY(1);
-        st.play();
+        st.play();*/
+        imatge.setCursor(Cursor.DEFAULT);
+        contenidorImatge.getStyleClass().clear();
     }
     
     private void tancarFinestraKey(KeyEvent event) throws IOException {
