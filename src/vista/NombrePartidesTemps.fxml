@@ -19,10 +19,10 @@
    <center>
       <LineChart fx:id="chart">
         <xAxis>
-          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+          <CategoryAxis fx:id="xAxis" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="yAxis" side="LEFT" />
+          <NumberAxis fx:id="yAxis" minorTickCount="1" side="LEFT" tickUnit="1.0" />
         </yAxis>
       </LineChart>
    </center>

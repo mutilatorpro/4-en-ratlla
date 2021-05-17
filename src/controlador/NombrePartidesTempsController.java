@@ -63,6 +63,7 @@ public class NombrePartidesTempsController implements Initializable {
     private ObservableList<XYChart.Data<String,Number>> llistaDates = FXCollections.observableArrayList();
     private LocalDate dataI, dataF;
     private Player jugador1 = null, jugador2 = null;
+    private DateTimeFormatter formatter;
     @FXML
     private Label error;
     /**
@@ -77,7 +78,7 @@ public class NombrePartidesTempsController implements Initializable {
                 setDisable(item.isAfter(LocalDate.now()));
             }
         });
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         dataInici.setConverter(new LocalDateStringConverter(formatter, null));
         dataInici.showWeekNumbersProperty().set(false);
         dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
@@ -107,7 +108,7 @@ public class NombrePartidesTempsController implements Initializable {
                 if (dataI != null) {
                     if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
                     else {
-                        reubica(valorNou);
+                        reubica();
                     }
                 }
             });
@@ -116,7 +117,7 @@ public class NombrePartidesTempsController implements Initializable {
                 if (dataF != null) {
                     if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
                     else {
-                        reubica(valorNou);
+                        reubica();
                     }
                 }
             });
@@ -128,12 +129,12 @@ public class NombrePartidesTempsController implements Initializable {
             Logger.getLogger(NombrePartidesTempsController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-    private void reubica (LocalDate valorNou) {
+    private void reubica () {
         error.setText("");
-        llistaDates.removeAll();
+        llistaDates.clear();
         for (LocalDate data : dates) {
             if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                llistaDates.add(new XYChart.Data<String, Number>(data.toString(), partidesPerDia.get(data).size()));
+                llistaDates.add(new XYChart.Data<String, Number>(data.format(formatter), partidesPerDia.get(data).size()));
             }
         }
     }
