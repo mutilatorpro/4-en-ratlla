@@ -107,11 +107,7 @@ public class NombrePartidesTempsController implements Initializable {
                 if (dataI != null) {
                     if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
                     else {
-                        for (LocalDate data: dates) {
-                            if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                                llistaDates.add(new XYChart.Data<String, Number> (data.toString(), partidesPerDia.get(data).size()));
-                            }
-                        }
+                        reubica(valorNou);
                     }
                 }
             });
@@ -120,11 +116,7 @@ public class NombrePartidesTempsController implements Initializable {
                 if (dataF != null) {
                     if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
                     else {
-                        for (LocalDate data: dates) {
-                            if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                                llistaDates.add(new XYChart.Data<String, Number> (data.toString(), partidesPerDia.get(data).size()));
-                            }
-                        }
+                        reubica(valorNou);
                     }
                 }
             });
@@ -135,8 +127,16 @@ public class NombrePartidesTempsController implements Initializable {
         } catch (Connect4DAOException ex) {
             Logger.getLogger(NombrePartidesTempsController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }    
+    private void reubica (LocalDate valorNou) {
+        error.setText("");
+        llistaDates.removeAll();
+        for (LocalDate data : dates) {
+            if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                llistaDates.add(new XYChart.Data<String, Number>(data.toString(), partidesPerDia.get(data).size()));
+            }
+        }
+    }
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
     public void inicialitzarJugadors (Player j1, Player j2) { 
         jugador1 = j1;
