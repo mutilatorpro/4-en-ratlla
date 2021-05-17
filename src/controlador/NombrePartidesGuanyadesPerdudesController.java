@@ -5,16 +5,37 @@
  */
 package controlador;
 
+import DBAccess.Connect4DAOException;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
+import model.Connect4;
+import model.Player;
+import model.Round;
 
 /**
  * FXML Controller class
@@ -23,6 +44,11 @@ import javafx.scene.control.Label;
  */
 public class NombrePartidesGuanyadesPerdudesController implements Initializable {
 
+    private Player jugador1 = null, jugador2 = null;
+    private DateTimeFormatter formatter;
+    private LocalDate dataI, dataF;
+    private Connect4 sistema;
+    private Player usuariDades;
     @FXML
     private DatePicker dataInici;
     @FXML
@@ -30,22 +56,96 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
     @FXML
     private Label error;
     @FXML
-    private LineChart<?, ?> chart;
+    private TextField usuari;
     @FXML
-    private NumberAxis yAxis;
+    private StackedBarChart<String, Number> chart1;
     @FXML
-    private CategoryAxis xAxis;
-
+    private BarChart<String, Number> chart2;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        dataInici.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
+        dataInici.showWeekNumbersProperty().set(false);
+        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
+        dataFi.setDayCellFactory(c -> new DateCell() {
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+                setDisable(item.isAfter(LocalDate.now()));
+            }
+        });
+        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
+        dataFi.showWeekNumbersProperty().set(false);
+        chart1.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.or(Bindings.isNull(dataFi.valueProperty()), Bindings.equal(usuari.textProperty(), ""))));
+        chart2.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.or(Bindings.isNull(dataFi.valueProperty()), Bindings.equal(usuari.textProperty(), ""))));
+        try {
+            sistema = Connect4.getSingletonConnect4();
+            dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
+                carregarGrafiques();
+            });
+            dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
+                carregarGrafiques();
+            });
+        } catch (Connect4DAOException ex) {
+            Logger.getLogger(NombrePartidesTempsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        chart1.setTitle("Partides perdudes/guanyades");
+        chart2.setTitle("Nombre d'oponents distints");
     }    
+    
+    public void inicialitzarJugador (Player j1) { jugador1 = j1; }
+    public void inicialitzarJugadors (Player j1, Player j2) { 
+        jugador1 = j1;
+        jugador2 = j2;
+    }
+    
+    private void carregarGrafiques() {
+        if (usuariDades == null) error.setText("Cal que introduïsques un nom d'usuari.");
+        else if (dataI == null )error.setText("Cal que introduïsques una data d'inici.");
+        else if (dataF == null )error.setText("Cal que introduïsques una data de fi.");
+        else if (dataF.isBefore(dataI)) error.setText("La data d'inici cal que siga prèvia a la final.");
+        else {
+            //carregar les dades de l'observable list
+        }
+
+    }
+    @FXML
+    private void enrere(ActionEvent event) throws IOException {
+        if (jugador1 != null) {
+            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
+            Parent root = cargador.load();
+            PrimerJugadorController controlador = cargador.getController();
+            if (jugador2 != null) {
+                controlador.inicialitzarJugadors(jugador1, jugador2);
+            } else {
+                controlador.inicialitzarJugador(jugador1);
+            }
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.toFront();
+            stage.show();
+        }
+    }
 
     @FXML
-    private void enrere(ActionEvent event) {
+    private void carregar(ActionEvent event) {
     }
     
 }
