@@ -32,6 +32,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Connect4;
@@ -50,7 +51,7 @@ public class NombrePartidesTempsController implements Initializable {
     @FXML
     private DatePicker dataFi;
     @FXML
-    private LineChart<LocalDate, Number> chart;
+    private LineChart<String, Number> chart;
     @FXML
     private NumberAxis yAxis;
     @FXML
@@ -59,9 +60,11 @@ public class NombrePartidesTempsController implements Initializable {
     private Connect4 sistema;
     private  TreeMap<LocalDate,List<Round>> partidesPerDia;
     
-    private ObservableList<XYChart.Data<LocalDate,Number>> llistaDates = FXCollections.observableArrayList();
+    private ObservableList<XYChart.Data<String,Number>> llistaDates = FXCollections.observableArrayList();
     private LocalDate dataI, dataF;
     private Player jugador1 = null, jugador2 = null;
+    @FXML
+    private Label error;
     /**
      * Initializes the controller class.
      */
@@ -87,28 +90,45 @@ public class NombrePartidesTempsController implements Initializable {
         dataFi.setConverter(new LocalDateStringConverter(formatter, null));
         dataFi.showWeekNumbersProperty().set(false);
         chart.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
-        dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
-        dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
+       // dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
+       // dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
         try {
             sistema = Connect4.getSingletonConnect4();
             partidesPerDia = sistema.getRoundsPerDay();
             dates = partidesPerDia.keySet();
+            for (LocalDate d: dates) {
+                System.out.println(d.toString() + ": " + partidesPerDia.get(d).size());
+                for (Round r: partidesPerDia.get(d)){
+                    System.out.println("\t-"  + r.toString());
+                }
+            }
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
-                dataF = valorNou; 
-                for (LocalDate data: dates) {
-                    if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                        llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                dataF = valorNou;
+                if (dataI != null) {
+                    if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+                    else {
+                        for (LocalDate data: dates) {
+                            if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                                llistaDates.add(new XYChart.Data<String, Number> (data.toString(), partidesPerDia.get(data).size()));
+                            }
+                        }
                     }
                 }
             });
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
                 dataI = valorNou; 
-                for (LocalDate data: dates) {
-                    if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                        llistaDates.add(new XYChart.Data<LocalDate, Number> (data, partidesPerDia.get(data).size()));
+                if (dataF != null) {
+                    if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+                    else {
+                        for (LocalDate data: dates) {
+                            if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
+                                llistaDates.add(new XYChart.Data<String, Number> (data.toString(), partidesPerDia.get(data).size()));
+                            }
+                        }
                     }
                 }
             });
+            chart.setTitle("Partides jugades per dia");
             chart.getData().add(new XYChart.Series<> (llistaDates));
             xAxis.setLabel("Data");
             yAxis.setLabel("Nombre de partides");

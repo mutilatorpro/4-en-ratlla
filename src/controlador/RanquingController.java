@@ -39,6 +39,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.swing.ImageIcon;
 import model.Connect4;
 import model.Player;
 
@@ -157,7 +158,10 @@ class AvatarCelda extends TableCell<Player, Image> {
         super.updateItem(item, empty);
         if (item == null || empty) setGraphic(null);
         else {
+            ImageIcon icona = new ImageIcon();
             vista.setImage(item);
+            vista.setFitHeight(50);            
+            vista.setFitWidth(50);
             setGraphic(vista);
         }
     }
