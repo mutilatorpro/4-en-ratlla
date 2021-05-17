@@ -52,7 +52,7 @@ public class RanquingController implements Initializable {
     @FXML
     private TableView<Player> taula;
     @FXML
-    private TableColumn<Player, String> avatarColumn;
+    private TableColumn<Player, Image> avatarColumn;
     @FXML
     private TableColumn<Player, String> userColumn;
     @FXML
@@ -100,6 +100,7 @@ public class RanquingController implements Initializable {
                 return img.imageProperty();
             });*/
            avatarColumn.setCellValueFactory(new PropertyValueFactory<> ("avatar"));
+           avatarColumn.setCellFactory(c -> new AvatarCelda());
            jugador.textProperty().addListener((observable, valorAntic, valorNou) -> {
                 dades.clear();
                 for (Player p : ranquing) {
@@ -150,14 +151,13 @@ public class RanquingController implements Initializable {
     }
     
 }
-class AvatarCelda extends TableCell<Player, String> {
+class AvatarCelda extends TableCell<Player, Image> {
     private ImageView vista = new ImageView();
-    protected void updateItem (String item, boolean empty) {
+    protected void updateItem (Image item, boolean empty) {
         super.updateItem(item, empty);
         if (item == null || empty) setGraphic(null);
         else {
-            Image img = new Image(getClass().getResourceAsStream(item),40,40,true,true);
-            vista.setImage(img);
+            vista.setImage(item);
             setGraphic(vista);
         }
     }
