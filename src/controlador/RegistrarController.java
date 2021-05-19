@@ -72,7 +72,7 @@ public class RegistrarController implements Initializable {
         data.setDayCellFactory(c -> new DateCell() {
             public void updateItem(LocalDate item, boolean empty) {
                 super.updateItem(item, empty);
-                setDisable(item.isAfter(LocalDate.now().minusYears(18))); //almenys tinga 18 anys
+                setDisable(item.isAfter(LocalDate.now().minusYears(12))); //almenys tinga 18 anys
             }
         });
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");

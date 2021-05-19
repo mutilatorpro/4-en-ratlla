@@ -91,8 +91,6 @@ public class NombrePartidesTempsController implements Initializable {
         dataFi.setConverter(new LocalDateStringConverter(formatter, null));
         dataFi.showWeekNumbersProperty().set(false);
         chart.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
-       // dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
-       // dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
         try {
             sistema = Connect4.getSingletonConnect4();
             partidesPerDia = sistema.getRoundCountsPerDay();

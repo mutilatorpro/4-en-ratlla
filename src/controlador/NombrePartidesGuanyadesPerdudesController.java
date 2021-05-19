@@ -113,6 +113,11 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         });
         chart1.setTitle("Partides perdudes/guanyades");
         chart2.setTitle("Nombre d'oponents distints");
+        XYChart.Series s1 = new XYChart.Series(dataVictories);
+        s1.setName("Victòries");
+        XYChart.Series s2 = new XYChart.Series(dataDerrotes);
+        s2.setName("Derrotes");
+        chart2.getData().addAll(s1, s2);
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -129,21 +134,19 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         else if (dataF.isBefore(dataI)) error.setText("La data d'inici cal que siga prèvia a la final.");
         else {
             //carregar les dades de l'observable list
+            error.setText("");
             dataVictories.removeAll();
             dataDerrotes.removeAll();
             usuariDades = sistema.getPlayer(usuari.getText());
-            partidesPerDia = sistema.getDayRanksPlayer(usuariDades);
-            Set <LocalDate> claus = partidesPerDia.keySet();
-            for (LocalDate d: claus) {
-                dataVictories.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
-                dataDerrotes.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
+            if (usuariDades == null) error.setText("Jugador no registrat en el nostre sistema.");
+            else {
+                partidesPerDia = sistema.getDayRanksPlayer(usuariDades);
+                Set <LocalDate> claus = partidesPerDia.keySet();
+                for (LocalDate d: claus) {
+                    dataVictories.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
+                    dataDerrotes.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
+                } 
             }
-            XYChart.Series s1 = new XYChart.Series(dataVictories);
-            s1.setName("Victòries");
-            XYChart.Series s2 = new XYChart.Series(dataDerrotes);
-            s2.setName("Derrotes");
-            chart2.getData().clear();
-            chart2.getData().addAll(s1, s2);
         }
 
     }
