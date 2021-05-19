@@ -235,12 +235,12 @@ public class PrimerJugadorController implements Initializable {
     @FXML
     private void obscBut(ActionEvent event) {
         modeObsc = !modeObsc;
-        Dades.getDades().setModeObs(modeObsc);
-        Parent root = obscur.getParent();
-        while (root.getParent() != null) root = root.getParent();
+        Dades.getDades().setModeObs(modeObsc); 
+        // Parent root = obscur.getParent(); EN AQUESTA PANTALLA NO VULL CANVIAR AL MODE OBSCUR, VULL QUE ES QUEDE EN BLAU
+        // while (root.getParent() != null) root = root.getParent();
         
-        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
-        else root.getStylesheets().addAll("resources/blancFulla.css");
+        // if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
+        // else root.getStylesheets().addAll("resources/blancFulla.css");
     }
 
 

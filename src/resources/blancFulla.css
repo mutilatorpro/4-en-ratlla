@@ -39,6 +39,10 @@ and open the template in the editor.
 .etiq {
     -fx-text-fill: black;
 }
+
+.etiqInv {
+    -fx-text-fill: white;
+}
 .buttonQuadrat { /* file:/C:/Users/Violeta/OneDrive/Universidad/Segundo/IPC/4-en-ratlla/src/resources/blancFulla.css */
 -fx-alignment: CENTER;
 -fx-background-color: white;
