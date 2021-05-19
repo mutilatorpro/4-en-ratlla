@@ -65,3 +65,15 @@ and open the template in the editor.
     -fx-background-radius: 15;
     -fx-text-fill: white;
 }
+
+.tableColumn {
+  -fx-alignment: CENTER;
+}
+
+.error {
+    -fx-border-color: red;
+}
+
+.imatge {
+    -fx-border-color: blue;
+}

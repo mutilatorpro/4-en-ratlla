@@ -59,16 +59,22 @@ public class PrimerJugadorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ranquing.setDisable(true);
-        estadistiques.setDisable(true);
+        //ranquing.setDisable(true);
+        //estadistiques.setDisable(true);
         pvp.disableProperty().bind(Bindings.lessThan(numJugadors, 2));
         iniciar.disableProperty().bind(Bindings.equal(numJugadors,2));
         tancar2.disableProperty().bind(Bindings.lessThan(numJugadors,2));
+
         Parent root = obscur.getParent();
         while (root.getParent() != null) root = root.getParent();
          
         if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
         else root.getStylesheets().addAll("resources/blancFulla.css");
+
+        //Scene scene = new Scene (obscur);
+        //if (modeObsc)  scene.getStylesheets().addAll("resources/obscFulla.css");
+        //else scene.getStylesheets().addAll("resources/blancFulla.css");
+
         
     }    
     // AFEGIR EN INICIALITZARJUGADOR EL BOOLEAN DE OBSCUR????????????
@@ -184,7 +190,8 @@ public class PrimerJugadorController implements Initializable {
         alert.setHeight(600);
         alert.setWidth(900);
         alert.setContentText("En aquesta finestra pots accedir a dos apartats ben diferenciats: un on guanyaràs punts i un altre en el que podràs vore les estadístiques i com de ben posicionat estàs en el joc.\n" + "És també des d'aquesta finestra des d'on podràs canviar la visualitzación a mode obscur. ");
-        Optional<ButtonType> action = alert.showAndWait();
+        alert.showAndWait();
+        /* Optional<ButtonType> action = 
         if (action.isPresent() && action.get() == ButtonType.OK) {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
             Parent root = cargador.load();
@@ -196,7 +203,8 @@ public class PrimerJugadorController implements Initializable {
             stage.setScene(scene);
             stage.toFront();
             stage.show();
-        }
+*/
+    
     }
 
     @FXML
@@ -234,4 +242,30 @@ public class PrimerJugadorController implements Initializable {
         if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
         else root.getStylesheets().addAll("resources/blancFulla.css");
     }
+
+
+    @FXML
+    private void ranquing(ActionEvent event) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Ranquing.fxml"));
+        Parent root = cargador.load();
+        RanquingController controlador = cargador.getController();
+        if (jugador2 != null) controlador.inicialitzarJugadors(jugador1, jugador2);
+        else controlador.inicialitzarJugador(jugador1);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void estadistiques(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/Estadistiques.fxml")); 
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+    
 }

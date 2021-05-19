@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
    <children>
       <VBox alignment="CENTER">
          <children>
@@ -90,15 +90,15 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </VBox>
-                              <Button fx:id="estadistiques" alignment="BOTTOM_LEFT" mnemonicParsing="false" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Estadístiques">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
+                              <Button fx:id="ranquing" mnemonicParsing="false" onAction="#ranquing" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Rànquing">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="ranquing" mnemonicParsing="false" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Ranking">
+                              <Button fx:id="estadistiques" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#estadistiques" style="-fx-background-color: #ffff; -fx-text-fill: #0e53c3; -fx-background-radius: 15;" text="Estadístiques">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>

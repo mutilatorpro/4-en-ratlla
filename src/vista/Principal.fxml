@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="314.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
+<VBox alignment="CENTER" prefHeight="314.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
    <children>
       <VBox alignment="CENTER" spacing="24.0">
          <children>
@@ -37,6 +37,7 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="botEstadistiques" mnemonicParsing="false" onAction="#finestraEstadistiques" text="Estadístiques" />
+                  <Button mnemonicParsing="false" onAction="#nombrePartides" text="Nombre de partides" />
                </children>
             </HBox>
          </children>
@@ -44,5 +45,6 @@
             <Insets bottom="40.0" left="30.0" right="30.0" top="30.0" />
          </VBox.margin>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#partidesGuanyades" text="Partides guanyades/perdudes usuari" />
    </children>
 </VBox>

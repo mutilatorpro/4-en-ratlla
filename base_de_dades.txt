@@ -1,6 +1,27 @@
 ===================
  PLAYERS IN DB 
 ===================
+nickName= userrrr2
+password= 123456789A#e
+email= user2@gmail.com
+birthdate= 2021-02-09
+points= 0
+avatar =yes
+
+nickName= userrrr22
+password= 0123456789Aa#
+email= user22@gmail.com
+birthdate= 2021-04-28
+points= 0
+avatar =yes
+
+nickName= userrrr20
+password= 0123467759Ae#
+email= us2@gmail.co
+birthdate= 2021-04-27
+points= 0
+avatar =yes
+
 nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
@@ -19,6 +40,13 @@ nickName= mutilator
 password= mutilator53
 email= mutilator53@gmail.com
 birthdate= 2021-04-09
+points= 0
+avatar =yes
+
+nickName= userrrr23
+password= 0123456789Aa#
+email= userr2@gmail.com
+birthdate= 2021-05-05
 points= 0
 avatar =yes
 
