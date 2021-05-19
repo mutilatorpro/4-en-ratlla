@@ -58,7 +58,7 @@ public class NombrePartidesTempsController implements Initializable {
     private CategoryAxis xAxis;
     private Set<LocalDate> dates;
     private Connect4 sistema;
-    private  TreeMap<LocalDate,List<Round>> partidesPerDia;
+    private  TreeMap<LocalDate,Integer> partidesPerDia;
     
     private ObservableList<XYChart.Data<String,Number>> llistaDates = FXCollections.observableArrayList();
     private LocalDate dataI, dataF;
@@ -95,14 +95,8 @@ public class NombrePartidesTempsController implements Initializable {
        // dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
         try {
             sistema = Connect4.getSingletonConnect4();
-            partidesPerDia = sistema.getRoundsPerDay();
+            partidesPerDia = sistema.getRoundCountsPerDay();
             dates = partidesPerDia.keySet();
-            for (LocalDate d: dates) {
-                System.out.println(d.toString() + ": " + partidesPerDia.get(d).size());
-                for (Round r: partidesPerDia.get(d)){
-                    System.out.println("\t-"  + r.toString());
-                }
-            }
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
                 dataF = valorNou;
                 if (dataI != null) {
@@ -134,7 +128,7 @@ public class NombrePartidesTempsController implements Initializable {
         llistaDates.clear();
         for (LocalDate data : dates) {
             if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
-                llistaDates.add(new XYChart.Data<String, Number>(data.format(formatter), partidesPerDia.get(data).size()));
+                llistaDates.add(new XYChart.Data<String, Number>(data.format(formatter), partidesPerDia.get(data)));
             }
         }
     }

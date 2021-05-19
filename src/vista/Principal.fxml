@@ -45,5 +45,6 @@
             <Insets bottom="40.0" left="30.0" right="30.0" top="30.0" />
          </VBox.margin>
       </VBox>
+      <Button mnemonicParsing="false" onAction="#partidesGuanyades" text="Partides guanyades/perdudes usuari" />
    </children>
 </VBox>
