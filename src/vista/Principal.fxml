@@ -47,5 +47,8 @@
       </VBox>
       <Button mnemonicParsing="false" onAction="#partidesGuanyades" text="Partides guanyades/perdudes usuari" />
       <Button mnemonicParsing="false" onAction="#rondesSistema" text="Rondes sistema" />
+      <Button mnemonicParsing="false" onAction="#rondesJugador" text="Rondes jugador" />
+      <Button mnemonicParsing="false" onAction="#rondesJugadorGuanyades" text="Rondes jugador guanyades" />
+      <Button mnemonicParsing="false" onAction="#rondesJugadorPerdudes" text="Rondes jugador perdudes" />
    </children>
 </VBox>

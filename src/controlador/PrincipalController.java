@@ -116,4 +116,34 @@ public class PrincipalController implements Initializable {
         stage.toFront();
         stage.show();
     }
+
+    @FXML
+    private void rondesJugador(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/PartidesJugador.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void rondesJugadorGuanyades(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/PartidesJugadorGuanyades.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
+
+    @FXML
+    private void rondesJugadorPerdudes(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/PartidesJugadorPerdudes.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.toFront();
+        stage.show();
+    }
 }

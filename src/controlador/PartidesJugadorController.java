@@ -59,15 +59,13 @@ import model.Round;
  *
  * @author inmad
  */
-public class PartidesSistemaController implements Initializable {
+public class PartidesJugadorController implements Initializable {
 
     @FXML
     private TableView<Round> taula;
     
     private Connect4 sistema;
-    private TreeMap<LocalDate, List<Round>> rondesPerDia;
     private ObservableList<Round> dadesRondes;
-    private TextField jugador;
     
     private Player jugador1 = null, jugador2 = null;
     @FXML
@@ -85,11 +83,12 @@ public class PartidesSistemaController implements Initializable {
     private DateTimeFormatter formatter;    
     private DateTimeFormatter formatter2;
     private LocalDate dataI = null, dataF = null;
-    Set<LocalDate> claus;
     @FXML
     private Button botoMostrar;
     @FXML
     private Label error;
+    @FXML
+    private TextField nomUsuari;
     /**
      * Initializes the controller class.
      */
@@ -98,8 +97,6 @@ public class PartidesSistemaController implements Initializable {
         try {
             configurarDates();
             sistema = Connect4.getSingletonConnect4();
-            rondesPerDia = sistema.getRoundsPerDay();
-            claus = rondesPerDia.keySet();
             dadesRondes = FXCollections.observableArrayList();
             taula.setItems(dadesRondes);
             diaColumn.setCellValueFactory(c -> {
@@ -124,7 +121,7 @@ public class PartidesSistemaController implements Initializable {
                 StringProperty posicioProperty = new SimpleStringProperty(aux.getLoser().getNickName());
                 return posicioProperty;
             });
-            botoMostrar.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
+            botoMostrar.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.or(Bindings.isNull(dataFi.valueProperty()),Bindings.equal(nomUsuari.textProperty(), ""))));
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
             taula.setItems(dadesRondes);
@@ -159,10 +156,12 @@ public class PartidesSistemaController implements Initializable {
     
     private void carregarDades() {
         dadesRondes.clear();
-        for (LocalDate clau: claus) {
-            if (clau.isAfter(dataI.minusDays(1)) && clau.isBefore(dataF.plusDays(1))) {
-                List<Round> aux = rondesPerDia.get(clau);
-                for (Round r: aux) {
+        Player auxiliar = sistema.getPlayer(nomUsuari.getText());
+        if (auxiliar == null) error.setText("Aquest jugador no existeix en el nostre sistema.");
+        else {
+            List<Round> aux = sistema.getRoundsPlayer(auxiliar);
+            for (Round r: aux) {
+                if (r.getLocalDate().isAfter(dataI.minusDays(1)) && r.getLocalDate().isBefore(dataF.plusDays(1))) {
                     dadesRondes.add(r);
                 }
             }
@@ -203,7 +202,7 @@ public class PartidesSistemaController implements Initializable {
 
     @FXML
     private void mostrarRondes(ActionEvent event) {
-        if (dataI != null && dataF != null) {
+        if (dataI != null && dataF != null && !nomUsuari.getText().equals("")) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
             else carregarDades();
         }
