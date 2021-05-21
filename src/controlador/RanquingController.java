@@ -94,12 +94,6 @@ public class RanquingController implements Initializable {
                 StringProperty posicioProperty = new SimpleStringProperty(String.valueOf(dades.indexOf(aux) + 1));
                 return posicioProperty;
             });
-           /* avatarColumn.setCellValueFactory (c -> {
-                Player aux = c.getValue();
-                ImageView img = new ImageView();
-                img.setImage(aux.getAvatar());
-                return img.imageProperty();
-            });*/
            avatarColumn.setCellValueFactory(new PropertyValueFactory<> ("avatar"));
            avatarColumn.setCellFactory(c -> new AvatarCelda());
            jugador.textProperty().addListener((observable, valorAntic, valorNou) -> {
