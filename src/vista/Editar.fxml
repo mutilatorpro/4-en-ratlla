@@ -7,10 +7,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -29,47 +26,44 @@
             <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" stylesheets="@../resources/blancFulla.css">
+      <HBox alignment="CENTER" prefHeight="214.0" prefWidth="512.0" stylesheets="@../resources/blancFulla.css">
          <children>
-            <GridPane fx:id="miGrid" alignment="CENTER" hgap="6.0" prefHeight="190.0" prefWidth="517.0" vgap="6.0">
-               <columnConstraints>
-                  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity" />
-                  <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="-Infinity" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
+            <VBox alignment="CENTER" prefHeight="155.0" prefWidth="370.0">
                <children>
-                  <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </padding>
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Label>
-                  <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </padding>
-                  </Label>
-                  <TextField fx:id="nom" disable="true" GridPane.columnIndex="1" />
-                  <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
-                  <PasswordField fx:id="contrasenya" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label style="-fx-text-fill: #111;" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
-                  <TextField fx:id="correu" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="387.0" spacing="30.0">
+                     <children>
+                        <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="nom" disable="true" prefHeight="25.0" prefWidth="151.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
+                     <children>
+                        <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="correu" onKeyPressed="#enter" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" />
+                        <PasswordField fx:id="contrasenya" onKeyPressed="#enter" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="26.0">
+                     <children>
+                        <Label style="-fx-text-fill: #111;" text="       Data naixement" textFill="WHITE" />
+                        <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" />
+                     </children>
+                  </HBox>
                </children>
-               <padding>
-                  <Insets bottom="12.0" right="6.0" top="12.0" />
-               </padding>
-            </GridPane>
+            </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER">

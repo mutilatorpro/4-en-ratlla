@@ -46,5 +46,6 @@
          </VBox.margin>
       </VBox>
       <Button mnemonicParsing="false" onAction="#partidesGuanyades" text="Partides guanyades/perdudes usuari" />
+      <Button mnemonicParsing="false" onAction="#rondesSistema" text="Rondes sistema" />
    </children>
 </VBox>
