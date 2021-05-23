@@ -125,7 +125,7 @@ public class RegistrarController implements Initializable {
     private void obrirArxiu(ActionEvent event) {
         imatgeAvatar = null;
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Tria la imatge pel teu avatar");
+        fileChooser.setTitle("Tria la imatge per al teu avatar");
         fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         imatgeAvatar = fileChooser.showOpenDialog(stage);

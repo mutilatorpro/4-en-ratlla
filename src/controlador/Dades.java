@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Violeta
@@ -14,25 +16,43 @@ public class Dades {
     private static Dades meuesDades = null;
     
     private boolean modeObs = false;
+    
 
-    /**
-     * Get the value of modeObs
-     *
-     * @return the value of modeObs
-     */
+    private LocalDate dataI = null, dataF = null;    
+    private String nomUsuari = "";
+
+    public LocalDate getDataI() {
+        return dataI;
+    }
+
+    public void setDataI(LocalDate dataI) {
+        this.dataI = dataI;
+    }
+
+    public LocalDate getDataF() {
+        return dataF;
+    }
+
+    public void setDataF(LocalDate dataF) {
+        this.dataF = dataF;
+    }
+    
     public boolean isModeObs() {
         return modeObs;
     }
 
-    /**
-     * Set the value of modeObs
-     *
-     * @param modeObs new value of modeObs
-     */
     public void setModeObs(boolean modeObs) {
         this.modeObs = modeObs;
     }
 
+    public String getNomUsuari() {
+        return nomUsuari;
+    }
+
+    public void setNomUsuari(String nomUsuari) {
+        this.nomUsuari = nomUsuari;
+    }
+    
     private Dades() {}
    
     public static Dades getDades() {

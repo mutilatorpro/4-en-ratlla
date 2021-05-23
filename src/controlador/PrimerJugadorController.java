@@ -77,7 +77,7 @@ public class PrimerJugadorController implements Initializable {
 
         
     }    
-    // AFEGIR EN INICIALITZARJUGADOR EL BOOLEAN DE OBSCUR????????????
+  
     public void inicialitzarJugador(Player player) {
         this.jugador1 = player;
         numJugadors.set(1);

@@ -157,7 +157,7 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
         dataFi.showWeekNumbersProperty().set(false);
     }
     
-    private void carregarDades() {
+    public void carregarDades() {
         dadesRondes.clear();
         for (LocalDate clau: claus) {
             if (clau.isAfter(dataI.minusDays(1)) && clau.isBefore(dataF.plusDays(1))) {

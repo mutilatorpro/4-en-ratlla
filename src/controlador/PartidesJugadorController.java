@@ -154,7 +154,7 @@ public abstract class PartidesJugadorController implements Initializable, Estadi
         dataFi.showWeekNumbersProperty().set(false);
     }
     
-    private void carregarDades() {
+    public void carregarDades() {
         dadesRondes.clear();
         Player auxiliar = sistema.getPlayer(nomUsuari.getText());
         if (auxiliar == null) error.setText("Aquest jugador no existeix en el nostre sistema.");
