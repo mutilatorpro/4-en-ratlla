@@ -16,8 +16,6 @@ public class Dades {
     private static Dades meuesDades = null;
     
     private boolean modeObs = false;
-    
-
     private LocalDate dataI = null, dataF = null;    
     private String nomUsuari = "";
 
