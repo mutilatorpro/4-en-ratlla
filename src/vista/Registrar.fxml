@@ -6,14 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="387.0" prefWidth="527.0" spacing="24.0" styleClass="boxInversa" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="527.0" spacing="24.0" styleClass="boxInversa" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistrarController">
    <children>
       <Label prefHeight="33.0" prefWidth="91.0" styleClass="titolInvers" text="Registra't!" textFill="WHITE">
          <font>
@@ -23,56 +20,93 @@
             <Insets left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
       </Label>
-      <GridPane fx:id="miGrid" alignment="CENTER" hgap="6.0" prefHeight="195.0" prefWidth="517.0" vgap="6.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="-Infinity" />
-            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="300.0" minWidth="-Infinity" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label styleClass="etiq" text="Nom d'usuari" textFill="WHITE" GridPane.hgrow="ALWAYS">
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
-            <Label styleClass="etiq" text="Correu electrònic" textFill="WHITE" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <padding>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="nom" GridPane.columnIndex="1" />
-            <Label styleClass="etiq" text="Contrasenya" textFill="WHITE" GridPane.rowIndex="1" />
-            <PasswordField fx:id="contrasenya" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label styleClass="etiq" text="Data naixement" textFill="WHITE" GridPane.rowIndex="3" />
-            <TextField fx:id="correu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="data" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label styleClass="etiq" text="Avatar (opcional)" GridPane.rowIndex="4" />
-            <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Label fx:id="nomArxiu" alignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#obrirArxiu" styleClass="buttonObliContra" text="Obrir arxiu" />
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="12.0" right="6.0" top="12.0" />
-         </padding>
+      <HBox alignment="CENTER">
          <VBox.margin>
             <Insets />
          </VBox.margin>
-      </GridPane>
+         <children>
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="etiq" text="Nom d'usuari" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="etiq" text="Contrasenya" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="etiq" text="Correu electrònic" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="etiq" text="Data naixement" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="etiq" text="Avatar (opcional)">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="12.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <VBox prefHeight="173.0" prefWidth="176.0">
+               <children>
+                  <TextField fx:id="nom">
+                     <VBox.margin>
+                        <Insets bottom="7.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="contrasenya">
+                     <VBox.margin>
+                        <Insets bottom="7.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <TextField fx:id="correu">
+                     <VBox.margin>
+                        <Insets bottom="7.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <DatePicker fx:id="data" editable="false">
+                     <VBox.margin>
+                        <Insets bottom="7.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <HBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Label fx:id="nomArxiu" alignment="CENTER" />
+                        <Button mnemonicParsing="false" onAction="#obrirArxiu" prefHeight="24.0" prefWidth="85.0" styleClass="buttonObliContra" text="Obrir arxiu" />
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
       <HBox alignment="CENTER">
          <children>
             <Label fx:id="error" prefHeight="17.0" prefWidth="285.0" text=" " textFill="RED" />
@@ -80,8 +114,14 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="66.0" prefWidth="517.0" spacing="12.0" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="registrar" mnemonicParsing="false" onAction="#okCambios" styleClass="buttonInvers" text="Registrar" />
-            <Button mnemonicParsing="false" onAction="#cancelCambios" styleClass="buttonInvers" text="Cancel" />
+            <Button fx:id="registrar" mnemonicParsing="false" onAction="#okCambios" styleClass="buttonInvers" text="Registrar">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#cancelCambios" styleClass="buttonInvers" text="Cancel">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
          </children>
          <VBox.margin>
             <Insets />

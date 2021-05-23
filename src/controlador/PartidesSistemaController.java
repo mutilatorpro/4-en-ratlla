@@ -71,10 +71,6 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
     
     private Player jugador1 = null, jugador2 = null;
     @FXML
-    private DatePicker dataInici;
-    @FXML
-    private DatePicker dataFi;
-    @FXML
     private TableColumn<Round, String> diaColumn;
     @FXML
     private TableColumn<Round, String> horaColumn;
@@ -82,21 +78,22 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
     private TableColumn<Round, String> guanyadorColumn;
     @FXML
     private TableColumn<Round, String> perdedorColumn;
-    private DateTimeFormatter formatter;    
-    private DateTimeFormatter formatter2;
+    //private DateTimeFormatter formatter;    
+    //private DateTimeFormatter formatter2;
     private LocalDate dataI = null, dataF = null;
+    private DateTimeFormatter formatter, formatter2;   
     Set<LocalDate> claus;
-    @FXML
-    private Button botoMostrar;
-    @FXML
-    private Label error;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            configurarDates();
+            inicialitzarDades();
+            carregarDades();
+            //configurarDates();
             sistema = Connect4.getSingletonConnect4();
             rondesPerDia = sistema.getRoundsPerDay();
             claus = rondesPerDia.keySet();
@@ -124,9 +121,10 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
                 StringProperty posicioProperty = new SimpleStringProperty(aux.getLoser().getNickName());
                 return posicioProperty;
             });
-            botoMostrar.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
-            dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
-            dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
+//                                                           BORRARRRRRRRRRRRRRRRRRRRRRRRR            
+//botoMostrar.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
+            //dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
+            //dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
             taula.setItems(dadesRondes);
         } catch (Connect4DAOException ex) {
             Logger.getLogger(RanquingController.class.getName()).log(Level.SEVERE, null, ex);
@@ -134,30 +132,30 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
         
     }    
 
-    private void configurarDates() {
-        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
-        dataInici.setDayCellFactory(c -> new DateCell() {
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                setDisable(item.isAfter(LocalDate.now()));
-            }
-        });
-        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
-        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
-        dataInici.showWeekNumbersProperty().set(false);
-        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
-        dataFi.setDayCellFactory(c -> new DateCell() {
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                setDisable(item.isAfter(LocalDate.now()));
-            }
-        });
-        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
-        dataFi.showWeekNumbersProperty().set(false);
-    }
+//    private void configurarDates() {
+//        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
+//        dataInici.setDayCellFactory(c -> new DateCell() {
+//            public void updateItem(LocalDate item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setDisable(item.isAfter(LocalDate.now()));
+//            }
+//        });
+//        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+//        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+//        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
+//        dataInici.showWeekNumbersProperty().set(false);
+//        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
+//        dataFi.setDayCellFactory(c -> new DateCell() {
+//            public void updateItem(LocalDate item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setDisable(item.isAfter(LocalDate.now()));
+//            }
+//        });
+//        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
+//        dataFi.showWeekNumbersProperty().set(false);
+//    }
     
-    public void carregarDades() {
+    private void carregarDades() {
         dadesRondes.clear();
         for (LocalDate clau: claus) {
             if (clau.isAfter(dataI.minusDays(1)) && clau.isBefore(dataF.plusDays(1))) {
@@ -169,30 +167,9 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
         }
     }
     
-    @FXML
-    private void enrere(ActionEvent event) throws IOException, IOException {
-        if (jugador1 != null) {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
-            Parent root = cargador.load();
-            PrimerJugadorController controlador = cargador.getController();
-            if (jugador2 != null) {
-                controlador.inicialitzarJugadors(jugador1, jugador2);
-            } else {
-                controlador.inicialitzarJugador(jugador1);
-            }
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        }
+    public void inicialitzarDades() {
+        dataI = Dades.getDades().getDataI();
+        dataF = Dades.getDades().getDataF();
     }
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -201,12 +178,11 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
         jugador2 = j2;
     }
 
-    @FXML
-    private void mostrarRondes(ActionEvent event) {
-        if (dataI != null && dataF != null) {
-            if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            else carregarDades();
-        }
-    }
+//    private void mostrarRondes(ActionEvent event) {
+//        if (dataI != null && dataF != null) {
+//            if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+//            else carregarDades();
+//        }
+//    }
     
 }

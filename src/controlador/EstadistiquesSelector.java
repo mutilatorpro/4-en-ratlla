@@ -11,5 +11,5 @@ package controlador;
  */
 public interface EstadistiquesSelector {
     //protected 
-    public void carregarDades();
+    public void inicialitzarDades();
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
    <children>
       <Label prefHeight="24.0" prefWidth="182.0" style="-fx-text-fill: #0e53c3;" text="Modifica el teu perfil" textFill="WHITE">
          <font>
@@ -26,42 +26,69 @@
             <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="214.0" prefWidth="512.0" stylesheets="@../resources/blancFulla.css">
+      <HBox alignment="CENTER" stylesheets="@../resources/blancFulla.css">
          <children>
-            <VBox alignment="CENTER" prefHeight="155.0" prefWidth="370.0">
+            <VBox alignment="TOP_CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="106.0" prefWidth="387.0" spacing="30.0">
-                     <children>
-                        <Label style="-fx-text-fill: #111;" text="Nom d'usuari" textFill="WHITE">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="nom" disable="true" prefHeight="25.0" prefWidth="151.0" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="12.0">
-                     <children>
-                        <Label style="-fx-text-fill: #111;" text="Correu electrònic" textFill="WHITE">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </Label>
-                        <TextField fx:id="correu" onKeyPressed="#enter" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                     <children>
-                        <Label style="-fx-text-fill: #111;" text="Contrasenya" textFill="WHITE" />
-                        <PasswordField fx:id="contrasenya" onKeyPressed="#enter" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="26.0">
-                     <children>
-                        <Label style="-fx-text-fill: #111;" text="       Data naixement" textFill="WHITE" />
-                        <DatePicker fx:id="data" editable="false" onKeyPressed="#enter" />
-                     </children>
-                  </HBox>
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #111;" text="Nom d'usuari" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #111;" text="Correu electrònic" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #111;" text="Contrasenya" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-text-fill: #111;" text="Data naixement" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <TextField fx:id="nom" disable="true">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="correu" onKeyPressed="#enter">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="contrasenya" onKeyPressed="#enter">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <DatePicker fx:id="data" editable="false" onKeyPressed="#enter">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
                </children>
             </VBox>
          </children>
@@ -79,6 +106,9 @@
          <VBox.margin>
             <Insets />
          </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </HBox>
    </children>
 </VBox>

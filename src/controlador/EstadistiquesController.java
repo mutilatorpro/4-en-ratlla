@@ -48,6 +48,11 @@ import model.Player;
  */
 public class EstadistiquesController implements Initializable {
 
+    private Connect4 sistema;
+    private Player jugador1 = null, jugador2 = null;
+    private DateTimeFormatter formatter, formatter2;   
+    private LocalDate dataI = null, dataF = null;
+    
     @FXML
     private ToggleGroup vsQui;
     @FXML
@@ -62,16 +67,6 @@ public class EstadistiquesController implements Initializable {
     private Label error;
     @FXML
     private ChoiceBox<String> PartUsuEleccio;
-    private Connect4 sistema;
-    private Player jugador1 = null, jugador2 = null;
-
-    
-    private DateTimeFormatter formatter;
-    private DateTimeFormatter formatter2;
-    private LocalDate dataI = null, dataF = null;
-    
-  
-    
     @FXML
     private RadioButton vsSist;
     @FXML
@@ -91,7 +86,7 @@ public class EstadistiquesController implements Initializable {
             
             botoMostrar.disableProperty().bind(Bindings.or(
                     Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), "")))); 
+                    Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             //ObservableBoolanValue cond1 = Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty()));
             //BooleanBinding cond2 = Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""));
             if (vsUsu.isPressed() && nomUsuari.equals("")) { botoMostrar.disableProperty(); }
@@ -109,8 +104,8 @@ public class EstadistiquesController implements Initializable {
         PartUsuEleccio.getItems().add("Partides perdudes");
     }    
 
-    @FXML
     private void mostrarRondes(ActionEvent event) {
+        actualitzDades();
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
             else if (vsSist.isPressed() || vsUsu.isPressed()){ //carregarDades();
@@ -139,11 +134,11 @@ public class EstadistiquesController implements Initializable {
         EstadistiquesSelector aux = (EstadistiquesSelector)loader.getController();
         //centreBox = aux;
         actualitzDades();
-        aux.carregarDades();
+        aux.inicialitzarDades();
         return loader;
 
     }
-    
+//    
     private void configurarDates() {
         dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
         dataInici.setDayCellFactory(c -> new DateCell() {
@@ -202,5 +197,9 @@ public class EstadistiquesController implements Initializable {
     public void inicialitzarJugadors (Player j1, Player j2) {
         jugador1 = j1;
         jugador2 = j2;
+    }
+
+    @FXML
+    private void mostraOpc(MouseEvent event) {
     }
 }
