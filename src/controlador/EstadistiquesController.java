@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,14 +14,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.util.converter.LocalDateStringConverter;
 
 /**
@@ -49,19 +57,27 @@ public class EstadistiquesController implements Initializable {
     private DateTimeFormatter formatter;
     private DateTimeFormatter formatter2;
     private LocalDate dataI = null, dataF = null;
+    @FXML
+    private RadioButton vsSist;
+    @FXML
+    private RadioButton vsUsu;
+    @FXML
+    private VBox centreBox;
+    @FXML
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        PartUsuEleccio = new ChoiceBox();
-        PartUsuEleccio.getItems().add("Jugades");
-        PartUsuEleccio.getItems().add("Guanyades");
-        PartUsuEleccio.getItems().add("Perdudes");
+        //PartUsuEleccio = new ChoiceBox();
+        //PartUsuEleccio.getItems().add("Jugades");
+        //PartUsuEleccio.getItems().add("Guanyades");
+        //PartUsuEleccio.getItems().add("Perdudes");
         
-        //ObservableList<String> options = 
         //FXCollections.observableArrayList("Jugades", "Guanyades", "Perdudes");
-        // final ChoiceBox comboBox = new ComboBox(options);
+        //final ChoiceBox<String> choiceBox = new ChoiceBox(options);
+        //PartUsuEleccio = new ChoiceBox(FXCollections.observableArrayList("Jugades", "Guanyades", "Perdudes"));
         
     }    
 
@@ -69,9 +85,33 @@ public class EstadistiquesController implements Initializable {
     private void mostrarRondes(ActionEvent event) {
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            //else carregarDades();
+            else if (vsSist.isPressed() || vsUsu.isPressed()){ //carregarDades();
+                if (vsSist.isPressed()) {
+                    setCenterScene("PartidesSistema.fxml");
+                }
+                else {
+                    //quan sapiga usar la ChoiceBox
+                }
+            }
         }
     }
+    
+    private FXMLLoader setCenterScene(String FXML_relative_path){
+        
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FXML_relative_path));
+        
+        try{
+            Parent root = loader.load();
+            borderPane.setCenter(root);
+        } catch(IOException e){System.out.println(e.toString());}
+    
+        EstadistiquesSelector aux = (EstadistiquesSelector)loader.getController();
+        //centreBox = aux;
+        aux.carregarDades(this);
+        return loader;
+
+    }
+    
     private void configurarDates() {
         dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
         dataInici.setDayCellFactory(c -> new DateCell() {
@@ -93,5 +133,11 @@ public class EstadistiquesController implements Initializable {
         });
         dataFi.setConverter(new LocalDateStringConverter(formatter, null));
         dataFi.showWeekNumbersProperty().set(false);
+    }
+
+    @FXML
+    private void mostraOpc(MouseEvent event) {
+        PartUsuEleccio = new ChoiceBox(FXCollections.observableArrayList("Jugades", "Guanyades", "Perdudes"));
+        
     }
 }

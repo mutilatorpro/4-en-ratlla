@@ -14,32 +14,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane prefHeight="552.0" prefWidth="530.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EstadistiquesController">
+<BorderPane fx:id="borderPane" prefHeight="552.0" prefWidth="530.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EstadistiquesController">
    <top>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <RadioButton mnemonicParsing="false" styleClass="titol" text="Contra el sistema">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="vsQui" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <VBox prefHeight="72.0" prefWidth="150.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" styleClass="titol" text="Contra l''usuari" toggleGroup="$vsQui" />
-                        <ChoiceBox fx:id="PartUsuEleccio" prefWidth="150.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titol" text="Estadístiques de partides">
                <font>
                   <Font size="25.0" />
@@ -48,6 +26,34 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </Text>
+            <HBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="500.0">
+               <children>
+                  <VBox prefHeight="82.0" prefWidth="150.0">
+                     <children>
+                        <RadioButton fx:id="vsSist" mnemonicParsing="false" styleClass="titol" text="Contra el sistema">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="vsQui" />
+                           </toggleGroup>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="vsUsu" mnemonicParsing="false" styleClass="titol" text="Contra l''usuari" toggleGroup="$vsQui" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <ChoiceBox fx:id="PartUsuEleccio" onMouseClicked="#mostraOpc" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets top="23.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
             <HBox alignment="CENTER" spacing="20.0">
                <padding>
                   <Insets left="20.0" />
@@ -106,6 +112,6 @@
       </VBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="centreBox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

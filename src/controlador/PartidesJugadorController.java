@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public class PartidesJugadorController implements Initializable {
+public abstract class PartidesJugadorController implements Initializable, EstadistiquesSelector {
 
     @FXML
     private TableView<Round> taula;
