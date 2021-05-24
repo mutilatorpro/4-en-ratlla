@@ -141,6 +141,8 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         yAxis2.setMinorTickCount(0);
         xAxis.setAutoRanging(true);
         xAxis2.setAutoRanging(true);
+        chart1.setAnimated(false);        
+        chart2.setAnimated(false);
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
