@@ -79,22 +79,22 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="528.0" prefWidth="1216.0">
                      <children>
-                        <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="285.0" prefWidth="608.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </BarChart>
                         <StackedBarChart fx:id="chart1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="489.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="yAxis" side="LEFT" />
                           </yAxis>
                         </StackedBarChart>
+                        <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="285.0" prefWidth="608.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" fx:id="xAxis2" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis fx:id="yAxis2" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
                      </children>
                   </HBox>
                   <HBox>
