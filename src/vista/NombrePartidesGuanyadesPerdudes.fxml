@@ -84,10 +84,10 @@
                             <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="yAxis" side="LEFT" />
+                            <NumberAxis fx:id="yAxis" scaleShape="false" side="LEFT" />
                           </yAxis>
                         </StackedBarChart>
-                        <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="285.0" prefWidth="608.0">
+                        <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="285.0" prefWidth="608.0" scaleShape="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="xAxis2" />
                           </xAxis>
