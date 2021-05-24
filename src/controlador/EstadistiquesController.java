@@ -91,13 +91,8 @@ public class EstadistiquesController implements Initializable {
             
             botoMostrar.disableProperty().bind(Bindings.or(
                     Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.and(vsUsu.selectedProperty(), Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-            //ObservableBoolanValue cond1 = Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty()));
-            //BooleanBinding cond2 = Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""));
-            if (vsUsu.isPressed() && nomUsuari.equals("")) { botoMostrar.disableProperty(); }
-            else {
-                botoMostrar.disableProperty().bind(Bindings.equal(nomUsuari.textProperty(), ""));
-            }
+                    Bindings.and(vsUsu.selectedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+            
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
         } catch (Connect4DAOException ex) {
