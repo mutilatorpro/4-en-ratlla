@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
@@ -78,6 +79,14 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
     private XYChart.Series seriesVictories;
     private XYChart.Series seriesDerrotes;    
     private XYChart.Series seriesJugadorsDistints;
+    @FXML
+    private NumberAxis yAxis;
+    @FXML
+    private CategoryAxis xAxis;
+    @FXML
+    private NumberAxis yAxis2;
+    @FXML
+    private CategoryAxis xAxis2;
 
     /**
      * Initializes the controller class.
@@ -124,6 +133,16 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         seriesDerrotes = new XYChart.Series(dataDerrotes);
         seriesDerrotes.setName("Derrotes");
         seriesJugadorsDistints = new XYChart.Series(dataJugadorsDistints);
+        yAxis.setAutoRanging(false);
+        yAxis.setTickUnit(1);
+        yAxis.setMinorTickCount(0);
+        yAxis2.setAutoRanging(false);
+        yAxis2.setTickUnit(1);
+        yAxis2.setMinorTickCount(0);
+        xAxis.setAutoRanging(true);
+        xAxis2.setAutoRanging(true);
+        chart1.setAnimated(false);        
+        chart2.setAnimated(false);
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -141,37 +160,49 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         else {
             //carregar les dades de l'observable list
             error.setText("");
-            dataVictories.clear();
-            dataDerrotes.clear();
+          //  dataVictories.clear();
+           // dataDerrotes.clear();
             usuariDades = sistema.getPlayer(usuari.getText());
             if (usuariDades == null) error.setText("Jugador no registrat en el nostre sistema.");
             else {
                 carregarDades();
             }
         }
-
     }
     
     private void carregarDades() {
         partidesPerDia = sistema.getDayRanksPlayer(usuariDades);
         Set<LocalDate> claus = partidesPerDia.keySet();
-        seriesVictories.getData().clear();
+        /*seriesVictories.getData().clear();
         seriesDerrotes.getData().clear();
-        seriesJugadorsDistints.getData().clear();
+        seriesJugadorsDistints.getData().clear();*/
         chart1.getData().clear();
         chart2.getData().clear();
+        seriesVictories = new XYChart.Series();
+        seriesVictories.setName("Victòries");
+        seriesDerrotes = new XYChart.Series();
+        seriesDerrotes.setName("Derrotes");
+        seriesJugadorsDistints = new XYChart.Series();
+        int max = 0;
         for (LocalDate d : claus) {
             if (d.isAfter(dataI.minusDays(1)) && d.isBefore(dataF.plusDays(1))) {
-                System.out.println("Partides guanyades el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getWinnedGames());
-                System.out.println("Partides perdudes el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getLostGames());
+                /*System.out.println("Partides guanyades el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getWinnedGames());
+                System.out.println("Partides perdudes el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getLostGames());*/
                 //dataVictories.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
                 //dataDerrotes.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
                 //dataJugadorsDistints.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getOponents()));
-                seriesVictories.getData().add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
-                seriesDerrotes.getData().add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
+                int guanyades = partidesPerDia.get(d).getWinnedGames();
+                int perdudes = partidesPerDia.get(d).getLostGames();
+                seriesVictories.getData().add(new XYChart.Data<String, Number>(d.format(formatter), guanyades));
+                seriesDerrotes.getData().add(new XYChart.Data<String, Number>(d.format(formatter), perdudes));
                 seriesJugadorsDistints.getData().add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getOponents()));
+                if (guanyades + perdudes > max) max = guanyades + perdudes;
             }
         }
+        
+        xAxis = new CategoryAxis();
+        yAxis.setUpperBound(max);
+        yAxis2.setUpperBound(max);
         chart1.getData().addAll(seriesVictories, seriesDerrotes);
         chart2.getData().add(seriesJugadorsDistints);
     }
