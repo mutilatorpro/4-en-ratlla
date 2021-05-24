@@ -36,7 +36,7 @@ public class PrimerJugadorController implements Initializable {
     
     private Player jugador1 = null;
     private Player jugador2 = null;
-    private boolean modeObsc = false; //Per defecte en mode NO obscur
+    private boolean modeObsc = true; //Per defecte en mode NO obscur
     private SimpleIntegerProperty numJugadors = new SimpleIntegerProperty(0);
     @FXML
     private Label benvinguda;

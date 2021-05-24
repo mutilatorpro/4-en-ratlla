@@ -54,6 +54,10 @@ public class EstadistiquesController implements Initializable {
     private DateTimeFormatter formatter, formatter2;   
     private LocalDate dataI = null, dataF = null;
     
+    private final String p1 = "Partides jugades";
+    private final String p2 = "Partides guanyades";
+    private final String p3 = "Partides perdudes";
+    
     @FXML
     private ToggleGroup vsQui;
     @FXML
@@ -87,7 +91,7 @@ public class EstadistiquesController implements Initializable {
             
             botoMostrar.disableProperty().bind(Bindings.or(
                     Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.or(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                    Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             //ObservableBoolanValue cond1 = Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty()));
             //BooleanBinding cond2 = Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""));
             if (vsUsu.isPressed() && nomUsuari.equals("")) { botoMostrar.disableProperty(); }
@@ -100,43 +104,48 @@ public class EstadistiquesController implements Initializable {
             Logger.getLogger(RanquingController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        PartUsuEleccio.getItems().add("Partides jugades");
-        PartUsuEleccio.getItems().add("Partides guanyades");
-        PartUsuEleccio.getItems().add("Partides perdudes");
+        PartUsuEleccio.getItems().add(p1);
+        PartUsuEleccio.getItems().add(p2);
+        PartUsuEleccio.getItems().add(p3);
     }    
 
-    @FXML
     private void mostrarRondes(ActionEvent event) {
         actualitzDades();
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            else if (vsSist.isSelected()|| vsUsu.isSelected()){ //carregarDades();
-                if (vsSist.isSelected()) { 
-                    setCenterScene("/vista/PartidesSistema.fxml");
+            else if (vsSist.isPressed() || vsUsu.isPressed()){ 
+                String eleccio = PartUsuEleccio.getValue();
+                switch (eleccio) {
+                    case p1: 
+                        setCenterScene("/vista/PartidesJugador.fxml");
+                        break;
+                    case p2: 
+                        setCenterScene("/vista/PartidesJugadorGuanyades.fxml");
+                        break;
+                    case p3: 
+                        setCenterScene("/vista/PartidesJugadorPerdudes.fxml");
+                        break;
+                        
+                    default: 
+                        setCenterScene("/vista/PartidesSistema.fxml");
                 }
-                else {
-                    if (PartUsuEleccio.getValue().equals("Partides jugades")) { setCenterScene("/vista/PartidesJugador.fxml"); }
-                    else if (PartUsuEleccio.getValue().equals("Partides guanyades")) { setCenterScene("/vista/PartidesJugadorGuanyades.fxml");}
-                    else if (PartUsuEleccio.getValue().equals("Partides perdudes")) { setCenterScene("/vista/PartidesJugadorPerdudes.fxml");}
-                }
-                
             }
         }
     }
     
     private FXMLLoader setCenterScene(String FXML_relative_path){
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PartidesJugador.fxml"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FXML_relative_path));
         
         try{
             Parent root = loader.load();
             borderPane.setCenter(root);
         } catch(IOException e){System.out.println(e.toString());}
     
-        EstadistiquesSelector aux = (EstadistiquesSelector)loader.getController();
+        //EstadistiquesSelector aux = (EstadistiquesSelector)loader.getController();
         //centreBox = aux;
-        actualitzDades();
-        aux.inicialitzarDades();
+        //actualitzDades();
+        //aux.inicialitzarDades();
         return loader;
 
     }

@@ -88,15 +88,20 @@ public class PartidesSistemaController implements Initializable, EstadistiquesSe
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             inicialitzarDades();
-            carregarDades();
+            
+            
             //configurarDates();
             sistema = Connect4.getSingletonConnect4();
             rondesPerDia = sistema.getRoundsPerDay();
             claus = rondesPerDia.keySet();
-            dadesRondes = FXCollections.observableArrayList();
+            //dadesRondes = FXCollections.observableArrayList();
+            dadesRondes = taula.getItems();
             taula.setItems(dadesRondes);
+            carregarDades();
             diaColumn.setCellValueFactory(c -> {
                 Round aux = c.getValue();
                 StringProperty userProperty = new SimpleStringProperty(aux.getLocalDate().format(formatter));

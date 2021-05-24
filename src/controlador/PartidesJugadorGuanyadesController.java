@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public class PartidesJugadorGuanyadesController implements Initializable, EstadistiquesSelector {
+public class PartidesJugadorGuanyadesController implements Initializable {
 
     private Connect4 sistema;
     private ObservableList<Round> dadesRondes;
