@@ -91,7 +91,7 @@ public class EstadistiquesController implements Initializable {
             
             botoMostrar.disableProperty().bind(Bindings.or(
                     Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                    Bindings.and(vsUsu.selectedProperty(), Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             //ObservableBoolanValue cond1 = Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty()));
             //BooleanBinding cond2 = Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""));
             if (vsUsu.isPressed() && nomUsuari.equals("")) { botoMostrar.disableProperty(); }
@@ -109,11 +109,12 @@ public class EstadistiquesController implements Initializable {
         PartUsuEleccio.getItems().add(p3);
     }    
 
+    @FXML
     private void mostrarRondes(ActionEvent event) {
         actualitzDades();
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            else if (vsSist.isPressed() || vsUsu.isPressed()){ 
+            else if (vsUsu.isSelected()){ 
                 String eleccio = PartUsuEleccio.getValue();
                 switch (eleccio) {
                     case p1: 
@@ -129,7 +130,7 @@ public class EstadistiquesController implements Initializable {
                     default: 
                         setCenterScene("/vista/PartidesSistema.fxml");
                 }
-            }
+            } else setCenterScene("/vista/PartidesSistema.fxml");
         }
     }
     

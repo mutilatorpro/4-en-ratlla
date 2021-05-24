@@ -85,12 +85,14 @@ public class PartidesJugadorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             inicialitzarDades();
-            carregarDades();
             sistema = Connect4.getSingletonConnect4();
             dadesRondes = FXCollections.observableArrayList();
-            taula.setItems(dadesRondes);
+            taula.setItems(dadesRondes);            
+            carregarDades();
             diaColumn.setCellValueFactory(c -> {
                 Round aux = c.getValue();
                 StringProperty userProperty = new SimpleStringProperty(aux.getLocalDate().format(formatter));
