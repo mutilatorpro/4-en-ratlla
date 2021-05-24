@@ -62,11 +62,6 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label styleClass="etiq" text="Avatar (opcional)">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                </children>
                <HBox.margin>
                   <Insets right="10.0" />
@@ -97,7 +92,6 @@
                   <HBox>
                      <children>
                         <Label fx:id="nomArxiu" alignment="CENTER" />
-                        <Button mnemonicParsing="false" onAction="#obrirArxiu" prefHeight="24.0" prefWidth="85.0" styleClass="buttonObliContra" text="Obrir arxiu" />
                      </children>
                   </HBox>
                </children>

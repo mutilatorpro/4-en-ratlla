@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public abstract class PartidesJugadorGuanyadesController implements Initializable, EstadistiquesSelector {
+public class PartidesJugadorGuanyadesController implements Initializable {
 
     private Connect4 sistema;
     private ObservableList<Round> dadesRondes;
@@ -86,12 +86,14 @@ public abstract class PartidesJugadorGuanyadesController implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             inicialitzarDades();
-            carregarDades();
             sistema = Connect4.getSingletonConnect4();
             dadesRondes = FXCollections.observableArrayList();
             taula.setItems(dadesRondes);
+            carregarDades();
             diaColumn.setCellValueFactory(c -> {
                 Round aux = c.getValue();
                 StringProperty userProperty = new SimpleStringProperty(aux.getLocalDate().format(formatter));

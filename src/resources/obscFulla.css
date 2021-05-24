@@ -10,9 +10,9 @@ and open the template in the editor.
 
 
 .box {
-    -fx-background-color:  #0e53c3;
+    -fx-background-color:  black;
     -fx-border-width: 5;
-    -fx-border-color: red;
+    -fx-border-color: #0e53c3;
     
 }
 .boxInversa {
@@ -22,8 +22,8 @@ and open the template in the editor.
 }
 
 .button { /* FX theme stylesheet */
-    -fx-background-color: white;
-    -fx-text-fill: #0e53c3;
+    -fx-background-color: #0e53c3;
+    -fx-text-fill: white;
     -fx-background-radius: 15;
     -fx-alignment: CENTER;
     -fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;

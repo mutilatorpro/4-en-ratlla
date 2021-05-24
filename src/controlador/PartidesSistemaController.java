@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public abstract class PartidesSistemaController implements Initializable, EstadistiquesSelector {
+public class PartidesSistemaController implements Initializable {
 
     @FXML
     private TableView<Round> taula;
@@ -78,8 +78,6 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
     private TableColumn<Round, String> guanyadorColumn;
     @FXML
     private TableColumn<Round, String> perdedorColumn;
-    //private DateTimeFormatter formatter;    
-    //private DateTimeFormatter formatter2;
     private LocalDate dataI = null, dataF = null;
     private DateTimeFormatter formatter, formatter2;   
     Set<LocalDate> claus;
@@ -90,15 +88,20 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+        formatter2 = DateTimeFormatter.ofPattern("HH:mm:ss");
         try {
             inicialitzarDades();
-            carregarDades();
+            
+            
             //configurarDates();
             sistema = Connect4.getSingletonConnect4();
             rondesPerDia = sistema.getRoundsPerDay();
             claus = rondesPerDia.keySet();
-            dadesRondes = FXCollections.observableArrayList();
+            //dadesRondes = FXCollections.observableArrayList();
+            dadesRondes = taula.getItems();
             taula.setItems(dadesRondes);
+            carregarDades();
             diaColumn.setCellValueFactory(c -> {
                 Round aux = c.getValue();
                 StringProperty userProperty = new SimpleStringProperty(aux.getLocalDate().format(formatter));

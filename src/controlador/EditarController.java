@@ -82,6 +82,10 @@ public class EditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parent root = modificar.getParent();
+        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
+        else root.getStylesheets().addAll("resources/blancFulla.css");
+        
         modificar.disableProperty().bind(Bindings.or(Bindings.equal(nom.textProperty(), ""), Bindings.or(Bindings.equal(contrasenya.textProperty(),""), Bindings.or(Bindings.equal(correu.textProperty(),""), Bindings.isNull(data.valueProperty())))));
         data.setEditable(false); //per evitar que es puga introduir la data "a mà"
         data.setDayCellFactory(c -> new DateCell() {
@@ -194,19 +198,19 @@ public class EditarController implements Initializable {
         else tancarFinestra(event);
     }
 
-    //@FXML
-//    private void obrirArxiu(MouseEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Tria una imatge per al teu avatar");
-//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        File aux = fileChooser.showOpenDialog(stage);
-//        if (aux != null) {
-//            imatgeAvatar = aux;
-//            img = new Image(imatgeAvatar.toURI().toString());
-//            imatge.setImage(img);
-//        }
-//    }
+    @FXML
+    private void obrirArxiu(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Tria una imatge per al teu avatar");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        File aux = fileChooser.showOpenDialog(stage);
+        if (aux != null) {
+            imatgeAvatar = aux;
+            img = new Image(imatgeAvatar.toURI().toString());
+            imatge.setImage(img);
+        }
+    }
 
     @FXML
     private void ressaltarImatge(MouseEvent event) {
@@ -285,14 +289,13 @@ public class EditarController implements Initializable {
         }
     }    
 
-    @FXML
-    private void obrirArxiu(ActionEvent event) {
-        imatgeAvatar = null;
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Tria una imatge per al teu avatar");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        imatgeAvatar = fileChooser.showOpenDialog(stage);
-        if (imatgeAvatar != null) nomArxiu.setText(imatgeAvatar.getName());
-    }
+//    private void obrirArxiu(ActionEvent event) {
+//        imatgeAvatar = null;
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Tria una imatge per al teu avatar");
+//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        imatgeAvatar = fileChooser.showOpenDialog(stage);
+//        if (imatgeAvatar != null) nomArxiu.setText(imatgeAvatar.getName());
+//    }
 }
