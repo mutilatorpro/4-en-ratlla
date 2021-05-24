@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public abstract class PartidesSistemaController implements Initializable, EstadistiquesSelector {
+public class PartidesSistemaController implements Initializable, EstadistiquesSelector {
 
     @FXML
     private TableView<Round> taula;
@@ -78,8 +78,6 @@ public abstract class PartidesSistemaController implements Initializable, Estadi
     private TableColumn<Round, String> guanyadorColumn;
     @FXML
     private TableColumn<Round, String> perdedorColumn;
-    //private DateTimeFormatter formatter;    
-    //private DateTimeFormatter formatter2;
     private LocalDate dataI = null, dataF = null;
     private DateTimeFormatter formatter, formatter2;   
     Set<LocalDate> claus;

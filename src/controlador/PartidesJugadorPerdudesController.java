@@ -59,7 +59,7 @@ import model.Round;
  *
  * @author inmad
  */
-public abstract class PartidesJugadorPerdudesController implements Initializable, EstadistiquesSelector {
+public class PartidesJugadorPerdudesController implements Initializable, EstadistiquesSelector {
 
     private Connect4 sistema;
     private LocalDate dataI = null, dataF = null;

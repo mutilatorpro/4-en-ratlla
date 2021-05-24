@@ -87,7 +87,7 @@ public class EstadistiquesController implements Initializable {
             
             botoMostrar.disableProperty().bind(Bindings.or(
                     Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                    Bindings.or(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             //ObservableBoolanValue cond1 = Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty()));
             //BooleanBinding cond2 = Bindings.and(vsUsu.pressedProperty(),Bindings.equal(nomUsuari.textProperty(), ""));
             if (vsUsu.isPressed() && nomUsuari.equals("")) { botoMostrar.disableProperty(); }
@@ -105,18 +105,19 @@ public class EstadistiquesController implements Initializable {
         PartUsuEleccio.getItems().add("Partides perdudes");
     }    
 
+    @FXML
     private void mostrarRondes(ActionEvent event) {
         actualitzDades();
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            else if (vsSist.isPressed() || vsUsu.isPressed()){ //carregarDades();
-                if (vsSist.isPressed()) { 
-                    setCenterScene("PartidesSistema.fxml");
+            else if (vsSist.isSelected()|| vsUsu.isSelected()){ //carregarDades();
+                if (vsSist.isSelected()) { 
+                    setCenterScene("/vista/PartidesSistema.fxml");
                 }
                 else {
-                    if (PartUsuEleccio.getValue().equals("Partides jugades")) { setCenterScene("PartidesJugador.fxml"); }
-                    else if (PartUsuEleccio.getValue().equals("Partides guanyades")) { setCenterScene("PartidesJugadorGuanyades.fxml");}
-                    else if (PartUsuEleccio.getValue().equals("Partides perdudes")) { setCenterScene("PartidesJugadorPerdudes.fxml");}
+                    if (PartUsuEleccio.getValue().equals("Partides jugades")) { setCenterScene("/vista/PartidesJugador.fxml"); }
+                    else if (PartUsuEleccio.getValue().equals("Partides guanyades")) { setCenterScene("/vista/PartidesJugadorGuanyades.fxml");}
+                    else if (PartUsuEleccio.getValue().equals("Partides perdudes")) { setCenterScene("/vista/PartidesJugadorPerdudes.fxml");}
                 }
                 
             }
@@ -125,7 +126,7 @@ public class EstadistiquesController implements Initializable {
     
     private FXMLLoader setCenterScene(String FXML_relative_path){
         
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(FXML_relative_path));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/PartidesJugador.fxml"));
         
         try{
             Parent root = loader.load();

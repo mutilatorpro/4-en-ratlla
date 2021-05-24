@@ -108,7 +108,7 @@
                </children>
             </HBox>
             <HBox alignment="CENTER" />
-            <Button fx:id="botoMostrar" mnemonicParsing="false" text="Mostrar rondes">
+            <Button fx:id="botoMostrar" mnemonicParsing="false" onAction="#mostrarRondes" text="Mostrar rondes">
                <VBox.margin>
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
