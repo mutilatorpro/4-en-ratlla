@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
@@ -199,7 +200,17 @@ public class EstadistiquesController implements Initializable {
         jugador2 = j2;
     }
 
+    
+
     @FXML
-    private void mostraOpc(MouseEvent event) {
+    private void ajuda(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Ajuda a la navegació");
+        alert.setHeight(600);
+        alert.setWidth(900);
+        alert.setContentText("Aquesta finestra et permet cercar informació sobre estadístiques, ja siga sobre partides realitzades en el sistema o per a buscar informació sobre un usuari en concret.\n" 
+                + "Per a cercar informació concreta sobre un jugador has d'escriure el seu nom d'usuari i elegir un dels tipus d'estadístiques.\n" );
+        alert.showAndWait();
     }
 }

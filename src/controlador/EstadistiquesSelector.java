@@ -10,6 +10,6 @@ package controlador;
  * @author Violeta
  */
 public interface EstadistiquesSelector {
-    //protected 
+    
     public void inicialitzarDades();
 }

@@ -33,7 +33,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -70,6 +73,10 @@ public class Joc4Controller implements Initializable {
     private GridPane miGrid;
     @FXML
     private Button casella;
+    @FXML
+    private HBox contenidorImatge;
+    @FXML
+    private ImageView imatge;
 
     /**
      * Initializes the controller class.
@@ -155,6 +162,7 @@ public class Joc4Controller implements Initializable {
                         if (jugador2 != null) {
                             text_jugador.setText("Torn de " + jugador2.getNickName());
                             text_jugador.setFill(Color.YELLOW);
+                            imatge.setImage(jugador2.getAvatar());
                         }
                     }
                 } else { //Torn Jugador 2 contra Jugador 1
@@ -179,6 +187,7 @@ public class Joc4Controller implements Initializable {
                         if (jugador1 != null) {
                             text_jugador.setText("Torn de " + jugador1.getNickName());
                             text_jugador.setFill(Color.RED);
+                            imatge.setImage(jugador1.getAvatar());
                         }
                     }
                 }
@@ -322,6 +331,7 @@ public class Joc4Controller implements Initializable {
     }
     public void inicialitzarJugador1(Player j1) {
         this.jugador1 = j1;
+        imatge.setImage(j1.getAvatar());
     }
     public void inicialitzarJugadors(Player j1, Player j2) {
         this.jugador1 = j1;
@@ -360,6 +370,7 @@ public class Joc4Controller implements Initializable {
         if (jugador1 != null) {
             text_jugador.setText("Torn de " + jugador1.getNickName());
             text_jugador.setFill(Color.RED);
+            imatge.setImage(jugador1.getAvatar());
         }
     }
     public void jugara(Player j) {
@@ -392,6 +403,7 @@ public class Joc4Controller implements Initializable {
             stage.show();
         }
     }
+
     class Retraso extends Service<Void> {
         private long delayMilis = 600;
         public long getRetaso() { return delayMilis; }

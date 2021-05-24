@@ -56,8 +56,6 @@ import model.Player;
 public class EditarController implements Initializable {
 
     @FXML
-    private GridPane miGrid;
-    @FXML
     private TextField nom;
     @FXML
     private PasswordField contrasenya;
@@ -77,6 +75,8 @@ public class EditarController implements Initializable {
     private Connect4 sistema;
     @FXML
     private HBox contenidorImatge;
+    @FXML
+    private Label nomArxiu;
     /**
      * Initializes the controller class.
      */
@@ -194,19 +194,19 @@ public class EditarController implements Initializable {
         else tancarFinestra(event);
     }
 
-    @FXML
-    private void obrirArxiu(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Tria la imatge pel teu avatar");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        File aux = fileChooser.showOpenDialog(stage);
-        if (aux != null) {
-            imatgeAvatar = aux;
-            img = new Image(imatgeAvatar.toURI().toString());
-            imatge.setImage(img);
-        }
-    }
+    //@FXML
+//    private void obrirArxiu(MouseEvent event) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Tria una imatge per al teu avatar");
+//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        File aux = fileChooser.showOpenDialog(stage);
+//        if (aux != null) {
+//            imatgeAvatar = aux;
+//            img = new Image(imatgeAvatar.toURI().toString());
+//            imatge.setImage(img);
+//        }
+//    }
 
     @FXML
     private void ressaltarImatge(MouseEvent event) {
@@ -284,4 +284,15 @@ public class EditarController implements Initializable {
             okCambios(event);
         }
     }    
+
+    @FXML
+    private void obrirArxiu(ActionEvent event) {
+        imatgeAvatar = null;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Tria una imatge per al teu avatar");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        imatgeAvatar = fileChooser.showOpenDialog(stage);
+        if (imatgeAvatar != null) nomArxiu.setText(imatgeAvatar.getName());
+    }
 }
