@@ -89,9 +89,22 @@ public class EstadistiquesController implements Initializable {
         try {
             sistema = Connect4.getSingletonConnect4();
             
+//            botoMostrar.disableProperty().bind(Bindings.or(
+//                    Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
+//                    Bindings.and(vsUsu.selectedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             botoMostrar.disableProperty().bind(Bindings.or(
-                    Bindings.or(Bindings.isNull(dataInici.valueProperty()),Bindings.isNull(dataFi.valueProperty())),
-                    Bindings.and(vsUsu.selectedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                                                Bindings.and(
+                                                vsUsu.selectedProperty(), 
+                                                Bindings.or(Bindings.equal(nomUsuari.textProperty(), ""), 
+                                                        Bindings.or(Bindings.isNull(PartUsuEleccio.valueProperty()),
+                                                                Bindings.or(Bindings.isNull(dataInici.valueProperty()),
+                                                                            Bindings.isNull(dataFi.valueProperty()))))),
+                                                Bindings.and(
+                                                        vsSist.selectedProperty(),
+                                                        Bindings.or(Bindings.isNull(dataInici.valueProperty()),
+                                                                            Bindings.isNull(dataFi.valueProperty())))));
+                                            
+            
             
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });

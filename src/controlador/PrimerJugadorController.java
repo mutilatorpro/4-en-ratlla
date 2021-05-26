@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
 import controlador.Dades;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -36,7 +37,7 @@ public class PrimerJugadorController implements Initializable {
     
     private Player jugador1 = null;
     private Player jugador2 = null;
-    private boolean modeObsc = true; //Per defecte en mode NO obscur
+    private boolean modeObsc = false; //Per defecte en mode NO obscur
     private SimpleIntegerProperty numJugadors = new SimpleIntegerProperty(0);
     @FXML
     private Label benvinguda;
@@ -54,6 +55,8 @@ public class PrimerJugadorController implements Initializable {
     private Button iniciar;
     @FXML
     private Button tancar2;
+    @FXML
+    private VBox vBox;
     /**
      * Initializes the controller class.
      */
@@ -67,17 +70,45 @@ public class PrimerJugadorController implements Initializable {
 
         Parent root = obscur.getParent();
         while (root.getParent() != null) root = root.getParent();
-         
-        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
-        else root.getStylesheets().addAll("resources/blancFulla.css");
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+            } 
+//        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
+//        else root.getStylesheets().addAll("resources/blancFulla.css");
 
         //Scene scene = new Scene (obscur);
         //if (modeObsc)  scene.getStylesheets().addAll("resources/obscFulla.css");
         //else scene.getStylesheets().addAll("resources/blancFulla.css");
-
         
     }    
   
+    
+    @FXML
+    private void obscBut(ActionEvent event) {
+        modeObsc = !modeObsc;
+        Dades.getDades().setModeObs(modeObsc);
+        Parent root = obscur.getParent(); // EN AQUESTA PANTALLA NO VULL CANVIAR AL MODE OBSCUR, VULL QUE ES QUEDE EN BLAU
+        while (root.getParent() != null) root = root.getParent();
+        
+//        String css1 = this.getClass().getResource("resources/obscFulla.css").toExternalForm();
+//        String css2 = this.getClass().getResource("resources/blancFulla.css").toExternalForm();
+//        Scene scene = new Scene(root);
+        
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+            }
+    }
+    
     public void inicialitzarJugador(Player player) {
         this.jugador1 = player;
         numJugadors.set(1);
@@ -232,16 +263,6 @@ public class PrimerJugadorController implements Initializable {
         }
     }
 
-    @FXML
-    private void obscBut(ActionEvent event) {
-        modeObsc = !modeObsc;
-        Dades.getDades().setModeObs(modeObsc); 
-        Parent root = obscur.getParent(); // EN AQUESTA PANTALLA NO VULL CANVIAR AL MODE OBSCUR, VULL QUE ES QUEDE EN BLAU
-        while (root.getParent() != null) root = root.getParent();
-        
-        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
-        else root.getStylesheets().addAll("resources/blancFulla.css");
-    }
 
 
     @FXML
