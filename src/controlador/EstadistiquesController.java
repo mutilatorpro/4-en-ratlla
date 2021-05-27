@@ -109,10 +109,12 @@ public class EstadistiquesController implements Initializable {
                                                 Bindings.and(
                                                         vsSist.selectedProperty(),
                                                         Bindings.or(Bindings.isNull(dataInici.valueProperty()),
-                                                                            Bindings.isNull(dataFi.valueProperty())))));
+                                                                    Bindings.or (Bindings.isNull(opcSis.valueProperty()), Bindings.isNull(dataFi.valueProperty()))))));
                                             
             
-            
+            nomUsuari.disableProperty().bind(vsSist.selectedProperty());
+            PartUsuEleccio.disableProperty().bind(vsSist.selectedProperty());
+            opcSis.disableProperty().bind(vsUsu.selectedProperty());
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
         } catch (Connect4DAOException ex) {

@@ -38,6 +38,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import jdk.nashorn.internal.objects.NativeDate;
@@ -123,16 +124,16 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         xAxis2.setAutoRanging(true);
         chart1.setAnimated(false);        
         chart2.setAnimated(false);
-        xAxis.setStyle("-fx-color: white");
-        xAxis2.setStyle("-fx-color: white");
+        xAxis.setTickLabelFill(Paint.valueOf("white"));      
+        xAxis2.setTickLabelFill(Paint.valueOf("white"));
         carregarGrafiques();
         setMaxBarWidth(40, 10);
         chart1.widthProperty().addListener((obs, b, b1) -> {
             Platform.runLater(() -> setMaxBarWidth(40, 10));
         });
-        chart2.widthProperty().addListener((obs, b, b1) -> {
+        /*chart2.widthProperty().addListener((obs, b, b1) -> {
             Platform.runLater(() -> setMaxBarWidth(40, 10));
-        });
+        });*/
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -215,25 +216,6 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
             avilableBarSpace = (barWidth + chart1.getCategoryGap()) * chart1.getData().size();
             chart1.setCategoryGap(catSpace - avilableBarSpace - chart1.getCategoryGap());
         } while (barWidth < maxBarWidth && chart1.getCategoryGap() > minCategoryGap);
-
-        barWidth = 0;
-        do {
-            double catSpace = xAxis2.getCategorySpacing();
-            double avilableBarSpace = catSpace - (chart2.getCategoryGap() + chart2.getBarGap());
-            barWidth = (avilableBarSpace / chart2.getData().size()) - chart2.getBarGap();
-            if (barWidth > maxBarWidth) {
-                avilableBarSpace = (maxBarWidth + chart2.getBarGap()) * chart2.getData().size();
-                chart2.setCategoryGap(catSpace - avilableBarSpace - chart2.getBarGap());
-            }
-        } while (barWidth > maxBarWidth);
-
-        do {
-            double catSpace = xAxis2.getCategorySpacing();
-            double avilableBarSpace = catSpace - (minCategoryGap + chart2.getBarGap());
-            barWidth = Math.min(maxBarWidth, (avilableBarSpace / chart2.getData().size()) - chart2.getBarGap());
-            avilableBarSpace = (barWidth + chart2.getBarGap()) * chart2.getData().size();
-            chart2.setCategoryGap(catSpace - avilableBarSpace - chart2.getBarGap());
-        } while (barWidth < maxBarWidth && chart2.getCategoryGap() > minCategoryGap);
     }
 
     /*private void setMaxCategoryWidth(double maxCategoryWidth, double minCategoryGap){
