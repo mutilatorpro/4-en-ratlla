@@ -15,12 +15,18 @@ and open the template in the editor.
     -fx-border-color: #0e53c3;
     
 }
+.tauler {
+    -fx-fill: #9d9696;
+}
+
 .boxInversa {
     -fx-background-color:  black;
     -fx-border-width: 5;
     -fx-border-color: white;
 }
-
+.estadist {
+    -fx-background-color:  black;
+}
 .button { /* FX theme stylesheet */
     -fx-background-color: #0e53c3;
     -fx-text-fill: white;
@@ -38,14 +44,14 @@ and open the template in the editor.
     -fx-text-fill: #0e53c3;
 }
 .etiq {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
 }
 .etiqInv {
     -fx-text-fill: white;
 }
 .buttonQuadrat { /* file:/C:/Users/Violeta/OneDrive/Universidad/Segundo/IPC/4-en-ratlla/src/resources/blancFulla.css */
 -fx-alignment: CENTER;
--fx-background-color: white;
+-fx-background-color: grey;
 -fx-background-insets: 0px 0px -1px 0px, 0px, 1px, 2px;
 -fx-background-radius: 4px;
 -fx-content-display: LEFT;

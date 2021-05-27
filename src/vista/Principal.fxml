@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<VBox alignment="CENTER" prefHeight="314.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
+<VBox alignment="CENTER" prefHeight="274.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
    <children>
       <VBox alignment="CENTER" spacing="10.0">
          <children>
@@ -40,6 +40,22 @@
                   <Button fx:id="botEstadistiques" mnemonicParsing="false" onAction="#finestraEstadistiques" text="Estadístiques" />
                </children>
             </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_LEFT" prefHeight="41.0" prefWidth="484.0">
+         <children>
+            <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
+               <graphic>
+                  <ImageView fx:id="imgview" fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/obscur.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets bottom="-10.0" left="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
    </children>
