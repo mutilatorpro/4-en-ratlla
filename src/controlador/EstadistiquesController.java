@@ -155,7 +155,7 @@ public class EstadistiquesController implements Initializable {
                     
                 }
             } else { //vsSist està seleccionat
-                if (opcSis.getValue().equals(u1)) setCenterScene("/vista/PartidesSistema.fxml");
+                if (opcSis.getValue().equals(s1)) setCenterScene("/vista/PartidesSistema.fxml");
                 else setCenterScene("/vista/NombrePartidesTemps.fxml");
             }
         }
