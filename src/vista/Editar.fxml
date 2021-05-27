@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="564.0" spacing="24.0" style="-fx-background-color: #ffff; -fx-border-color: #0e53c3; -fx-border-width: 5;" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
    <children>
       <Label prefHeight="24.0" prefWidth="182.0" style="-fx-text-fill: #0e53c3;" text="Modifica el teu perfil" textFill="WHITE">
          <font>
@@ -24,10 +24,14 @@
       </Label>
       <VBox alignment="CENTER">
          <children>
-            <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;">
+            <HBox fx:id="contenidorImatge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="147.0">
                <VBox.margin>
                   <Insets bottom="3.0" />
-               </VBox.margin></ImageView>
+               </VBox.margin>
+               <children>
+                  <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
+               </children>
+            </HBox>
             <Text fill="#464646" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Per modificar la foto de perfil clica al damunt" />
          </children>
       </VBox>

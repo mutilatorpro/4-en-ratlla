@@ -42,6 +42,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -221,27 +222,15 @@ public class EditarController implements Initializable {
 
     @FXML
     private void ressaltarImatge(MouseEvent event) {
-        //Completar perquè aparega un llapis o algo, mirar com fer transicions
-        /*ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
-        st.setFromX(1);
-        st.setFromY(1);
-        st.setToX(1.2);
-        st.setToY(1.2);
-        st.play();*/
-        imatge.setCursor(Cursor.HAND);
-        contenidorImatge.getStyleClass().add("imatge");
+       imatge.setCursor(Cursor.HAND);
+       contenidorImatge.getStyleClass().add("imatge");
     }
     
     @FXML
     private void iniciImatge(MouseEvent event) {
-        /*ScaleTransition st = new ScaleTransition(Duration.millis(100), imatge);
-        st.setFromX(1.2);
-        st.setFromY(1.2);
-        st.setToX(1);
-        st.setToY(1);
-        st.play();*/
         imatge.setCursor(Cursor.DEFAULT);
         contenidorImatge.getStyleClass().clear();
+        
     }
     
     private void tancarFinestraKey(KeyEvent event) throws IOException {
@@ -295,14 +284,4 @@ public class EditarController implements Initializable {
             okCambios(event);
         }
     }    
-
-//    private void obrirArxiu(ActionEvent event) {
-//        imatgeAvatar = null;
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Tria una imatge per al teu avatar");
-//        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        imatgeAvatar = fileChooser.showOpenDialog(stage);
-//        if (imatgeAvatar != null) nomArxiu.setText(imatgeAvatar.getName());
-//    }
 }

@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,7 @@ import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import jdk.nashorn.internal.objects.NativeDate;
@@ -132,7 +134,16 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         xAxis2.setAutoRanging(true);
         chart1.setAnimated(false);        
         chart2.setAnimated(false);
+        xAxis.setTickLabelFill(Paint.valueOf("white"));      
+        xAxis2.setTickLabelFill(Paint.valueOf("white"));
         carregarGrafiques();
+        setMaxBarWidth(40, 10);
+        chart1.widthProperty().addListener((obs, b, b1) -> {
+            Platform.runLater(() -> setMaxBarWidth(40, 10));
+        });
+        /*chart2.widthProperty().addListener((obs, b, b1) -> {
+            Platform.runLater(() -> setMaxBarWidth(40, 10));
+        });*/
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -179,11 +190,6 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         int max = 0;
         for (LocalDate d : claus) {
             if (d.isAfter(dataI.minusDays(1)) && d.isBefore(dataF.plusDays(1))) {
-                /*System.out.println("Partides guanyades el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getWinnedGames());
-                System.out.println("Partides perdudes el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getLostGames());*/
-                //dataVictories.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
-                //dataDerrotes.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
-                //dataJugadorsDistints.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getOponents()));
                 int guanyades = partidesPerDia.get(d).getWinnedGames();
                 int perdudes = partidesPerDia.get(d).getLostGames();
                 seriesVictories.getData().add(new XYChart.Data<String, Number>(d.format(formatter), guanyades));
@@ -199,8 +205,34 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         chart1.getData().addAll(seriesVictories, seriesDerrotes);
         chart2.getData().add(seriesJugadorsDistints);
     }
-   
-    
+    //métode copiat de stackoverflow per limitar la mida de les barres als dos gràfics
+    //https://stackoverflow.com/questions/28047818/limit-width-size-of-bar-chart?rq=1
+    private void setMaxBarWidth(double maxBarWidth, double minCategoryGap) {
+        double barWidth = 0;
+        do {
+            double catSpace = xAxis.getCategorySpacing();
+            double avilableBarSpace = catSpace - (chart1.getCategoryGap() + chart1.getCategoryGap());
+            barWidth = (avilableBarSpace / chart1.getData().size()) - chart1.getCategoryGap();
+            if (barWidth > maxBarWidth) {
+                avilableBarSpace = (maxBarWidth + chart1.getCategoryGap()) * chart1.getData().size();
+                chart1.setCategoryGap(catSpace - avilableBarSpace - chart1.getCategoryGap());
+            }
+        } while (barWidth > maxBarWidth);
+
+        do {
+            double catSpace = xAxis.getCategorySpacing();
+            double avilableBarSpace = catSpace - (minCategoryGap + chart1.getCategoryGap());
+            barWidth = Math.min(maxBarWidth, (avilableBarSpace / chart1.getData().size()) - chart1.getCategoryGap());
+            avilableBarSpace = (barWidth + chart1.getCategoryGap()) * chart1.getData().size();
+            chart1.setCategoryGap(catSpace - avilableBarSpace - chart1.getCategoryGap());
+        } while (barWidth < maxBarWidth && chart1.getCategoryGap() > minCategoryGap);
+    }
+
+    /*private void setMaxCategoryWidth(double maxCategoryWidth, double minCategoryGap){
+        double catSpace = xAxis.getCategorySpacing();
+        chart1.setCategoryGap(catSpace - Math.min(maxCategoryWidth, catSpace - minCategoryGap));
+        chart2.setBarGap(catSpace - Math.min(maxCategoryWidth, catSpace - minCategoryGap));
+    }*/
     
     
 }

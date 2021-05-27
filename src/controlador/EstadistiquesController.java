@@ -60,7 +60,7 @@ public class EstadistiquesController implements Initializable {
     private final String u1 = "Partides jugades";
     private final String u2 = "Partides guanyades en forma de llista"; // o ranking
     private final String u3 = "Partides perdudes en forma de llista";
-    private final String u4 = "Partides guanyades y perdudes en forma de gràfica";
+    private final String u4 = "Partides guanyades i perdudes en forma de gràfica";
 //    private final String p5 = "Partides perdudes en forma de gràfica";
     
     @FXML
@@ -118,11 +118,16 @@ public class EstadistiquesController implements Initializable {
                                                                         Bindings.isNull(dataFi.valueProperty()))))),
                                                 Bindings.and(
                                                         vsSist.selectedProperty(),
+
                                                         Bindings.or(Bindings.isNull(opcSis.valueProperty()),
                                                                 Bindings.or(Bindings.isNull(dataInici.valueProperty()),
                                                                             Bindings.isNull(dataFi.valueProperty()))))));
                                             
             
+            nomUsuari.disableProperty().bind(vsSist.selectedProperty());
+            PartUsuEleccio.disableProperty().bind(vsSist.selectedProperty());
+            opcSis.disableProperty().bind(vsUsu.selectedProperty());
+
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
         } catch (Connect4DAOException ex) {
@@ -163,7 +168,7 @@ public class EstadistiquesController implements Initializable {
                     
                 }
             } else { //vsSist està seleccionat
-                if (opcSis.getValue().equals(u1)) setCenterScene("/vista/PartidesSistema.fxml");
+                if (opcSis.getValue().equals(s1)) setCenterScene("/vista/PartidesSistema.fxml");
                 else setCenterScene("/vista/NombrePartidesTemps.fxml");
             }
         }
