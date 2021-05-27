@@ -179,11 +179,6 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         int max = 0;
         for (LocalDate d : claus) {
             if (d.isAfter(dataI.minusDays(1)) && d.isBefore(dataF.plusDays(1))) {
-                /*System.out.println("Partides guanyades el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getWinnedGames());
-                System.out.println("Partides perdudes el dia " + d.format(formatter) + " : " + partidesPerDia.get(d).getLostGames());*/
-                //dataVictories.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getWinnedGames()));
-                //dataDerrotes.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getLostGames()));
-                //dataJugadorsDistints.add(new XYChart.Data<String, Number>(d.format(formatter), partidesPerDia.get(d).getOponents()));
                 int guanyades = partidesPerDia.get(d).getWinnedGames();
                 int perdudes = partidesPerDia.get(d).getLostGames();
                 seriesVictories.getData().add(new XYChart.Data<String, Number>(d.format(formatter), guanyades));
@@ -223,7 +218,7 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
 
         barWidth = 0;
         do {
-            double catSpace = xAxis.getCategorySpacing();
+            double catSpace = xAxis2.getCategorySpacing();
             double avilableBarSpace = catSpace - (chart2.getCategoryGap() + chart2.getBarGap());
             barWidth = (avilableBarSpace / chart2.getData().size()) - chart2.getBarGap();
             if (barWidth > maxBarWidth) {
@@ -233,7 +228,7 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         } while (barWidth > maxBarWidth);
 
         do {
-            double catSpace = xAxis.getCategorySpacing();
+            double catSpace = xAxis2.getCategorySpacing();
             double avilableBarSpace = catSpace - (minCategoryGap + chart2.getBarGap());
             barWidth = Math.min(maxBarWidth, (avilableBarSpace / chart2.getData().size()) - chart2.getBarGap());
             avilableBarSpace = (barWidth + chart2.getBarGap()) * chart2.getData().size();
