@@ -44,11 +44,16 @@ public class TriarJugadorEditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Parent root = nomJugador1.getParent(); 
+        Parent root = nomJugador1.getParent();
         while (root.getParent() != null) root = root.getParent();
-        
-        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
-        else root.getStylesheets().addAll("resources/blancFulla.css");
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
     }    
 
     @FXML

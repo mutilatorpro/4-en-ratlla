@@ -71,6 +71,16 @@ public class NombrePartidesTempsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parent root = chart.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
         dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
         dataInici.setDayCellFactory(c -> new DateCell() {
             public void updateItem(LocalDate item, boolean empty) {

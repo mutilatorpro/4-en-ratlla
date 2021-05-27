@@ -82,9 +82,16 @@ public class EditarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Parent root = modificar.getParent();
-        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
-        else root.getStylesheets().addAll("resources/blancFulla.css");
+        Parent root = nom.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
         
         modificar.disableProperty().bind(Bindings.or(Bindings.equal(nom.textProperty(), ""), Bindings.or(Bindings.equal(contrasenya.textProperty(),""), Bindings.or(Bindings.equal(correu.textProperty(),""), Bindings.isNull(data.valueProperty())))));
         data.setEditable(false); //per evitar que es puga introduir la data "a mà"

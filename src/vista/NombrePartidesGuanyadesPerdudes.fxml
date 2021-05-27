@@ -9,39 +9,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="350.0" prefWidth="1042.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NombrePartidesGuanyadesPerdudesController">
-   <children>
-      <BorderPane prefHeight="379.0" prefWidth="1032.0">
-         <center>
-            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="603.0" prefWidth="978.0" BorderPane.alignment="CENTER">
+
+<BorderPane prefHeight="355.0" prefWidth="900.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NombrePartidesGuanyadesPerdudesController">
+   <center>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="603.0" prefWidth="978.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="error" textFill="RED" />
+            <HBox alignment="CENTER" prefHeight="681.0" prefWidth="978.0">
                <children>
-                  <Label fx:id="error" textFill="RED" />
-                  <HBox alignment="CENTER" prefHeight="528.0" prefWidth="1216.0">
-                     <children>
-                        <StackedBarChart fx:id="chart1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="489.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                          </xAxis>
-                          <yAxis>
+                  <StackedBarChart fx:id="chart1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="330.0" prefWidth="470.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
 
                             <NumberAxis fx:id="yAxis" scaleShape="false" side="LEFT" tickLabelFill="WHITE" />
 
-
+      
                           </yAxis>
-                        </StackedBarChart>
-                        <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="285.0" prefWidth="608.0" scaleShape="false">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" fx:id="xAxis2" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis fx:id="yAxis2" side="LEFT" tickLabelFill="WHITE" />
-                          </yAxis>
-                        </BarChart>
-                     </children>
-                  </HBox>
+                  </StackedBarChart>
+                  <BarChart fx:id="chart2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="330.0" prefWidth="470.0" scaleShape="false">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" tickLabelFill="WHITE" fx:id="xAxis2" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxis2" side="LEFT" tickLabelFill="WHITE" />
+                    </yAxis>
+                  </BarChart>
                </children>
-            </VBox>
-         </center>
-      </BorderPane>
-   </children>
-</VBox>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

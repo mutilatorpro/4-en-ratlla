@@ -77,7 +77,7 @@ public class PrimerJugadorController implements Initializable {
         else {
             root.getStylesheets().remove("resources/obscFulla.css"); 
             root.getStylesheets().add("resources/blancFulla.css");
-            } 
+        } 
 //        if (Dades.getDades().isModeObs())  root.getStylesheets().addAll("resources/obscFulla.css");
 //        else root.getStylesheets().addAll("resources/blancFulla.css");
 
