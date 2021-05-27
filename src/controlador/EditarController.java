@@ -75,7 +75,7 @@ public class EditarController implements Initializable {
     private Image img;
     private Connect4 sistema;
     @FXML
-    private VBox contenidorImatge;
+    private HBox contenidorImatge;
     @FXML
     private Label nomArxiu;
     /**
@@ -216,13 +216,13 @@ public class EditarController implements Initializable {
     @FXML
     private void ressaltarImatge(MouseEvent event) {
        imatge.setCursor(Cursor.HAND);
-       imatge.getStyleClass().add("imatge");
+       contenidorImatge.getStyleClass().add("imatge");
     }
     
     @FXML
     private void iniciImatge(MouseEvent event) {
         imatge.setCursor(Cursor.DEFAULT);
-        imatge.getStyleClass().clear();
+        contenidorImatge.getStyleClass().clear();
         
     }
     

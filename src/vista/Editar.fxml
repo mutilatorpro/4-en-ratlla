@@ -22,12 +22,16 @@
             <Insets left="10.0" right="10.0" top="20.0" />
          </VBox.margin>
       </Label>
-      <VBox fx:id="contenidorImatge" alignment="CENTER">
+      <VBox alignment="CENTER">
          <children>
-            <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;">
+            <HBox fx:id="contenidorImatge" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0" prefWidth="148.0">
                <VBox.margin>
                   <Insets bottom="3.0" />
-               </VBox.margin></ImageView>
+               </VBox.margin>
+               <children>
+                  <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
+               </children>
+            </HBox>
             <Text fill="#464646" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Per modificar la foto de perfil clica al damunt" />
          </children>
       </VBox>
