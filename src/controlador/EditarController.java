@@ -42,6 +42,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -73,7 +74,8 @@ public class EditarController implements Initializable {
     private File imatgeAvatar = null;
     private Image img;
     private Connect4 sistema;
-    private HBox contenidorImatge;
+    @FXML
+    private VBox contenidorImatge;
     @FXML
     private Label nomArxiu;
     /**
@@ -213,8 +215,8 @@ public class EditarController implements Initializable {
 
     @FXML
     private void ressaltarImatge(MouseEvent event) {
-        imatge.setCursor(Cursor.HAND);
-        imatge.getStyleClass().add("imatge");
+       imatge.setCursor(Cursor.HAND);
+       imatge.getStyleClass().add("imatge");
     }
     
     @FXML
