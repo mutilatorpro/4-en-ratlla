@@ -24,7 +24,10 @@
       </Label>
       <VBox alignment="CENTER">
          <children>
-            <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
+            <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin></ImageView>
             <Text fill="#464646" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Per modificar la foto de perfil clica al damunt" />
          </children>
       </VBox>
