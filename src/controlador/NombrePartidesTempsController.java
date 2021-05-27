@@ -108,7 +108,12 @@ public class NombrePartidesTempsController implements Initializable {
             dates = partidesPerDia.keySet();
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
                 dataF = valorNou;
-                if (dataI != null && dataI.isBefore(dataF)) reubica();
+                if (dataI != null) {
+                    if (dataI.isBefore(dataF) || dataF.isAfter(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+                    else {
+                        reubica();
+                    }
+                }
                 
             });
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
