@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
 /**
@@ -29,7 +30,16 @@ public class RegistreSegonJugController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Parent root = nombreTextF.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
     }    
 
     @FXML

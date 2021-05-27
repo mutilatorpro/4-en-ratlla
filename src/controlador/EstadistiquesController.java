@@ -92,6 +92,16 @@ public class EstadistiquesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parent root = botoMostrar.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
         configurarDates();
         try {
             sistema = Connect4.getSingletonConnect4();
@@ -101,20 +111,23 @@ public class EstadistiquesController implements Initializable {
 //                    Bindings.and(vsUsu.selectedProperty(),Bindings.equal(nomUsuari.textProperty(), ""))));  // REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             botoMostrar.disableProperty().bind(Bindings.or(
                                                 Bindings.and(
-                                                vsUsu.selectedProperty(), 
-                                                Bindings.or(Bindings.equal(nomUsuari.textProperty(), ""), 
-                                                        Bindings.or(Bindings.isNull(PartUsuEleccio.valueProperty()),
-                                                                Bindings.or(Bindings.isNull(dataInici.valueProperty()),
-                                                                            Bindings.isNull(dataFi.valueProperty()))))),
+                                                    vsUsu.selectedProperty(), 
+                                                    Bindings.or(Bindings.equal(nomUsuari.textProperty(), ""), 
+                                                            Bindings.or(Bindings.isNull(PartUsuEleccio.valueProperty()),
+                                                            Bindings.or(Bindings.isNull(dataInici.valueProperty()),
+                                                                        Bindings.isNull(dataFi.valueProperty()))))),
                                                 Bindings.and(
                                                         vsSist.selectedProperty(),
-                                                        Bindings.or(Bindings.isNull(dataInici.valueProperty()),
-                                                                    Bindings.or (Bindings.isNull(opcSis.valueProperty()), Bindings.isNull(dataFi.valueProperty()))))));
+
+                                                        Bindings.or(Bindings.isNull(opcSis.valueProperty()),
+                                                                Bindings.or(Bindings.isNull(dataInici.valueProperty()),
+                                                                            Bindings.isNull(dataFi.valueProperty()))))));
                                             
             
             nomUsuari.disableProperty().bind(vsSist.selectedProperty());
             PartUsuEleccio.disableProperty().bind(vsSist.selectedProperty());
             opcSis.disableProperty().bind(vsUsu.selectedProperty());
+
             dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
             dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
         } catch (Connect4DAOException ex) {

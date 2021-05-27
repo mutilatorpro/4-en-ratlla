@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Connect4;
 import model.Player;
@@ -30,7 +31,7 @@ import model.Player;
  * @author inmad
  */
 public class PrincipalController implements Initializable {
-
+    private boolean modeObsc = false;
     @FXML
     private Button botAutenticar;
     @FXML
@@ -39,12 +40,26 @@ public class PrincipalController implements Initializable {
     private Button botRanking;
     @FXML
     private Button botEstadistiques;
+    @FXML
+    private Button obscur;
+    @FXML
+    private ImageView imgview;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parent root = botAutenticar.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
     }    
 
     @FXML
@@ -146,4 +161,21 @@ public class PrincipalController implements Initializable {
 //        stage.toFront();
 //        stage.show();
 //    }
+
+    @FXML
+    private void obscBut(ActionEvent event) {
+        modeObsc = !modeObsc;
+        Dades.getDades().setModeObs(modeObsc);
+        Parent root = obscur.getParent(); // EN AQUESTA PANTALLA NO VULL CANVIAR AL MODE OBSCUR, VULL QUE ES QUEDE EN BLAU
+        while (root.getParent() != null) root = root.getParent();
+        
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+            }
+    }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1110.0" style="-fx-background-color: #0e53c3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Joc4Controller">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1110.0" style="-fx-background-color: #0e53c3;" styleClass="box" stylesheets="@../resources/obscFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Joc4Controller">
 
    <children>
       <HBox alignment="CENTER">
@@ -23,7 +23,7 @@
             <HBox fx:id="contenidorImatge" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="52.0" prefWidth="825.0">
                <children>
                   <ImageView fx:id="imatge" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
-                  <Text fx:id="text_jugador" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="736.13671875">
+                  <Text fx:id="text_jugador" fill="#9d9696" strokeType="OUTSIDE" strokeWidth="0.0" text="heeeeeeeeeeeeeeeeeeeeey" textAlignment="CENTER" wrappingWidth="736.13671875">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -77,8 +77,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="casella" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" prefHeight="77.0" prefWidth="149.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="1" />
+                  <Button fx:id="casella" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" prefHeight="77.0" prefWidth="149.0" styleClass="buttonInvers" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" styleClass="tauler" GridPane.columnIndex="1" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="3" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="4" />
@@ -93,13 +93,13 @@
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.rowIndex="2" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" styleClass="buttonInvers" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" styleClass="tauler" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" styleClass="tauler" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="7" GridPane.rowIndex="2" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" prefHeight="88.0" prefWidth="141.0" GridPane.rowIndex="3" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#moure" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -160,7 +160,7 @@
                         <Insets bottom="20.0" left="15.0" right="15.0" top="15.0" />
                      </HBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#enrere" style="-fx-background-color: #ffff;" textAlignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#enrere" style="-fx-background-color: #ffff;" styleClass="buttonQuadrat" textAlignment="CENTER">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -173,7 +173,7 @@
                            </graphic>
                         </Button>
 
-                        <Button mnemonicParsing="false" onAction="#ajuda" style="-fx-background-color: #ffff;">
+                        <Button mnemonicParsing="false" onAction="#ajuda" style="-fx-background-color: #ffff;" styleClass="buttonQuadrat">
                            <graphic>
                               <ImageView fitHeight="83.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

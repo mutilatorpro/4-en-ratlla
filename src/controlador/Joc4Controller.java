@@ -83,6 +83,16 @@ public class Joc4Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parent root = casella.getParent();
+        while (root.getParent() != null) root = root.getParent();
+        if (Dades.getDades().isModeObs())  { 
+            root.getStylesheets().remove("resources/blancFulla.css");
+            root.getStylesheets().add("resources/obscFulla.css");
+        }
+        else {
+            root.getStylesheets().remove("resources/obscFulla.css"); 
+            root.getStylesheets().add("resources/blancFulla.css");
+        } 
         try {
             sistema = Connect4.getSingletonConnect4();
             LocalDate hui = LocalDate.now();

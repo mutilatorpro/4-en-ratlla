@@ -24,7 +24,7 @@
       </Text>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiqInv" text="Nom d'usuari:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Nom d'usuari:" />
             <TextField fx:id="jugador" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="329.0" />
          </children>
          <padding>
