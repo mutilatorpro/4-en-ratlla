@@ -59,7 +59,7 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
     private Player usuariDades;
     private String nomUsuari = "";
     
-    
+    @FXML
     private Label error;
     @FXML
     private StackedBarChart<String, Number> chart1;
@@ -132,7 +132,7 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
     }
     
     private void carregarGrafiques() {
-        if (nomUsuari == "") error.setText("Cal que introduïsques un nom d'usuari.");
+        if (nomUsuari.equals("")) error.setText("Cal que introduïsques un nom d'usuari.");
         else if (dataI == null )error.setText("Cal que introduïsques una data d'inici.");
         else if (dataF == null )error.setText("Cal que introduïsques una data de fi.");
         else if (dataF.isBefore(dataI)) error.setText("La data d'inici cal que siga prèvia a la final.");

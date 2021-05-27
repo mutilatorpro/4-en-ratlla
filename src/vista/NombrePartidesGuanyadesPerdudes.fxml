@@ -4,16 +4,18 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="350.0" prefWidth="1042.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NombrePartidesGuanyadesPerdudesController">
+<VBox alignment="CENTER" prefHeight="350.0" prefWidth="1042.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.NombrePartidesGuanyadesPerdudesController">
    <children>
       <BorderPane prefHeight="379.0" prefWidth="1032.0">
          <center>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="603.0" prefWidth="978.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="603.0" prefWidth="978.0" BorderPane.alignment="CENTER">
                <children>
+                  <Label fx:id="error" text="Label" textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="528.0" prefWidth="1216.0">
                      <children>
                         <StackedBarChart fx:id="chart1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="489.0">
@@ -22,7 +24,7 @@
                           </xAxis>
                           <yAxis>
 
-                            <NumberAxis fx:id="yAxis" side="LEFT" tickLabelFill="WHITE" scaleShape="false"/>
+                            <NumberAxis fx:id="yAxis" scaleShape="false" side="LEFT" tickLabelFill="WHITE" />
 
 
                           </yAxis>
