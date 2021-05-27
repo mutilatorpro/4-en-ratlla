@@ -398,7 +398,7 @@ public class Joc4Controller implements Initializable {
         alert.setTitle("Ajuda a la navegació");
         alert.setHeight(600);
         alert.setWidth(900);
-        alert.setContentText("Per guanyar solament has de possar quatre fitxes del mateix color juntes, ja siga en vertical o horitzontal.\n" + "En cas de que vulgues eixir de la partida, es guardarà la partida per a que tornes quan vulgues.");
+        alert.setContentText("Per guanyar solament has de possar quatre fitxes del mateix color juntes, ja siga en vertical, horitzontal o en diagonal.\n" + "En cas de que vulgues eixir de la partida, es guardarà la partida per a que tornes quan vulgues.");
         Optional<ButtonType> action = alert.showAndWait();
         if (action.isPresent() && action.get() == ButtonType.OK) {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));

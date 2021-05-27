@@ -16,7 +16,7 @@ and open the template in the editor.
     
 }
 .tauler {
-    -fx-fill: #9d9696;
+    -fx-fill: #999999;
 }
 
 .boxInversa {
@@ -28,7 +28,7 @@ and open the template in the editor.
     -fx-background-color:  black;
 }
 .button { /* FX theme stylesheet */
-    -fx-background-color: #0e53c3;
+    -fx-background-color: grey;
     -fx-text-fill: white;
     -fx-background-radius: 15;
     -fx-alignment: CENTER;
