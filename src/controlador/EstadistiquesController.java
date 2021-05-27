@@ -60,7 +60,7 @@ public class EstadistiquesController implements Initializable {
     private final String u1 = "Partides jugades";
     private final String u2 = "Partides guanyades en forma de llista"; // o ranking
     private final String u3 = "Partides perdudes en forma de llista";
-    private final String u4 = "Partides guanyades y perdudes en forma de gràfica";
+    private final String u4 = "Partides guanyades i perdudes en forma de gràfica";
 //    private final String p5 = "Partides perdudes en forma de gràfica";
     
     @FXML
