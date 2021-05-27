@@ -137,13 +137,6 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         xAxis.setTickLabelFill(Paint.valueOf("white"));      
         xAxis2.setTickLabelFill(Paint.valueOf("white"));
         carregarGrafiques();
-        setMaxBarWidth(40, 10);
-        chart1.widthProperty().addListener((obs, b, b1) -> {
-            Platform.runLater(() -> setMaxBarWidth(40, 10));
-        });
-        /*chart2.widthProperty().addListener((obs, b, b1) -> {
-            Platform.runLater(() -> setMaxBarWidth(40, 10));
-        });*/
     }    
     
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
@@ -205,34 +198,5 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
         chart1.getData().addAll(seriesVictories, seriesDerrotes);
         chart2.getData().add(seriesJugadorsDistints);
     }
-    //métode copiat de stackoverflow per limitar la mida de les barres als dos gràfics
-    //https://stackoverflow.com/questions/28047818/limit-width-size-of-bar-chart?rq=1
-    private void setMaxBarWidth(double maxBarWidth, double minCategoryGap) {
-        double barWidth = 0;
-        do {
-            double catSpace = xAxis.getCategorySpacing();
-            double avilableBarSpace = catSpace - (chart1.getCategoryGap() + chart1.getCategoryGap());
-            barWidth = (avilableBarSpace / chart1.getData().size()) - chart1.getCategoryGap();
-            if (barWidth > maxBarWidth) {
-                avilableBarSpace = (maxBarWidth + chart1.getCategoryGap()) * chart1.getData().size();
-                chart1.setCategoryGap(catSpace - avilableBarSpace - chart1.getCategoryGap());
-            }
-        } while (barWidth > maxBarWidth);
-
-        do {
-            double catSpace = xAxis.getCategorySpacing();
-            double avilableBarSpace = catSpace - (minCategoryGap + chart1.getCategoryGap());
-            barWidth = Math.min(maxBarWidth, (avilableBarSpace / chart1.getData().size()) - chart1.getCategoryGap());
-            avilableBarSpace = (barWidth + chart1.getCategoryGap()) * chart1.getData().size();
-            chart1.setCategoryGap(catSpace - avilableBarSpace - chart1.getCategoryGap());
-        } while (barWidth < maxBarWidth && chart1.getCategoryGap() > minCategoryGap);
-    }
-
-    /*private void setMaxCategoryWidth(double maxCategoryWidth, double minCategoryGap){
-        double catSpace = xAxis.getCategorySpacing();
-        chart1.setCategoryGap(catSpace - Math.min(maxCategoryWidth, catSpace - minCategoryGap));
-        chart2.setBarGap(catSpace - Math.min(maxCategoryWidth, catSpace - minCategoryGap));
-    }*/
-    
     
 }

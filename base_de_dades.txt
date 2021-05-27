@@ -23,7 +23,7 @@ points= 0
 avatar =yes
 
 nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -54,7 +54,7 @@ avatar =yes
  ROUNDS IN DB 
 timestamp = 2021-04-26T10:49:25.625
 winner ->{ nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -70,7 +70,7 @@ avatar =yes
 
 timestamp = 2021-04-29T12:50:36.028
 winner ->{ nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -93,7 +93,7 @@ points= 350
 avatar =yes
 }
 loser -> {nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -109,7 +109,7 @@ points= 350
 avatar =yes
 }
 loser -> {nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -125,7 +125,7 @@ points= 350
 avatar =yes
 }
 loser -> {nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -134,7 +134,7 @@ avatar =yes
 
 timestamp = 2021-05-26T16:17:31.491
 winner ->{ nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -205,7 +205,7 @@ points= 350
 avatar =yes
 }
 loser -> {nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
@@ -214,7 +214,7 @@ avatar =yes
 
 timestamp = 2021-05-27T19:16:04.770
 winner ->{ nickName= Lenin
-password= 1917
+password= Ll1917#2
 email= lenin@urss.cccp
 birthdate= 2021-04-09
 points= 110
