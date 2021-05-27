@@ -55,8 +55,10 @@ public class EstadistiquesController implements Initializable {
     private LocalDate dataI = null, dataF = null;
     
     private final String p1 = "Partides jugades";
-    private final String p2 = "Partides guanyades";
-    private final String p3 = "Partides perdudes";
+    private final String p2 = "Partides guanyades en forma de llista"; // o ranking
+    private final String p3 = "Partides perdudes en forma de llista";
+    private final String p4 = "Partides guanyades y perdudes en forma de gràfica";
+//    private final String p5 = "Partides perdudes en forma de gràfica";
     
     @FXML
     private ToggleGroup vsQui;
@@ -115,6 +117,7 @@ public class EstadistiquesController implements Initializable {
         PartUsuEleccio.getItems().add(p1);
         PartUsuEleccio.getItems().add(p2);
         PartUsuEleccio.getItems().add(p3);
+        PartUsuEleccio.getItems().add(p4);
     }    
 
     @FXML
@@ -134,7 +137,10 @@ public class EstadistiquesController implements Initializable {
                     case p3: 
                         setCenterScene("/vista/PartidesJugadorPerdudes.fxml");
                         break;
-                        
+                    case p4: 
+                        setCenterScene("/vista/NombrePartidesGuanyadesPerdudes.fxml");
+                        break;
+                    
                     default: 
                         setCenterScene("/vista/PartidesSistema.fxml");
                 }

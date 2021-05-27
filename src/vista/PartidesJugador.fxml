@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="799.0" prefWidth="770.0" spacing="20.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PartidesJugadorController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="770.0" spacing="10.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PartidesJugadorController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titol" text="Llista partides de jugadors">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titol" text="jug">
          <font>
-            <Font size="25.0" />
+            <Font size="15.0" />
          </font>
          <VBox.margin>
             <Insets top="10.0" />
@@ -21,12 +21,12 @@
       </Text>
       <Label fx:id="error" textFill="RED">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="447.0" prefWidth="668.0">
+      <HBox alignment="CENTER" prefHeight="302.0" prefWidth="760.0">
          <children>
-            <TableView fx:id="taula" prefHeight="439.0" prefWidth="603.0" styleClass="myTable" stylesheets="@../resources/blancFulla.css">
+            <TableView fx:id="taula" prefHeight="334.0" prefWidth="603.0" styleClass="myTable" stylesheets="@../resources/blancFulla.css">
               <columns>
                   <TableColumn fx:id="diaColumn" prefWidth="50.0" styleClass="tableColumn" text="Dia" />
                 <TableColumn fx:id="horaColumn" prefWidth="201.0" styleClass="tableColumn" text="Hora" />
