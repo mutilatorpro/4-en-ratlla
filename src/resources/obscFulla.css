@@ -16,9 +16,9 @@ and open the template in the editor.
     
 }
 .boxInversa {
-    -fx-background-color:  white;
+    -fx-background-color:  black;
     -fx-border-width: 5;
-    -fx-border-color: #0e53c3;
+    -fx-border-color: white;
 }
 
 .button { /* FX theme stylesheet */
