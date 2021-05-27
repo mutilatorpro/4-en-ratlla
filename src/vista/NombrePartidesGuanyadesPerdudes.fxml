@@ -15,7 +15,7 @@
          <center>
             <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="603.0" prefWidth="978.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="error" text="Label" textFill="RED" />
+                  <Label fx:id="error" textFill="RED" />
                   <HBox alignment="CENTER" prefHeight="528.0" prefWidth="1216.0">
                      <children>
                         <StackedBarChart fx:id="chart1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="343.0" prefWidth="489.0">

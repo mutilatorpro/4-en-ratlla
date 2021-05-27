@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="590.0" spacing="5.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PartidesSistemaController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="575.0" spacing="5.0" styleClass="estadist" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PartidesSistemaController">
    <children>
-      <Label fx:id="error" textFill="RED">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="343.0" prefWidth="703.0">
+      <HBox alignment="CENTER" prefHeight="242.0" prefWidth="590.0">
          <children>
-            <TableView fx:id="taula" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="570.0" styleClass="myTable" stylesheets="@../resources/blancFulla.css">
+            <TableView fx:id="taula" minHeight="-Infinity" minWidth="-Infinity" prefHeight="242.0" prefWidth="570.0" styleClass="myTable" stylesheets="@../resources/blancFulla.css">
               <columns>
                   <TableColumn fx:id="diaColumn" prefWidth="50.0" styleClass="tableColumn" text="Dia" />
                 <TableColumn fx:id="horaColumn" prefWidth="201.0" styleClass="tableColumn" text="Hora" />
@@ -28,7 +20,6 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <ScrollBar orientation="VERTICAL" />
          </children>
       </HBox>
    </children>

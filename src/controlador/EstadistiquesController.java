@@ -53,11 +53,14 @@ public class EstadistiquesController implements Initializable {
     private Player jugador1 = null, jugador2 = null;
     private DateTimeFormatter formatter, formatter2;   
     private LocalDate dataI = null, dataF = null;
+        
+    private final String s1 = "Llistat de les partides";
+    private final String s2 = "Gràfiques de les partides";
     
-    private final String p1 = "Partides jugades";
-    private final String p2 = "Partides guanyades en forma de llista"; // o ranking
-    private final String p3 = "Partides perdudes en forma de llista";
-    private final String p4 = "Partides guanyades y perdudes en forma de gràfica";
+    private final String u1 = "Partides jugades";
+    private final String u2 = "Partides guanyades en forma de llista"; // o ranking
+    private final String u3 = "Partides perdudes en forma de llista";
+    private final String u4 = "Partides guanyades y perdudes en forma de gràfica";
 //    private final String p5 = "Partides perdudes en forma de gràfica";
     
     @FXML
@@ -82,6 +85,8 @@ public class EstadistiquesController implements Initializable {
     private VBox centreBox;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private ChoiceBox<String> opcSis;
     /**
      * Initializes the controller class.
      */
@@ -113,38 +118,44 @@ public class EstadistiquesController implements Initializable {
         } catch (Connect4DAOException ex) {
             Logger.getLogger(RanquingController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        opcSis.getItems().add(s1);
+        opcSis.getItems().add(s2);
         
-        PartUsuEleccio.getItems().add(p1);
-        PartUsuEleccio.getItems().add(p2);
-        PartUsuEleccio.getItems().add(p3);
-        PartUsuEleccio.getItems().add(p4);
+        PartUsuEleccio.getItems().add(u1);
+        PartUsuEleccio.getItems().add(u2);
+        PartUsuEleccio.getItems().add(u3);
+        PartUsuEleccio.getItems().add(u4);
     }    
 
     @FXML
     private void mostrarRondes(ActionEvent event) {
+        error.setText("");
         actualitzDades();
         if (dataI != null && dataF != null) {
             if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
             else if (vsUsu.isSelected()){ 
+//                Player auxiliar = sistema.getPlayer(nomUsuari);
+                if (sistema.getPlayer(nomUsuari.getText()) == null) error.setText("Aquest jugador no existeix en el nostre sistema.");
                 String eleccio = PartUsuEleccio.getValue();
                 switch (eleccio) {
-                    case p1: 
+                    case u1: 
                         setCenterScene("/vista/PartidesJugador.fxml");
                         break;
-                    case p2: 
+                    case u2: 
                         setCenterScene("/vista/PartidesJugadorGuanyades.fxml");
                         break;
-                    case p3: 
+                    case u3: 
                         setCenterScene("/vista/PartidesJugadorPerdudes.fxml");
                         break;
-                    case p4: 
+                    case u4: 
                         setCenterScene("/vista/NombrePartidesGuanyadesPerdudes.fxml");
                         break;
                     
-                    default: 
-                        setCenterScene("/vista/PartidesSistema.fxml");
                 }
-            } else setCenterScene("/vista/PartidesSistema.fxml");
+            } else { //vsSist està seleccionat
+                if (opcSis.getValue().equals(u1)) setCenterScene("/vista/PartidesSistema.fxml");
+                else setCenterScene("/vista/NombrePartidesTemps.fxml");
+            }
         }
     }
     

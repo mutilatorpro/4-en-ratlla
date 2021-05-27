@@ -26,7 +26,7 @@ nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 
 nickName= Diego
@@ -57,7 +57,7 @@ winner ->{ nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 loser -> {nickName= Diego
@@ -73,7 +73,7 @@ winner ->{ nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 loser -> {nickName= Diego
@@ -96,7 +96,7 @@ loser -> {nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 
@@ -112,7 +112,7 @@ loser -> {nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 
@@ -128,7 +128,7 @@ loser -> {nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 
@@ -137,7 +137,7 @@ winner ->{ nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
 avatar =yes
 }
 loser -> {nickName= Diego
@@ -208,7 +208,23 @@ loser -> {nickName= Lenin
 password= 1917
 email= lenin@urss.cccp
 birthdate= 2021-04-09
-points= 60
+points= 110
+avatar =yes
+}
+
+timestamp = 2021-05-27T19:16:04.770
+winner ->{ nickName= Lenin
+password= 1917
+email= lenin@urss.cccp
+birthdate= 2021-04-09
+points= 110
+avatar =yes
+}
+loser -> {nickName= Diego
+password= 1010
+email= dtorresbert@gmail.com
+birthdate= 2021-04-09
+points= 350
 avatar =yes
 }
 

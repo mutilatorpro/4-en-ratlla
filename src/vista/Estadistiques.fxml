@@ -30,7 +30,7 @@
             </Text>
             <HBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="500.0">
                <children>
-                  <VBox prefHeight="76.0" prefWidth="175.0">
+                  <VBox prefHeight="76.0" prefWidth="175.0" spacing="5.0">
                      <children>
                         <RadioButton fx:id="vsSist" mnemonicParsing="false" selected="true" styleClass="titol" text="Del sistema">
                            <toggleGroup>
@@ -53,13 +53,22 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </VBox>
-                  <TextField fx:id="nomUsuari" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="139.0" promptText="nom d'usuari a cercar">
+                  <VBox spacing="7.0">
+                     <children>
+                        <ChoiceBox fx:id="opcSis" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ChoiceBox>
+                        <TextField fx:id="nomUsuari" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="139.0" promptText="nom d'usuari a cercar" />
+                     </children>
                      <HBox.margin>
-                        <Insets right="10.0" top="28.0" />
-                     </HBox.margin></TextField>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
                   <ChoiceBox fx:id="PartUsuEleccio" prefWidth="150.0">
                      <HBox.margin>
-                        <Insets top="28.0" />
+                        <Insets top="32.0" />
                      </HBox.margin>
                   </ChoiceBox>
                </children>

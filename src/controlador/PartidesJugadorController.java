@@ -78,8 +78,7 @@ public class PartidesJugadorController implements Initializable {
     private TableColumn<Round, String> guanyadorColumn;
     @FXML
     private TableColumn<Round, String> perdedorColumn;
-    @FXML
-    private Label error;
+    
     /**
      * Initializes the controller class.
      */
@@ -127,8 +126,7 @@ public class PartidesJugadorController implements Initializable {
     private void carregarDades() {
         dadesRondes.clear();
         Player auxiliar = sistema.getPlayer(nomUsuari);
-        if (auxiliar == null) error.setText("Aquest jugador no existeix en el nostre sistema.");
-        else {
+        if (auxiliar != null) {
             List<Round> aux = sistema.getRoundsPlayer(auxiliar);
             for (Round r: aux) {
                 if (r.getLocalDate().isAfter(dataI.minusDays(1)) && r.getLocalDate().isBefore(dataF.plusDays(1))) {
@@ -149,11 +147,11 @@ public class PartidesJugadorController implements Initializable {
         jugador2 = j2;
     }
 
-    private void mostrarRondes(ActionEvent event) {
-        if (dataI != null && dataF != null && !nomUsuari.equals("")) {
-            if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-            else carregarDades();
-        }
-    }
+//    private void mostrarRondes(ActionEvent event) {
+//        if (dataI != null && dataF != null && !nomUsuari.equals("")) {
+//            if (dataI.isAfter(dataF)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+//            else carregarDades();
+//        }
+//    }
     
 }

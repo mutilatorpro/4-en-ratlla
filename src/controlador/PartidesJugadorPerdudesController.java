@@ -80,8 +80,7 @@ public class PartidesJugadorPerdudesController implements Initializable {
     private TableColumn<Round, String> perdedorColumn;
     @FXML
     private TableView<Round> taula;
-    @FXML
-    private Label error;
+    
     
     
     /**
@@ -137,9 +136,8 @@ public class PartidesJugadorPerdudesController implements Initializable {
     private void carregarDades() {
         dadesRondes.clear();
         Player auxiliar = sistema.getPlayer(nomUsuari);
-        if (auxiliar == null) error.setText("Aquest jugador no existeix en el nostre sistema.");
-        else {
-            List<Round> aux = sistema.getWinnedRoundsPlayer(auxiliar);
+        if (auxiliar != null) {
+            List<Round> aux = sistema.getLostRoundsPlayer(auxiliar);
             for (Round r: aux) {
                 if (r.getLocalDate().isAfter(dataI.minusDays(1)) && r.getLocalDate().isBefore(dataF.plusDays(1))) {
                     dadesRondes.add(r);

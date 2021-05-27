@@ -124,10 +124,7 @@ public class PartidesSistemaController implements Initializable {
                 StringProperty posicioProperty = new SimpleStringProperty(aux.getLoser().getNickName());
                 return posicioProperty;
             });
-//                                                           BORRARRRRRRRRRRRRRRRRRRRRRRRR            
-//botoMostrar.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
-            //dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataI = valorNou; });
-            //dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { dataF = valorNou; });
+
             taula.setItems(dadesRondes);
         } catch (Connect4DAOException ex) {
             Logger.getLogger(RanquingController.class.getName()).log(Level.SEVERE, null, ex);

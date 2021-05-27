@@ -6,11 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="vBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrimerJugadorController">
@@ -34,23 +32,16 @@
                   </Label>
                </top>
                <center>
-                  <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="577.0" BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="266.0">
                            <children>
-                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="98.0" styleClass="titol" text="Guanya punts" textAlignment="CENTER">
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="131.0" styleClass="titol" text="Guanya punts" textAlignment="CENTER">
                                  <font>
-                                    <Font name="Arial Black" size="13.0" />
+                                    <Font name="Arial Black" size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Label>
                               <Button fx:id="maquina" mnemonicParsing="false" onAction="#jugarMaquina" text="Mode versus màquina">
@@ -58,38 +49,37 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="iniciar" mnemonicParsing="false" onAction="#iniciarSessio" text="Iniciar sessió 2n jugador" />
+                              <Button fx:id="iniciar" mnemonicParsing="false" onAction="#iniciarSessio" text="Iniciar sessió 2n jugador">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
                               <Button fx:id="pvp" mnemonicParsing="false" onAction="#jugarJugador" text="Mode multijugador">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#modificar" text="Modificar perfil" />
+                              <Button mnemonicParsing="false" onAction="#modificar" text="Modificar perfil">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </GridPane.margin>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="303.0" stroke="WHITE" strokeType="INSIDE" width="2.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="256.0" prefWidth="266.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="34.0" prefWidth="280.0">
-                                 <children>
-                                    <Label alignment="TOP_CENTER" styleClass="titol" text="Consulta els punts">
-                                       <font>
-                                          <Font name="Arial Black" size="13.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
+                              <Label alignment="TOP_CENTER" styleClass="titol" text="Consulta els punts">
+                                 <font>
+                                    <Font name="Arial Black" size="15.0" />
+                                 </font>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                                  </VBox.margin>
-                              </VBox>
+                              </Label>
                               <Button fx:id="ranquing" mnemonicParsing="false" onAction="#ranquing" text="Rànquing">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -100,52 +90,53 @@
                                     <Insets />
                                  </opaqueInsets>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                                  </VBox.margin>
                               </Button>
                            </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </VBox>
                      </children>
-                  </GridPane>
+                  </HBox>
                </center>
                <bottom>
-                  <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="BOTTOM_CENTER">
                      <children>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="66.0" prefWidth="110.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
+                                 <graphic>
+                                    <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/obscur.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#ajuda" styleClass="buttonQuadrat">
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/interrog.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </HBox>
                         <VBox alignment="CENTER">
                            <HBox.margin>
                               <Insets bottom="20.0" left="300.0" right="25.0" />
                            </HBox.margin>
-                           <children>
-                              <HBox spacing="10.0">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
-                                       <graphic>
-                                          <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/obscur.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button mnemonicParsing="false" onAction="#ajuda" styleClass="buttonQuadrat">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/interrog.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
                         </VBox>
-                        <VBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="243.0">
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="51.0" prefWidth="135.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#tancarSessio" prefHeight="23.0" prefWidth="125.0" text="Tancar sessió 1r jugador">
+                              <Button mnemonicParsing="false" onAction="#tancarSessio" prefHeight="23.0" prefWidth="125.0" text="Tancar sessió 1r jugador ">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -155,7 +146,7 @@
                               </Button>
                               <Button fx:id="tancar2" mnemonicParsing="false" onAction="#tancarSessio2" prefHeight="12.0" prefWidth="124.0" text="Tancar sessió 2n jugador">
                                  <VBox.margin>
-                                    <Insets bottom="20.0" />
+                                    <Insets />
                                  </VBox.margin>
                                  <font>
                                     <Font size="10.0" />
@@ -163,7 +154,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="5.0" top="5.0" />
+                              <Insets bottom="10.0" left="25.0" right="10.0" top="5.0" />
                            </HBox.margin>
                         </VBox>
                      </children>
