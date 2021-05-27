@@ -33,6 +33,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Connect4;
@@ -116,6 +117,8 @@ public class NombrePartidesTempsController implements Initializable {
             chart.setTitle("Partides jugades per dia");
             chart.getData().add(new XYChart.Series<> (llistaDates));
             xAxis.setLabel("Data");
+            xAxis.setTickLabelFill(Paint.valueOf("white"));
+            yAxis.setTickLabelFill(Paint.valueOf("white"));
             yAxis.setLabel("Nombre de partides");
         } catch (Connect4DAOException ex) {
             Logger.getLogger(NombrePartidesTempsController.class.getName()).log(Level.SEVERE, null, ex);
