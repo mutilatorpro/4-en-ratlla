@@ -27,7 +27,7 @@ and open the template in the editor.
 }
 
 .button { /* FX theme stylesheet */
-    -fx-background-color: white;
+    -fx-background-color: #b3d3ff;
     -fx-text-fill: #0e53c3;
     -fx-background-radius: 15;
     -fx-alignment: CENTER;

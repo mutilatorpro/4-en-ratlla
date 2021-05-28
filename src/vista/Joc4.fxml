@@ -23,7 +23,7 @@
             <HBox fx:id="contenidorImatge" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="52.0" prefWidth="825.0">
                <children>
                   <ImageView fx:id="imatge" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
-                  <Text fx:id="text_jugador" fill="#9d9696" strokeType="OUTSIDE" strokeWidth="0.0" text="heeeeeeeeeeeeeeeeeeeeey" textAlignment="CENTER" wrappingWidth="736.13671875">
+                  <Text fx:id="text_jugador" fill="#b3d3ff" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="736.13671875">
                      <font>
                         <Font size="25.0" />
                      </font>
