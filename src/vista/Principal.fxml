@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 
 <VBox alignment="CENTER" prefHeight="274.0" prefWidth="494.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane prefHeight="299.0" prefWidth="484.0">
          <center>
             <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
@@ -40,30 +41,18 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut">
+                     <VBox.margin>
+                        <Insets bottom="-10.0" right="430.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="buttonQuadrat" />
+                        <String fx:value="buttonQuadratImg" />
+                     </styleClass>
+                  </Button>
                </children>
             </VBox>
          </center>
-         <bottom>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="53.0" prefWidth="479.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
-                     <graphic>
-                        <ImageView fx:id="imgview" fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/obscur.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <BorderPane.margin>
-                  <Insets left="5.0" />
-               </BorderPane.margin>
-            </HBox>
-         </bottom>
       </BorderPane>
    </children>
 </VBox>

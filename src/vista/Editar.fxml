@@ -7,122 +7,128 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="564.0" spacing="24.0" styleClass="boxInversa" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
-   <children>
-      <Label prefHeight="24.0" prefWidth="182.0" style="-fx-text-fill: #0e53c3;" text="Modifica el teu perfil" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="16.0" />
-         </font>
-         <VBox.margin>
-            <Insets left="10.0" right="10.0" top="20.0" />
-         </VBox.margin>
-      </Label>
-      <VBox alignment="CENTER">
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EditarController">
+   <center>
+      <VBox alignment="CENTER" minHeight="500.0" minWidth="564.0" prefHeight="500.0" prefWidth="564.0" spacing="24.0" styleClass="boxInversa" stylesheets="@../resources/blancFulla.css">
          <children>
-            <HBox fx:id="contenidorImatge" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="147.0">
+            <Label prefHeight="24.0" prefWidth="182.0" style="-fx-text-fill: #0e53c3;" text="Modifica el teu perfil" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="16.0" />
+               </font>
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets left="10.0" right="10.0" top="20.0" />
                </VBox.margin>
+            </Label>
+            <VBox alignment="CENTER">
                <children>
-                  <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
-               </children>
-            </HBox>
-            <Text fill="#464646" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Per modificar la foto de perfil clica al damunt" />
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" stylesheets="@../resources/blancFulla.css">
-         <children>
-            <VBox alignment="TOP_CENTER">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Nom d'usuari" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
+                  <HBox fx:id="contenidorImatge" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="147.0">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="3.0" />
                      </VBox.margin>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Correu electrònic" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Contrasenya" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Data naixement" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER_LEFT">
-               <children>
-                  <TextField fx:id="nom" disable="true">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="correu" onKeyPressed="#enter">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <PasswordField fx:id="contrasenya" onKeyPressed="#enter">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <DatePicker fx:id="data" editable="false" onKeyPressed="#enter">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <HBox>
                      <children>
-                        <Label fx:id="nomArxiu" alignment="CENTER" />
+                        <ImageView fx:id="imatge" fitHeight="132.0" fitWidth="147.0" onMouseClicked="#obrirArxiu" onMouseEntered="#ressaltarImatge" onMouseExited="#iniciImatge" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: blue;" />
                      </children>
                   </HBox>
+                  <Text fill="#464646" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="etiq" text="Per modificar la foto de perfil clica al damunt" />
                </children>
             </VBox>
+            <HBox alignment="CENTER" stylesheets="@../resources/blancFulla.css">
+               <children>
+                  <VBox alignment="TOP_RIGHT">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Nom d'usuari" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Correu electrònic" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Contrasenya" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" styleClass="etiq" text="Data naixement" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <TextField fx:id="nom" disable="true">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="correu" onKeyPressed="#enter">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <PasswordField fx:id="contrasenya" onKeyPressed="#enter">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <DatePicker fx:id="data" editable="false" onKeyPressed="#enter">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <HBox>
+                           <children>
+                              <Label fx:id="nomArxiu" alignment="CENTER" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label fx:id="error" prefHeight="17.0" prefWidth="285.0" text=" " textFill="RED" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="106.0" prefWidth="547.0" spacing="12.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button fx:id="modificar" mnemonicParsing="false" onAction="#okCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Modificar" />
+                  <Button mnemonicParsing="false" onAction="#cancelCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Cancel" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
          </children>
-      </HBox>
-      <HBox alignment="CENTER">
-         <children>
-            <Label fx:id="error" prefHeight="17.0" prefWidth="285.0" text=" " textFill="RED" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="106.0" prefWidth="547.0" spacing="12.0" VBox.vgrow="NEVER">
-         <children>
-            <Button fx:id="modificar" mnemonicParsing="false" onAction="#okCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Modificar" />
-            <Button mnemonicParsing="false" onAction="#cancelCambios" style="-fx-background-color: #0e53c3; -fx-text-fill: #ffff;" text="Cancel" />
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets bottom="10.0" />
-         </padding>
-      </HBox>
-   </children>
-</VBox>
+      </VBox>
+   </center>
+</BorderPane>
