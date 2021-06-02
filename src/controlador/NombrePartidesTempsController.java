@@ -80,6 +80,7 @@ public class NombrePartidesTempsController implements Initializable {
             root.getStylesheets().remove("resources/obscFulla.css"); 
             root.getStylesheets().add("resources/blancFulla.css");
         } 
+        inicialitzarDades();
 //        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
 //        dataInici.setDayCellFactory(c -> new DateCell() {
 //            public void updateItem(LocalDate item, boolean empty) {
