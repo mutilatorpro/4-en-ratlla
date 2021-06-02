@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="617.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EstadistiquesController">
+<BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="617.0" styleClass="box" stylesheets="@../resources/blancFulla.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EstadistiquesController">
    <top>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
@@ -66,7 +66,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </VBox>
-                  <ChoiceBox fx:id="PartUsuEleccio" prefWidth="150.0">
+                  <ChoiceBox fx:id="PartUsuEleccio" prefHeight="25.0" prefWidth="213.0">
                      <HBox.margin>
                         <Insets top="32.0" />
                      </HBox.margin>
