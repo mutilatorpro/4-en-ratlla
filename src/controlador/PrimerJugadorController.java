@@ -222,20 +222,6 @@ public class PrimerJugadorController implements Initializable {
         alert.setWidth(900);
         alert.setContentText("En aquesta finestra pots accedir a dos apartats ben diferenciats: un on guanyaràs punts i un altre en el que podràs vore les estadístiques i com de ben posicionat estàs en el joc.\n" + "És també des d'aquesta finestra des d'on podràs canviar la visualitzación a mode obscur. ");
         alert.showAndWait();
-        /* Optional<ButtonType> action = 
-        if (action.isPresent() && action.get() == ButtonType.OK) {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/Joc4.fxml"));
-            Parent root = cargador.load();
-            PrimerJugadorController controlador = cargador.getController();
-            if (jugador2 != null) controlador.inicialitzarJugadors(jugador1,jugador2);
-            else controlador.inicialitzarJugador(jugador1);
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-*/
-    
     }
 
     @FXML
