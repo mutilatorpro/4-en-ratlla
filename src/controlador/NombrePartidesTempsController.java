@@ -129,6 +129,7 @@ public class NombrePartidesTempsController implements Initializable {
             xAxis.setTickLabelFill(Paint.valueOf("white"));
             yAxis.setTickLabelFill(Paint.valueOf("white"));
             yAxis.setLabel("Nombre de partides");
+            reubica();
         } catch (Connect4DAOException ex) {
             Logger.getLogger(NombrePartidesTempsController.class.getName()).log(Level.SEVERE, null, ex);
         }
