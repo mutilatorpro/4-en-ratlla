@@ -33,7 +33,7 @@ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 
 nickName= mutilator
@@ -64,7 +64,7 @@ loser -> {nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 
@@ -80,7 +80,7 @@ loser -> {nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 
@@ -89,7 +89,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= Lenin
@@ -105,7 +105,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= Lenin
@@ -121,7 +121,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= Lenin
@@ -144,7 +144,7 @@ loser -> {nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 
@@ -153,7 +153,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= userrrr2
@@ -169,7 +169,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= userrrr2
@@ -185,7 +185,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= userrrr2
@@ -201,7 +201,7 @@ winner ->{ nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 loser -> {nickName= Lenin
@@ -224,7 +224,7 @@ loser -> {nickName= Diego
 password= 1010
 email= dtorresbert@gmail.com
 birthdate= 2021-04-09
-points= 350
+points= 355
 avatar =yes
 }
 
