@@ -8,6 +8,7 @@ package controlador;
 import DBAccess.Connect4DAOException;
 import java.io.IOException;
 import java.net.URL;
+import javafx.scene.image.Image;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Connect4;
@@ -44,6 +46,8 @@ public class PrincipalController implements Initializable {
     private Button obscur;
     @FXML
     private ImageView imgview;
+    Image sol = new Image("/img/sol.png");
+    Image lluna = new Image("/img/lluna.png");
     
     /**
      * Initializes the controller class.
@@ -55,10 +59,13 @@ public class PrincipalController implements Initializable {
         if (Dades.getDades().isModeObs())  { 
             root.getStylesheets().remove("resources/blancFulla.css");
             root.getStylesheets().add("resources/obscFulla.css");
+//            Image sol = new Image("/img/sol.png");
+            //imgview.setImage(sol); Em dona NullPointerException
         }
         else {
             root.getStylesheets().remove("resources/obscFulla.css"); 
             root.getStylesheets().add("resources/blancFulla.css");
+            //imgview.setImage(lluna); Em dona NullPointerException
         } 
     }    
 

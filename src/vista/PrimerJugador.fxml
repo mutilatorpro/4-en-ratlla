@@ -110,7 +110,7 @@
                                  <graphic>
                                     <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/obscur.png" />
+                                          <Image url="@../img/lluna.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
