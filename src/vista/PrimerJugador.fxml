@@ -108,11 +108,7 @@
                            <children>
                               <Button fx:id="obscur" mnemonicParsing="false" onAction="#obscBut" styleClass="buttonQuadrat">
                                  <graphic>
-                                    <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../img/lluna.png" />
-                                       </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="38.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" />
                                  </graphic>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#ajuda" styleClass="buttonQuadrat">

@@ -60,12 +60,12 @@ public class PrincipalController implements Initializable {
             root.getStylesheets().remove("resources/blancFulla.css");
             root.getStylesheets().add("resources/obscFulla.css");
 //            Image sol = new Image("/img/sol.png");
-            //imgview.setImage(sol); Em dona NullPointerException
+            //imgview.setImage(sol); //Em dona NullPointerException
         }
         else {
             root.getStylesheets().remove("resources/obscFulla.css"); 
             root.getStylesheets().add("resources/blancFulla.css");
-            //imgview.setImage(lluna); Em dona NullPointerException
+            //imgview.setImage(lluna); //Em dona NullPointerException
         } 
     }    
 
