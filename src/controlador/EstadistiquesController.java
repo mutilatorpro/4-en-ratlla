@@ -141,7 +141,6 @@ public class EstadistiquesController implements Initializable {
         PartUsuEleccio.getItems().add(u3);
         PartUsuEleccio.getItems().add(u4);
     }    
-
     @FXML
     private void mostrarRondes(ActionEvent event) {
         error.setText("");

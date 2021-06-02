@@ -156,10 +156,11 @@ public class NombrePartidesGuanyadesPerdudesController implements Initializable 
           //  dataVictories.clear();
            // dataDerrotes.clear();
             usuariDades = sistema.getPlayer(nomUsuari);
-            if (usuariDades == null) error.setText("Jugador no registrat en el nostre sistema.");
+            carregarDades();
+            /*if (usuariDades == null) error.setText("Jugador no registrat en el nostre sistema.");
             else {
                 carregarDades();
-            }
+            }*/
         }
     }
     public void inicialitzarDades() {
