@@ -47,10 +47,8 @@ import model.Round;
  */
 public class NombrePartidesTempsController implements Initializable {
 
-    @FXML
-    private DatePicker dataInici;
-    @FXML
-    private DatePicker dataFi;
+    //private DatePicker dataInici;
+    //private DatePicker dataFi;
     @FXML
     private LineChart<String, Number> chart;
     @FXML
@@ -63,10 +61,10 @@ public class NombrePartidesTempsController implements Initializable {
     
     private ObservableList<XYChart.Data<String,Number>> llistaDates = FXCollections.observableArrayList();
     private LocalDate dataI, dataF;
+    private String nomUsuari = "";
     private Player jugador1 = null, jugador2 = null;
     private DateTimeFormatter formatter;
-    @FXML
-    private Label error;
+    //private Label error;
     /**
      * Initializes the controller class.
      */
@@ -82,49 +80,49 @@ public class NombrePartidesTempsController implements Initializable {
             root.getStylesheets().remove("resources/obscFulla.css"); 
             root.getStylesheets().add("resources/blancFulla.css");
         } 
-        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
-        dataInici.setDayCellFactory(c -> new DateCell() {
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                setDisable(item.isAfter(LocalDate.now()));
-            }
-        });
+//        dataInici.setEditable(false); //per evitar que es puga introduir la data "a mà"
+//        dataInici.setDayCellFactory(c -> new DateCell() {
+//            public void updateItem(LocalDate item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setDisable(item.isAfter(LocalDate.now()));
+//            }
+//        });
         formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
-        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
-        dataInici.showWeekNumbersProperty().set(false);
-        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
-        dataFi.setDayCellFactory(c -> new DateCell() {
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-                setDisable(item.isAfter(LocalDate.now()));
-            }
-        });
-        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
-        dataFi.showWeekNumbersProperty().set(false);
-        chart.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
+//        dataInici.setConverter(new LocalDateStringConverter(formatter, null));
+//        dataInici.showWeekNumbersProperty().set(false);
+//        dataFi.setEditable(false); //per evitar que es puga introduir la data "a mà"
+//        dataFi.setDayCellFactory(c -> new DateCell() {
+//            public void updateItem(LocalDate item, boolean empty) {
+//                super.updateItem(item, empty);
+//                setDisable(item.isAfter(LocalDate.now()));
+//            }
+//        });
+//        dataFi.setConverter(new LocalDateStringConverter(formatter, null));
+//        dataFi.showWeekNumbersProperty().set(false);
+        //chart.disableProperty().bind(Bindings.or(Bindings.isNull(dataInici.valueProperty()), Bindings.isNull(dataFi.valueProperty())));
         try {
             sistema = Connect4.getSingletonConnect4();
             partidesPerDia = sistema.getRoundCountsPerDay();
             dates = partidesPerDia.keySet();
-            dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
-                dataF = valorNou;
-                if (dataI != null) {
-                    if (dataI.isBefore(dataF) || dataF.isAfter(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-                    else {
-                        reubica();
-                    }
-                }
-                
-            });
-            dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
-                dataI = valorNou; 
-                if (dataF != null) {
-                    if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
-                    else {
-                        reubica();
-                    }
-                }
-            });
+//            dataFi.valueProperty().addListener((observable, valorAntic, valorNou) -> { 
+//                dataF = valorNou;
+//                if (dataI != null) {
+//                    if (dataI.isBefore(dataF) || dataF.isAfter(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+//                    else {
+//                        reubica();
+//                    }
+//                }
+//                
+//            });
+//            dataInici.valueProperty().addListener((observable, valorAntic, valorNou) -> {
+//                dataI = valorNou; 
+//                if (dataF != null) {
+//                    if (dataI.isAfter(dataF) || dataF.isBefore(dataI)) error.setText("La data d'inici ha de ser prèvia a la de fi.");
+//                    else {
+//                        reubica();
+//                    }
+//                }
+//            });
             chart.setTitle("Partides jugades per dia");
             chart.getData().add(new XYChart.Series<> (llistaDates));
             xAxis.setLabel("Data");
@@ -136,7 +134,7 @@ public class NombrePartidesTempsController implements Initializable {
         }
     }    
     private void reubica () {
-        error.setText("");
+        //error.setText("");
         llistaDates.clear();
         for (LocalDate data : dates) {
             if (!(data.isBefore(dataI) || data.isAfter(dataF))) {
@@ -144,35 +142,16 @@ public class NombrePartidesTempsController implements Initializable {
             }
         }
     }
+    public void inicialitzarDades() {
+        dataI = Dades.getDades().getDataI();
+        dataF = Dades.getDades().getDataF();
+        nomUsuari = Dades.getDades().getNomUsuari();
+    }
     public void inicialitzarJugador (Player j1) { jugador1 = j1; }
     public void inicialitzarJugadors (Player j1, Player j2) { 
         jugador1 = j1;
         jugador2 = j2;
     }
-    @FXML
-    private void enrere(ActionEvent event) throws IOException {
-        if (jugador1 != null) {
-            FXMLLoader cargador = new FXMLLoader(getClass().getResource("/vista/PrimerJugador.fxml"));
-            Parent root = cargador.load();
-            PrimerJugadorController controlador = cargador.getController();
-            if (jugador2 != null) {
-                controlador.inicialitzarJugadors(jugador1, jugador2);
-            } else {
-                controlador.inicialitzarJugador(jugador1);
-            }
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/Principal.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.toFront();
-            stage.show();
-        }
-    }
+    
     
 }
