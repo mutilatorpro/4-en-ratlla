@@ -125,7 +125,7 @@ public class NombrePartidesTempsController implements Initializable {
 //                }
 //            });
             chart.setTitle("Partides jugades per dia");
-            chart.getData().add(new XYChart.Series<> (llistaDates));
+            chart.getData().add(new XYChart.Series<> ("Partides", llistaDates));
             xAxis.setLabel("Data");
             xAxis.setTickLabelFill(Paint.valueOf("white"));
             yAxis.setTickLabelFill(Paint.valueOf("white"));
